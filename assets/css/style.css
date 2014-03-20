@@ -144,24 +144,6 @@ h1, h2, h3, h4, h5, h6{
 	color: #b0b0ad !important;
 }
 
-input[type="text"], textarea {
-	background-color: #fafafa;	
-	padding: 10px;
-	font-family: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	color: #6a6a6a;	
-	border: 1px solid #ddd;
-	background:	#fafafa url(images/field_bkg.png) repeat-x;	
-}
-
-input[type="text"]:focus {outline: none; background-color: #f7f7f7;}
-textarea:focus {outline: none; background-color: #f7f7f7;}
-
-textarea { width: 80%; font-size: 13px;}
-
-
 
 /* Clearfix ----------- */
 
@@ -361,7 +343,7 @@ a.action {
 	position: relative;
 	padding-top: 1px;
 	overflow: hidden;
-	background-image: url(/images/header.jpg);		
+	background-image: url(http://everydayutilitarian.com/personal/images/header.jpg);		
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: center top;	
@@ -396,7 +378,7 @@ a.action {
 	font-size: 1.2em;	
 	margin: 0 auto 30px;
 	clear: both;
-	background: transparent url(images/line.gif) 0 center repeat-x;	
+	background: transparent url(http://everydayutilitarian.com/personal/images/line.gif) 0 center repeat-x;	
 	color: #555555;
 	text-align: center;	
 	font-family: "Droid Serif", "Georgia", serif;
