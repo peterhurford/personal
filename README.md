@@ -1,1 +1,1 @@
-The personal website of Peter Hurford.  Built in Jekyll.
+The personal website of Peter Hurford.  Built in Jekyll, hosted on GitHub pages.  Theme is inspired and adapted from [Hero](http://themetrust.com/demos/hero/) by Theme Trust.
