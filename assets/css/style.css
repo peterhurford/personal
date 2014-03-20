@@ -369,6 +369,17 @@ a.action {
 	font-family: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+#homeBanner p {	
+	text-align: center;
+	color:#fff;
+	font-family: "Droid Serif", "Georgia", serif;
+	font-size: 20px;
+	display: block;
+	text-shadow: 0 0 8px rgba(0,0,0,.7);
+	position: relative;
+	margin: 1px auto 1px;	
+}
+
 .homeSection {	
 	margin-bottom: 20px!important;
 	width: 100%;	
