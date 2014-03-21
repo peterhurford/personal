@@ -11,7 +11,7 @@ function isMobile(){
     );
 }
 
-// Scroll the text
+// Scroll the header text
 function scrollBanner() {
     //Get the scoll position of the page
     scrollPos = jQuery(this).scrollTop();
@@ -26,7 +26,7 @@ function scrollBanner() {
     jQuery('#homeBanner').css({
         'background-position' : 'center ' + (-scrollPos/8)+"px"
     });    
-  }
+}
 
 
 // Initalize

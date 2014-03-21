@@ -2,7 +2,9 @@
 	Theme for Peter Hurford, Design 3.0
 	Theme by Peter Hurford <www.peterhurford.com> with design help from Kate Lowry.
 	
-	Inspiration from Hero Theme <http://themetrust.com/themes/hero>.
+	Theme inspired by Hero Theme <http://themetrust.com/themes/hero>.
+	CSS fade from Bavotasan <http://bavotasan.com/2011/a-simple-fade-with-css3/>.
+	Footer "mac dock"-style zoom adapted from GirlieMac <http://girliemac.com/blog/2010/06/02/simulating-macos-dock-like-menu-with-css3/>.
 */
 
 
@@ -290,6 +292,15 @@ a.action {
 	margin: 0 20px 0px 20px;
 }
 
+#featuredPages .fade {
+	opacity: 1;
+	transition: opacity .25s ease-in-out;
+	-moz-transition: opacity .25s ease-in-out;
+	-webkit-transition: opacity .25s ease-in-out;
+}
+
+#featuredPages .fade:hover { opacity: 0.5; }
+
 #content #profile {	
 	background: #999999;
 	color: white;
@@ -314,12 +325,57 @@ a.action {
 #footer .inside {
 	text-align: center;
 	max-width: 62.5em;
-	margin: 0 auto 20px;
+	margin: 40px auto 30px;
 	padding: 0px 0 0;
 }
 
+#footer .inside #buttons ul {
+	font-size: 14px;
+	padding: 0 30px;
+	margin: 0;
+}
+
 #footer .inside #buttons li {
-  padding: 10px;
-  list-style: none;
-  display: inline-block;
+	list-style-type: none;
+	display: inline-block;
+	position: relative;		
+}
+
+#footer .inside #buttons li span {
+	display: none;
+	position: absolute;
+	bottom: -10px;
+	left: 0;
+	width: 100%;
+	color: white;
+	background-color: #1b1b1b;
+}
+
+#footer .inside #buttons li:hover span {
+	display: block;
+}
+
+#footer .inside #buttons li img {
+	margin-bottom: 10px;
+	-webkit-transition: all 0.2s;
+	-webkit-transform-origin: 50% 100%;
+	-moz-transition: all 0.2s;
+	-moz-transform-origin: 50% 100%;
+	-o-transition: all 0.2s;
+	-o-transform-origin: 50% 100%;
+}
+
+#footer .inside #buttons li img:hover {
+	-webkit-transform: scale(2);
+	-moz-transform: scale(2);
+	-o-transform: scale(2);
+	margin: 0 15px 15px;
+}
+
+#footer .inside #buttons li:hover + li img,
+#footer .inside #buttons li.prev img {
+	-webkit-transform: scale(1.4);
+	-moz-transform: scale(1.4);
+	-o-transform: scale(1.4);
+	margin: 0 15px 15px;
 }
