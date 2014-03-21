@@ -19,7 +19,7 @@ function scrollBanner() {
     //Scroll and fade out the banner text
     jQuery('#bannerText').css({
         'margin-top' : -(scrollPos/3)+"px",
-        'opacity' : 1-(scrollPos/300)
+        'opacity' : 1-(scrollPos/200)
     });
 	
     //Scroll the background of the banner
