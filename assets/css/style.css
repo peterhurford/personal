@@ -36,19 +36,18 @@ html {
 body {
 	line-height: 1;
 }
+
 h1, h2, h3, h4, h5, h6 {	
 	clear: both;
 }
-ul {
-	list-style: none;
-}
+
+a { color: #ccb676;}
+
+a:hover {color: #aa9862;}
 
 a img { border: none; }
 
 img { display: block; }
-
-input[type="submit"]::-moz-focus-inner {border:0;}
-input[type="submit"]::-webkit-focus-inner {border:0;}
 
 .isotope-item {
   z-index: 2;
@@ -279,10 +278,6 @@ a.action {
 	width: 95%;	
 }
 
-#content.fullProjects{	
-	width: 100%;				
-}
-
 #content.twoThirds .page {	
 	width: 99%;		
 }
@@ -336,7 +331,7 @@ a.action {
 /*Home */
 
 #homeBanner {	
-	height: 450px;
+	height: 350px;
 	display: block;
 	margin: 0px auto 0;
 	width: 100%;
@@ -351,7 +346,7 @@ a.action {
 
 #bannerText {
 	position: fixed;
-	top: 150px;
+	top: 120px;
 	text-align: center;		
 	width: 100%;	
 }
@@ -430,16 +425,18 @@ a.action {
 
 #content .page.small p{	
 	margin: 0 20px 0px 20px;
-}	
-
-a { color: #ccb676;}
-a:hover {color: #aa9862;}
-.button, #searchsubmit, input[type="submit"] {background-color: #757575 !important;}
-.button:hover, #searchsubmit:hover, input[type="submit"]:hover {background-color: #595959 !important;}
-
-@media only screen and (max-width: 768px) {	
-#text-2 img {float: left !important;}
 }
+
+#content #profile {	
+	background: #999999;
+	color: white;
+	margin: 0px 10px 30px 10px;
+	padding: 20px;
+	line-height: 135%;
+}
+
+#content #profile a { color: #dddddd; }
+#content #profile a:hover { text-decoration: underline; }
 
 
 /*Column Shortcodes------------------*/
@@ -547,20 +544,6 @@ a.button, #footer a.button {
 
 #footer a:hover {
 	color: #fff;	
-}
-
-#footer .secondary {		
-	margin: 0 25px 0;
-	padding: 20px 0 0;
-	border-top: 1px solid #313131;
-}
-
-#footer .secondary .left {
-	float: left;
-}
-
-#footer .secondary .right {
-	float: right;
 }
 
 
