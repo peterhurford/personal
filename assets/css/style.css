@@ -147,6 +147,15 @@ a.action {
 	}	
 }
 
+@media only screen and (max-device-width: 1024px) and (orientation:portrait) {
+	#bannerText {
+		position: absolute;
+		top: 100px;
+		text-align: center;		
+		width: 100%;	
+	}	
+}
+
 #homeBanner h2 {
 	text-align: center;
 	color:#fff;
