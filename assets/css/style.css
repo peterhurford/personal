@@ -113,7 +113,7 @@ a.action {
 	margin: 0;			
 }
 
-#header h1 a, #header h1 a:hover{	
+#header h1 a, #header h1 a:hover {	
 	color: #555555 !important;	
 }
 
@@ -127,21 +127,6 @@ a.action {
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: center top;	
-}
-
-#bannerText {
-	position: fixed;
-	text-align: center;		
-	width: 100%;	
-}
-
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px), @media only screen and (max-device-width: 480px) {
-	#bannerText {
-		position: absolute;
-		top: 100px;
-		text-align: center;		
-		width: 100%;	
-	}
 }
 
 #homeBanner h2 {

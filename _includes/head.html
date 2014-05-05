@@ -13,9 +13,30 @@
 			background-image: url(http://everydayutilitarian.com/personal/images/{{page.image}});
 			height: {{page.bannerheight}};
 		}
-		#bannerText {
-			top: {{page.topheight}};
-		}
+		{% if page.index == true %}
+			#bannerText {
+				top: {{page.topheight}};
+				position: fixed;
+				text-align: center;		
+				width: 100%;	
+			}
+
+			@media only screen and (min-device-width: 768px) and (max-device-width: 1024px), @media only screen and (max-device-width: 480px) {
+				#bannerText {
+					position: absolute;
+					top: {{page.topheight}};
+					text-align: center;		
+					width: 100%;	
+				}
+			}
+		{% else %}
+			#bannerText {
+				position: absolute;
+				top: {{page.topheight}};
+				text-align: center;		
+				width: 100%;
+			}
+		{% endif %}
 	</style>
 </head>
 
