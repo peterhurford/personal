@@ -1,0 +1,76 @@
+
+body {
+	margin-left: 100px;
+	margin-right: 100px;
+	font-family: Verdana;
+	font-size: 10pt;
+	background:#1b295f;
+	color:#ffffff;
+	width:60%;
+}
+ 
+div.gameTitle
+{
+	border:0; 
+	background-color:#0f2fa7;
+	border-left: 1px solid #dddddd;
+	border-right: 1px solid #dddddd;
+	border-top: 1px solid #dddddd;
+	margin-top: 20px;
+	font-weight:bold;
+	font-size:18pt;
+	color:#fdf213;
+	padding: 4px;
+}
+div.statusBar
+{
+	border:1px;
+	border-color:#acbaec;
+	background-color:#0f2fa7; 
+	border-left: 1px solid #dddddd;
+	border-right: 1px solid #dddddd;
+	font-weight:bold;
+	font-size:10pt;
+	color:#fdf213;
+	padding: 2px;
+}
+div#placeLabel { float: left; }
+div#scoreLabel { text-align: right; }
+div#outDiv
+{
+	padding: 2px;
+	height: 450px;
+	border-left: 1px solid #dddddd;
+	border-right: 1px solid #dddddd;
+	overflow-x: hidden;
+	overflow-y: scroll;
+ 
+	background-color: #0f2fa7;
+}
+div.inDiv
+{
+	border-left: 1px solid #dddddd;
+	border-right: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
+	background-color: #0f2fa7;
+}
+div#caret
+{
+	float: left;
+	padding-top: 2px;
+	padding-left: 4px;
+	font-weight: normal;
+	font-size: 9pt;
+}
+ 
+textarea#textIn
+{
+	width: 95%;
+	border: 0;
+	font-weight: bold;
+	font-size: 12pt;
+	overflow: hidden;
+	background-color: #0f2fa7;
+	color:#ffffff;
+	padding: 0px;
+}
