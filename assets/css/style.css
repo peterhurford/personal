@@ -117,8 +117,7 @@ a.action {
 	color: #555555 !important;	
 }
 
-#homeBanner {	
-	height: 350px;
+#homeBanner {
 	display: block;
 	margin: 0px auto 0;
 	width: 100%;
@@ -132,7 +131,6 @@ a.action {
 
 #bannerText {
 	position: fixed;
-	top: 100px;
 	text-align: center;		
 	width: 100%;	
 }
