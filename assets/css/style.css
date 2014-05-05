@@ -125,7 +125,6 @@ a.action {
 	position: relative;
 	padding-top: 1px;
 	overflow: hidden;
-	background-image: url(http://everydayutilitarian.com/personal/images/header.jpg);		
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: center top;	
@@ -138,7 +137,7 @@ a.action {
 	width: 100%;	
 }
 
-@media only screen {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px), @media only screen and (max-device-width: 480px) {
 	#bannerText {
 		position: absolute;
 		top: 100px;

@@ -8,14 +8,19 @@
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold" />
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif:regular,bold" />
 	<link rel="stylesheet" href="assets/css/style.css" type="text/css" media="screen" />
+	<style type="text/css">
+		#homeBanner {
+			background-image: url(http://everydayutilitarian.com/personal/images/{{page.image}});
+		}
+	</style>
 </head>
 
 <body class="home page page-template">
 	<div id="container">		
 		<div id="homeBanner">			
 			<div id="bannerText">
-				<h2>PETER HURFORD</h2>
-				<p>Web Developer. Statistician. Writer.</p>
+				<h2>{{ page.title }}</h2>
+				{% if page.title == "PETER HURFORD" %} <p>Web Developer. Statistician. Writer.</p> {% endif %}
 			</div>
 		</div>
 	</div>
