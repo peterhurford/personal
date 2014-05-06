@@ -17,7 +17,7 @@ topheight: 30px
                     $DragOrientation: 0,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
                     $ArrowNavigatorOptions: {                       //[Optional] Options to specify and enable arrow navigator or not
                         $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
-                        $ChanceToShow: 1,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+                        $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
                         $AutoCenter: 0,                                 //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
                         $Steps: 1                                       //[Optional] Steps to go for each navigation request, default value is 1
                     }
@@ -26,12 +26,8 @@ topheight: 30px
                 var jssor_slider1 = new $JssorSlider$(containerId, options);
             };
         </script>
-        <!-- Jssor Slider Begin -->
-        <!-- You can move inline styles (except 'top', 'left', 'width' and 'height') to css file or css block. -->
-        <div id="slider" style="position: relative; top: 0px; left: 0px; width: 650px; height: 470px; ">
-
-            <!-- Slides Container -->
-            <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 650px; height: 470px; overflow: hidden;">
+        <div id="slider" style="position: relative; top: 0px; left: 120px; width: 650px; height: 470px;">
+            <div u="slides" style="position: absolute; top: 0px; width: 650px; height: 470px; overflow: hidden;">
                 <div><img u="image" src="images/dandp/airlineseats.png" /></div>
                 <div><img u="image" src="images/dandp/airtech.png" /></div>
                 <div><img u="image" src="images/dandp/boring.png" /></div>
