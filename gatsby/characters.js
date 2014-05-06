@@ -151,12 +151,19 @@ function tom_say() {
 	else if (gs("party_is_go") < 2 && gs("ashes_side") == 1) { says = new Array("Let's not take too long here.", "Aren't The Apartments beautiful?", "It's good to get away from all that ash...", "Could you hurry up a bit?  We're making Myrtle wait."); }
 	else if (gs("party_is_go") == 2) { return "Tom grumbles and seems to focus all his attention on Myrtle."; }
 	else if (gs("party_is_go") == 3) {
+		say(tom_elevator_talk); // Should take place in the elevator.  Speech is in variables.js.
+		set_personloc(tom, nowhere);
+		set_personloc(butler, outsidechrhouse);
+		set_personloc(jordan, gtsbybeach);
+		set_personloc(catherine, gtsbyorchestra);
 		inc_score();
-		set_heroloc(outsidechrhouse);
-		set_personloc(tom,nowhere);
+		set_heroloc(chrbedroom);
+		sgs("catherine",4);
 		sgs("buchhouselock",1);
 		sgs("party_is_go",4);
-		return tom_elevator_talk; // Should take place in the elevator.  Speech is in variables.js.
+		sent_look = true;
+		look();
+		return false;
 	}
 	else { return "Uh..."; }
 	return "Tom: " + says[Math.floor(Math.random()*says.length)];
@@ -174,16 +181,21 @@ function answer_phone_sitting() {
 		sgs("phone_answered",1);
 		inc_score();
 	}
-	else if (jordan_daisy_convo == 0) { say("Tom is already on the phone and is having a very hushed conversation."); }
+	else if (gs("jordan_daisy_convo") == 0) { say("Tom is already on the phone and is having a very hushed conversation."); }
 	else { say("Tom: Let's not worry about that."); }
 }
 
 
 //JORDAN
-ch("Jordan", true, buchsitting, "Her pleasing contemptuous expression had looked out at you from many pictures of the sporting life at Asheville and Hot Springs and Palm Beach.  You also recall some story of her too, a critical, unpleasant story, but what it was you had forgotten long ago.", "*jordan_talk()", "", "", "", "Jordan sighs./\Jordan looks skeptical./\Jordan says something about golf.");
+ch("Jordan", true, buchsitting, "Her pleasing contemptuous expression had looked out at you from many pictures of the sporting life at Asheville and Hot Springs and Palm Beach.  You also recall some story of her too, a critical, unpleasant story, but what it was you had forgotten long ago.", "*jordan_talk()", "", "", "", "Jordan sighs./\Jordan looks skeptical./\Jordan coughs in a condescending manner./\Jordan glares at you.");
 function jordan_talk() {
 	if (gs("phone_answered") == 0) { say("Jordan ignores you."); }
-	else { jordan_daisy_convo(); }
+	else if (gs("jordan_daisy_convo") == 0) { jordan_daisy_convo(); }
+	else if (gs("butler") == 1) {
+		say("Jordan: I thought you might be here, given that you live so close.\nJordan looks about.  Eventually her friend Lucille wanders by and asks her about golf.\nLucille: Sorry you didn't win.\nShe was talking about Jordan's golf tournament.\nThey talk for awhile and you listen.  Eventually Lucille leaves.\nJordan: Let's get out.  This is much too polite for me.\nYou ask where she wants to go.\nJordan: Let's go find our esteemed host.  He's probably inside the mansion somewhere.  Let's go to the door.\nYou remark seeing a butler blocking the entrance.\nJordan: Won't be much of a problem for me.");
+		sgs("jordan_follow", 1);
+	}
+	else { say("Jordan ignores you."); }
 }
 
 
@@ -490,4 +502,31 @@ function talk_catherine() {
 		says = new Array("Catherine leans in and asks you some questions about restaurants in West Egg.  She pretends to know the area, but doesn't seem to realize that it's purely residential, and there are no restaurants.  You make up something and look away.", "Catherine looks toward Myrtle and makes a comment about her diet, or lack thereof.  Notably, Catherine is fatter than Myrtle.  But you're not judging, just observing some hypocrisy...", "Catherine continues to talk inanely about fashion trends.", "Catherine mentions something about the economy, but she doesn't seem to know much about economics at all.", "Catherine tells you about some book she read recently.  You try to change the subject, but she ignores you and keeps talking about her book.");
 		say(says[Math.floor(Math.random()*says.length)] + " It doesn't look like Catherine has any more useful things to say.  Though, perhaps she never had anything interesting to say in the first place...");
 	}
+	else if (gs("catherine") == 4) {
+		say("Catherine: Hi, Nick!  I've never seen you at one of these parties?  First time here?  Gatsby must be taking a liking to you.  It takes a true socialite to get into one of these parties.  Gatsby was a graduate of Oxford, y'know, so he's selective with his company.\n\nYou note privately to yourself that the amount of guests at this party -- especially the uninvited ones -- doesn't show too much hint of selectivity.");
+	}
 }
+
+
+// Gatsby's butler
+ch("butler", false, nowhere, "An elegant and well-dressed man in a tailcoat.  He appears to be one of Gatsby's butlers.", "*talk_butler()", "", "", "", "The butler coughs and looks at you earnestly.  Maybe you should talk to him?");
+function talk_butler() {
+	if (gs("butler") == 0) {
+		say("Butler: Sir?  You're Nick Carraway, sir?\nYou say you are.\nButler: Master Gatsby wanted you to have this.\nHe hands you some small and ornate sheet of paper and then walks away.  It looks to be an invitation.  You store it in your pocket.");
+		give_hero(invitation);
+		sgs("butler", 1);
+		set_personloc(butler, nowhere);
+	}
+}
+
+
+// LUCILE
+ch("Lucille", true, gtsbylemons, "description", "Lucille: Hi, I'm Lucille.  Nice night, right?  And you are?\nYou introduce yourself.\nLucille: Oh, I've heard of you.  I'm a friend of Jordan's.  She's here at this party too -- always trying to find more about this Gatsby fellow.  Personally, I think Gatsby is a bit shady.  I've heard he was a German spy during the War.", "", "", "", "");
+
+
+// SARAH
+ch("Sarah", true, gtsbygarage, "description", "Sarah: Nice car, huh?  Gatsby sure does have a flair for the dramatic.  But just between you and me, I think Gatsby uses this car for more than just show.  I've heard that he's a huge bootlegger.  I've even heard he once killed a guy in cold blood!", "", "", "", "");
+
+
+// stranger (later turns out to be Gatsby)
+ch("stranger", false, gtsbydeck, "description", "Stranger: Look at all these people, just going about their night, having a good time.  Sure gives you some interesting perspective, being up here, doesn't it?", "", "", "", "");

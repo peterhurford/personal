@@ -1879,7 +1879,7 @@ function narrative_jump() {
 		sgs("landlord_ready",1);
 		sgs("elevator_authorized",1);
 		sgs("speakeasypw",2);
-		sgs("catherine",3);
+		sgs("catherine",4);
 		sgs("tom_talks_about_wilson",1);
 		sgs("wilson_tom_convo",1);
 		sgs("myrtle_enter",2);
@@ -1889,10 +1889,19 @@ function narrative_jump() {
 		sgs("vase_watered",1);
 		sgs("vase_flowered",1);
 		sgs("gambled",1);
-		sgs("party_is_go",3);
+		sgs("apt_talk",2);
 		sgs("score_from_drive",1);
+		sgs("buchhouselock",1);
+		sgs("party_is_go",4);
 
-		set_heroloc(aptelevator2);
-		say(tom_elevator_talk);	
+		say(tom_elevator_talk); // Should take place in the elevator.  Speech is in variables.js.
+		set_personloc(tom, nowhere);
+		set_personloc(butler, outsidechrhouse);
+		set_personloc(jordan, gtsbybeach);
+		set_personloc(catherine, gtsbyorchestra);
+		set_heroloc(chrbedroom);
+		
+		sent_look = true;
+		look();
 	}
 }

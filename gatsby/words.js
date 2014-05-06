@@ -139,7 +139,7 @@ words("mailbox.mail");
 words("food");
 words("table.desk");
 words("chair");
-words("picture.portrait");
+words("picture.portrait.painting");
 words("duck");
 words("pond");
 words("tree.forest");
@@ -180,6 +180,8 @@ words("slot");
 words("suit");
 words("hat.cap");
 words("horizon");
+words("invitation.invite");
+words("bedroom");
 
 //Others
 words("inventory.inv.invent.carrying.stuff.possession.pocket");

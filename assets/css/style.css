@@ -153,6 +153,8 @@ a.action {
 	margin: 1px auto 1px;	
 }
 
+#breadcrumbs { margin: 0 0 20px 20px; }
+
 
 /* Content */
 
@@ -202,6 +204,18 @@ a.action {
 
 .home #main {
 	padding-top: 30px;
+}
+
+.home #content.full, .page-template-page-home-php #content.full {	
+	width: 100%;						
+}
+
+.home #main {
+	padding-top: 30px;
+}
+
+.home.page-template-page-full-width-php #content.full {
+	width: 95%;	
 }
 
 table {

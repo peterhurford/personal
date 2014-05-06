@@ -30,7 +30,7 @@ pl("outsidechrhouse", "Outside Your House", "You are on a road, right outside yo
 "in::*need_house_key()\
 /open::*need_house_key()\
 /close::*close_house_key()\
-/break::Now, there should be better ways to get in your house than to resort to property distruction.\
+/break::*break_near_house()\
 /window::That would be wonderful, if there were any windows that you could reach.",
 "west::road.east::crossroads.in::nowhere", "");
 function outsidechrhouse_append() {
@@ -69,6 +69,10 @@ function close_house_key() {
 	}
 	else if (Token[2] == "window") { say("You can't reach the window."); }
 	else { say("It's probably best if you just leave things as they are."); }
+}
+function break_near_house() {
+	if (gs("key_inc_score") == 0) { say("Now, there should be better ways to get in your house than to resort to property distruction."); }
+	else { say("Now let's not just go around breaking things."); }
 }
 
 var station_road_items = "house::It looks just like your house normally does, but smaller.\
@@ -112,7 +116,7 @@ pl("crossroads", "The Crossroads", "You are at a cross in the road, affectionate
 
 pl("gtsbyroad", "Gatsby Road", "The road is named after Gatsby because it goes to his luxurious mansion, perhaps the biggest house in all of West Egg.  You can see his mansion looming in the distance.", "", "house::It's large, but you can't quite make out it's features.\/road::Rocky and bumpy, but cars can actually drive on it.  Hey, it's the 1920s.", "", "west::crossroads.east::outsidegtsbymansion", "");
 
-pl("outsidegtsbymansion", "Outside Gatsby's Mansion", "You see Gatsby's mansion... or, rather, because you don't know Gatsby very well, you know it's a mansion that belongs to a gentlemen of the name Gatsby. It's a colossal affair by any standard... in fact, it's an imitation of some Hotel de Ville in Normandy.  It has a tower on one side, lots of ivy, and you can even make out a marble swimming pool and more than forty acres of lawn and garden.  [[ gs('gtsbygate_open') == 0 ? 'The whole house is closed off by a wall and a massive gate, locked shut.' : 'You see a closed off wall, but the massive gate is open, and you could walk inside, as many people do, even when not invited.' ]]", "",
+pl("outsidegtsbymansion", "Outside Gatsby's Mansion", "You see Gatsby's mansion... or, rather, because you don't know Gatsby very well, you know it's a mansion that belongs to a gentlemen of the name Gatsby. It's a colossal affair by any standard... in fact, it's an imitation of some Hotel de Ville in Normandy.  It has a tower on one side, lots of ivy, and you can even make out a marble swimming pool and more than forty acres of lawn and garden.  [[ gs('gtsbygate_open') == 0 ? 'The whole house is closed off by a wall and a massive gate, locked shut.' : 'You see a closed off wall, but the massive gate is open, and you could walk inside, as many people are doing.' ]]", "",
 "gate::It's lovely and ornate, and hard to move.",
 "in::*gtsbygate()\
 /open::*open_gtsbygate()\
@@ -128,7 +132,7 @@ function close_gtsbygate() {
 function gtsbygate() {
 	if (gs("gtsbygate_open") == 0) { say("You walk right up to an ornate gate, only to realize it's still closed and you have no hope of going in the mansion.  Yet."); }
 	else {
-		set_heroloc(gtsbymansion); //Set this
+		set_heroloc(gtsbymansion);
 		sent_look = true;
 		look();
 	}
@@ -584,7 +588,7 @@ pl("aptelevator2", "Elevator (Top Floor)", elevdesc, "", elevlook, elevaction, "
 
 pl("outsidetomapt", "Outside Tom's Apartment", "You stand outside Tom's apartment.  The door is wide open.", "", "house::It's kind of cool to be right at the top.  But the view still isn't that great./\door::It's wide open.", "close.door::You close the door, but Myrtle re-opens it from the other side.", "north::aptelevator2.in::tomaptliving", "");
 
-pl("tomaptliving", "Tom's Apartment Living Room", "You're in a living room, complete with a couch for socialization!  You can see a bedroom to the south and a dining room to the north.  A portrait hangs on the wall.", "", "", "south::*try_bedroom()", "out::outsidetomapt.north::tomaptdining.south::nowhere", ""); //Needs a couch and a portrait
+pl("tomaptliving", "Tom's Apartment Living Room", "You're in a living room, complete with a couch for socialization!  You can see a bedroom to the south and a dining room to the north.  A portrait hangs on the wall.", "picture::It's a portrait of a young Victorian woman smiling funny./\cseat::It looks a little old and tattered.  Doesn't seem particularly comfy./\bedroom::You don't want to know what goes on down there.", "", "south::*try_bedroom()", "out::outsidetomapt.north::tomaptdining.south::nowhere", "");
 function try_bedroom() { say("Tom: Hey, stay out of our bedroom!  We deserve privacy!"); }
 
 pl("tomaptdining", "Tom's Apartment Dining Room", "It's a nice dining room, though much smaller than the one in the Buchanan residence.  It's set up for a party.", "", "", "", "south::tomaptliving", "");
@@ -594,3 +598,27 @@ pl("aptelevator3", "Elevator (Basement)", elevdesc, "", elevlook, elevaction, "u
 pl("aptstorage", "Storage Room", "It's a dark storage room that holds various things for the hotel.", "", "", "", "north::aptelevator3.in::aptfreezer", "");
 
 pl("aptfreezer", "Freezer", "It's a walk-in freezer that keeps things cold.  It's very cold in here.", "", "", "", "out::aptstorage", "");
+
+
+// GATSBY'S MANSION
+pl("gtsbymansion", "Mansion Entrance", "You walk into Gatsby's mansion and notice the wide variety of guests.  Gatsby has certainly spared no expense at creating such a lavish event.", "", "things that can be examined", "", "out::outsidegtsbymansion.north::gtsbygardens.east::gtsbybeach", "");
+
+pl("gtsbygardens", "The Garden Feast", "You walk into a garden.  Here, Gatsby has pitched a large tent.  Underneith the tent are several long tables, each filled with various plates of expensive food.  Not to mention the copious amounts of alcohol available at the bar, despite the Prohibition! Quite the feast!", "", "things that can be examined", "", "south::gtsbymansion.west::gtsbyorchestra.east::gtsbylemons.north::gtsbyblank1", "");
+
+pl("gtsbybeach", "Gatsby's Beach", "Gatsby's mansion is right on the edge of the water between East and West Egg, and this affords him the opportunity to have a private beach.  You see many guests lounging about here.  In the distance, you can see Gatsby's two motor boats.", "", "things that can be examined", "", "west::gtsbymansion", "");
+
+pl("gtsbylemons", "Orange and Lemon Crates", "You walk by a bunch of crates that are filled with oranges and lemons from a fruiterer in New York.", "", "things that can be examined", "", "west::gtsbygardens.north::gtsbyblank2", "");
+
+pl("gtsbyorchestra", "Orchestra Under the Stars", "You hear music and walk in that direction.  Gatsby has a live orchestra playing on a patio near the mansion, billed as the \"Orchestra Under the Stars\".  You see guests looking up at the starry night sky while enjoying the hip new \"jazz\" genre being played.", "", "things that can be examined", "", "east::gtsbygardens.up::gtsbydeck.west::gtsbypool", "");
+
+pl("gtsbydeck", "Gatsby's Deck", "You walk up the stairs to a deck that appears removed from the party.  Here, one can see all the guests at any of the various attractions, yet there is nothing to do on this deck.  Notably, despite the huge number of guests all around the mansion, only one guest appears to be on the deck.", "", "things that can be examined", "", "down::gtsbyorchestra", "");
+
+pl("gtsbypool", "Gatsby's Pool", "As if having a private beach was not enough, Gatsby also has a lavish swimming pool.  You see guests milling about, drinking in the pool.", "", "things that can be examined", "", "east::gtsbyorchestra", "");
+
+pl("gtsbyblank1", "Gatsby's Yard", "You continue to walk through Gatsby's yard.  The gardens are not too far and you can see people eating and talking in the distance.", "", "things that can be examined", "", "south::gtsbygardens.east::gtsbyblank2", "");
+
+pl("gtsbyblank2", "Gatsby's Yard", "Gatsby has a pretty spacious backyard.  However, Gatsby has roped off a large portion of it to prevent guests from going all over.", "", "things that can be examined", "", "south::gtsbylemons.west::gtsbyblank1.east::gtsbyblank3", "");
+
+pl("gtsbyblank3", "Gatsby's Yard", "You walk through more of Gatsby's spacious yard.  You can see the mansion nearby, with an open garage.", "", "things that can be examined", "", "west::gtsbyblank2.north::gtsbygarage", "");
+
+pl("gtsbygarage", "Gatsby's Garage", "Gatsby's driveway ends in a large multi-car garage attached to his mansion.  You see guests crowded around one of Gatsby's cars.  After pushing by a few of them, you see that Gatsby is showing off his Rolls Royce.", "", "things that can be examined", "", "south::gtsbyblank3", "");

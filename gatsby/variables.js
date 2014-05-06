@@ -8,12 +8,16 @@ WORDS_TO_IGNORE = "about.with.around.under.over.do.go"; // words that are ignore
 MANNER_FREQ = 5; // 1/MANNER_FREQ = chance that a character's specific mannerism text will appear.  0 means it won't happen.
 START_LOC = outsidechrhouse; //The room that your character starts out in.  Don't put it in quotes.
 
-MAX_SCORE = 10; // number of times the score will be increased throughout the course of the game. (Reading the note, unlocking your house, returning the book, answering the phone, talking to Gatsby, getting on the train, drive to The Apartments, give Myrtle the wine, give Myrtle the ice, talk to Tom after the party ends)
+MAX_SCORE = 12; // number of times the score will be increased throughout the course of the game.
+// Scores include:
+// C1: Reading the note, unlocking your house, returning the book, answering the phone, talking to Gatsby
+// C2: getting on the train, drive to The Apartments, give Myrtle the wine, give Myrtle the ice, talk to Tom after the party ends
+// C3: reading Gatsby's invitation
 
 //The text of the opening story.
 INTRO = "<font color=\"" + HIGHLIGHT_COLOUR + "\"><i>=== CHAPTER ONE: SUNDAY ===</i></font>\n\nYou are Nick Carraway, and you have learned from your father that you ought to reserve judgement about other people, because if you hold them up to your own moral standards, you will misunderstand them.  You also happen to be both highly moral and highly tolerant, at least, according to you.  Then there\'s this other guy named Gatsby, who represents everything you scorn, but -- because of your father\'s statement -- he ought to be exempt from your usual judgements.  As a matter of fact, his personality is nothing short of \"gorgeous\".\n\n";
 
-tom_elevator_talk = "Tom: Come to lunch some day?\nYou ask where he'd like to go.\nTom: Anywhere is fine.\nYou agree.\nYou and Tom walk out the Hotel, drive to the station, wait for the train, and go your separate ways.  You decide it's about time to see Gatsby for yourself.\n\n<i><font color=\"" + HIGHLIGHT_COLOUR + "\">=== CHAPTER THREE: TUESDAY ===</font></i>";
+tom_elevator_talk = "Tom: Come to lunch some day?\nYou ask where he'd like to go.\nTom: Anywhere is fine.\nYou agree.\nYou and Tom walk out the Hotel, drive to the station, wait for the train, and go your separate ways.  You decide it's about time to see Gatsby for yourself.\n\n<i><font color=\"" + HIGHLIGHT_COLOUR + "\">=== CHAPTER THREE: TUESDAY ===</font></i>\n\nYou wake up on a brand new day.  It's about 7 in the morning.  You find yourself in your bedroom.\n\n";
 
 
 //Dummy functions that were once used.  They are still called by the engine, though.
@@ -46,7 +50,6 @@ function initialiseGame() {
 	hint[15] = "Perhaps Tom would be distracted if he answered the phone in his office?";
 	hint[16] = "Ask Tom about the phone.";
 	hint[17] = "Find Tom and type \"ask tom about phone\"";
-	
 	hint[18] = "Daisy wants to talk to you.";
 	hint[19] = "Talk to Tom.";
 	hint[20] = "Did you notice that Gatsby is on the beach now?";
@@ -163,10 +166,19 @@ function anywhere_append() {
 		txt = "\nYou have a nagging feeling that you should have read that note.";
 		sgs("note_call", 1);
 	}
+
 	if (gs("tom_follow") == 1) {
 		if(personloc(tom) != heroloc()) {
 			set_personloc(tom,heroloc());
 			txt += "\nTom is following you.";
+		}
+	return(txt);
+	}
+
+	if (gs("jordan_follow") == 1) {
+		if(personloc(jordan) != heroloc()) {
+			set_personloc(jordan,heroloc());
+			txt += "\nJordan is following you.";
 		}
 	return(txt);
 	}

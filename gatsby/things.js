@@ -101,3 +101,14 @@ th("ice", "ice", false, aptfreezer, "It's cold.", "eat::You probably shouldn't b
 th("suit", "your suit", true, chrcloset, "A dapper suit complete with pocket square.  Perhaps you could wear this and look richer than you are.  Not that you aren't rich, of course.", "", "");
 
 th("hat", "your hat", true, chrcloset, "A very fine hat.", "", "");
+
+th("invitation", "invitation", false, nowhere, "*read_invitation()", "", "");
+function read_invitation() {
+	say("\"THE HONOR WOULD BE ENTIRELY MINE\nIF YOU ATTENDED A LITTLE PARTY\nTHIS NIGHT AT MY MANSION\n- JAY GATSBY\"\n\nYou admit to yourself that the mystery of Gatsby is alluring, and you'd love to go.  You can't help but think that getting one of these invitations might mean that Gatsby is reaching out to you, but you perish that thought after thinking it.  Still, you'd like to meet him.  You set out to work for the day in New York and come back in time for the party.\n\nTime passes...\n\n");
+	if (gs("invite_score") == 0) { inc_score(); }
+	sgs("invite_score", 1);
+	sgs("gtsbygate_open", 1);
+	set_heroloc(outsidegtsbymansion);
+	sent_look = true;
+	look();
+}

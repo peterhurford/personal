@@ -3,7 +3,7 @@ body {
 	margin-left: 100px;
 	margin-right: 100px;
 	font-family: Verdana;
-	font-size: 10pt;
+	font-size: 9pt;
 	background:#1b295f;
 	color:#ffffff;
 	width:60%;
@@ -39,12 +39,11 @@ div#scoreLabel { text-align: right; }
 div#outDiv
 {
 	padding: 2px;
-	height: 450px;
+	height: 500px;
 	border-left: 1px solid #dddddd;
 	border-right: 1px solid #dddddd;
 	overflow-x: hidden;
 	overflow-y: scroll;
- 
 	background-color: #0f2fa7;
 }
 div.inDiv
