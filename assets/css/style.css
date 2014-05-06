@@ -370,3 +370,19 @@ a.action {
 	-o-transform: scale(1.4);
 	margin: 0 15px 15px;
 }
+
+
+/* D&P Slider */
+
+.jssora03l, .jssora03r, .jssora03ldn, .jssora03rdn {
+    position: absolute;
+    display: block;
+    background: url(http://everydayutilitarian.com/personal/images/a03.png) no-repeat;
+    overflow:hidden;
+}
+.jssora03l { background-position: -3px -33px; }
+.jssora03r { background-position: -63px -33px; }
+.jssora03l:hover { background-position: -123px -33px; }
+.jssora03r:hover { background-position: -183px -33px; }
+.jssora03ldn { background-position: -243px -33px; }
+.jssora03rdn { background-position: -303px -33px; }

@@ -1,0 +1,62 @@
+---
+layout: default
+index: "dandp"
+image: writing.jpg
+bannerheight: 150px
+topheight: 30px
+---
+
+<div class="wrap">
+    <div id="main" class="clearfix">
+        <div id="content">
+
+        <script src="assets/js/jssor.slider.min.js"></script>
+        <script>
+            jssor_slider1_starter = function (containerId) {
+                var options = {
+                    $DragOrientation: 0,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
+                    $ArrowNavigatorOptions: {                       //[Optional] Options to specify and enable arrow navigator or not
+                        $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
+                        $ChanceToShow: 1,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+                        $AutoCenter: 0,                                 //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
+                        $Steps: 1                                       //[Optional] Steps to go for each navigation request, default value is 1
+                    }
+                };
+
+                var jssor_slider1 = new $JssorSlider$(containerId, options);
+            };
+        </script>
+        <!-- Jssor Slider Begin -->
+        <!-- You can move inline styles (except 'top', 'left', 'width' and 'height') to css file or css block. -->
+        <div id="slider" style="position: relative; top: 0px; left: 0px; width: 650px; height: 470px; ">
+
+            <!-- Slides Container -->
+            <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 650px; height: 470px; overflow: hidden;">
+                <div><img u="image" src="images/dandp/airlineseats.png" /></div>
+                <div><img u="image" src="images/dandp/airtech.png" /></div>
+                <div><img u="image" src="images/dandp/boring.png" /></div>
+                <div><img u="image" src="images/dandp/canadiangeese.png" /></div>
+                <div><img u="image" src="images/dandp/goodidea.png" /></div>
+                <div><img u="image" src="images/dandp/ician.png" /></div>
+                <div><img u="image" src="images/dandp/mindreading.png" /></div>
+                <div><img u="image" src="images/dandp/piechart.png" /></div>
+                <div><img u="image" src="images/dandp/practicingmedicine.png" /></div>
+                <div><img u="image" src="images/dandp/randomthoughts.png" /></div>
+                <div><img u="image" src="images/dandp/sentencea.png" /></div>
+                <div><img u="image" src="images/dandp/vennsnowgram.png" /></div>
+                <div><img u="image" src="images/dandp/webcardwebcard.png" /></div>
+            </div>
+
+            <!-- Arrow Left -->
+            <span u="arrowleft" class="jssora03l" style="width: 55px; height: 55px; top: 123px; left: 8px;">
+            </span>
+            <!-- Arrow Right -->
+            <span u="arrowright" class="jssora03r" style="width: 55px; height: 55px; top: 123px; right: 8px">
+            </span>
+            
+            <script>
+                jssor_slider1_starter('slider');
+            </script>
+        </div>
+    </div>
+</div>
