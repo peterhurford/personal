@@ -190,26 +190,40 @@ a.action {
 }
 
 #content.full {
-	margin: 0 0 20px 2.5%;
+	margin: 0 0 40px 2.5%;
 	padding: 0 0 0 0 !important;
 	width: 95%;					
+	color: #000000;
 }
 
 #content.full.grid {
 	margin: 0 0 20px 0%;				
 }
 
-.home #content.full, .page-template-page-home-php #content.full {	
-	width: 100%;						
-}
-
 .home #main {
 	padding-top: 30px;
 }
 
-.home.page-template-page-full-width-php #content.full {
-	width: 95%;	
+table {
+  margin: 45px;
+  border-collapse: collapse;
+  text-align: left;
 }
+
+th {
+  font-size: 14px;
+  font-weight: normal;
+  color: #039;
+  padding: 10px 8px;
+  border-bottom: 2px solid #6678b1;
+}
+
+td {
+  color: #669;
+  padding: 9px 8px 0px 8px;
+}
+
+tbody tr:hover td { color: #009; }
 
 #content h1 a,
 #content h2 a,
@@ -226,6 +240,11 @@ a.action {
 #content h5 a:hover{	
 	color: #a7a7a3 ;		
 }
+
+#content.full h3 { margin-top: 20px; }
+#content.full ul li { margin-left: 20px; }
+#content.full a { color: #888888; }
+#content.full a:hover { text-decoration: underline; }
 
 #content .postThumb{
 	margin: 0 0 20px 0 !important;
@@ -373,6 +392,7 @@ a.action {
 
 
 /* D&P Slider */
+
 .jssora03l, .jssora03r, .jssora03ldn, .jssora03rdn {
     position: absolute;
     display: block;
