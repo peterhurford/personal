@@ -1,58 +1,69 @@
 ---
 layout: default
 index: false
-image: dandp.jpg
-bannerheight: 150px
-topheight: 30px
 ---
 
-<div class="wrap">
-    <div id="main" class="clearfix">
-        <div id="content">
+<body class="page page-id-81 page-template page-template-page-full-width-php chrome has-banner" >
 
-        <script src="/assets/js/jssor.slider.min.js"></script>
-        <script>
-            jssor_slider1_starter = function (containerId) {
-                var options = {
-                    $DragOrientation: 0,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
-                    $ArrowNavigatorOptions: {                       //[Optional] Options to specify and enable arrow navigator or not
-                        $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
-                        $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
-                        $AutoCenter: 0,                                 //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
-                        $Steps: 1                                       //[Optional] Steps to go for each navigation request, default value is 1
-                    }
-                };
+    {% include nav.html %}
+    </div>
+    <div id="pageHead">
+        <div class="inside">
+            <h1>Disappointment and Compromise</h1>
+            
+            <div id="middle" class="clearfix">
+                <div id="inner">         
+                    <div id="content" class="clearfix full">
+                        <div class="post-81 page type-page status-publish hentry clearfix">                     
+                
+                            <script src="/assets/js/jssor.slider.min.js"></script>
+                            <script>
+                                jssor_slider1_starter = function (containerId) {
+                                    var options = {
+                                        $DragOrientation: 0,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
+                                        $ArrowNavigatorOptions: {                       //[Optional] Options to specify and enable arrow navigator or not
+                                            $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
+                                            $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+                                            $AutoCenter: 0,                                 //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
+                                            $Steps: 1                                       //[Optional] Steps to go for each navigation request, default value is 1
+                                        }
+                                    };
 
-                var jssor_slider1 = new $JssorSlider$(containerId, options);
-            };
-        </script>
-        <div id="slider" style="position: relative; top: 0px; left: 120px; width: 650px; height: 470px;">
-            <div u="slides" style="position: absolute; top: 0px; width: 650px; height: 470px; overflow: hidden;">
-                <div><img u="image" src="airlineseats.png" /></div>
-                <div><img u="image" src="airtech.png" /></div>
-                <div><img u="image" src="boring.png" /></div>
-                <div><img u="image" src="canadiangeese.png" /></div>
-                <div><img u="image" src="goodidea.png" /></div>
-                <div><img u="image" src="ician.png" /></div>
-                <div><img u="image" src="mindreading.png" /></div>
-                <div><img u="image" src="piechart.png" /></div>
-                <div><img u="image" src="practicingmedicine.png" /></div>
-                <div><img u="image" src="randomthoughts.png" /></div>
-                <div><img u="image" src="sentencea.png" /></div>
-                <div><img u="image" src="vennsnowgram.png" /></div>
-                <div><img u="image" src="webcardwebcard.png" /></div>
+                                    var jssor_slider1 = new $JssorSlider$(containerId, options);
+                                };
+                            </script>
+
+                            <div id="slider" style="position: relative; top: 0px; left: 120px; width: 650px; height: 470px;">
+                                <div u="slides" style="position: absolute; top: 0px; width: 650px; height: 470px; overflow: hidden;">
+                                    <div><img u="image" src="airlineseats.png" /></div>
+                                    <div><img u="image" src="airtech.png" /></div>
+                                    <div><img u="image" src="boring.png" /></div>
+                                    <div><img u="image" src="canadiangeese.png" /></div>
+                                    <div><img u="image" src="goodidea.png" /></div>
+                                    <div><img u="image" src="ician.png" /></div>
+                                    <div><img u="image" src="mindreading.png" /></div>
+                                    <div><img u="image" src="piechart.png" /></div>
+                                    <div><img u="image" src="practicingmedicine.png" /></div>
+                                    <div><img u="image" src="randomthoughts.png" /></div>
+                                    <div><img u="image" src="sentencea.png" /></div>
+                                    <div><img u="image" src="vennsnowgram.png" /></div>
+                                    <div><img u="image" src="webcardwebcard.png" /></div>
+                                </div>
+
+                                <!-- Arrow Left -->
+                                <span u="arrowleft" class="jssora03l" style="width: 55px; height: 55px; top: 123px; left: 8px;">
+                                </span>
+                                <!-- Arrow Right -->
+                                <span u="arrowright" class="jssora03r" style="width: 55px; height: 55px; top: 123px; right: 8px">
+                                </span>
+                           
+                                <script>
+                                    jssor_slider1_starter('slider');
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <!-- Arrow Left -->
-            <span u="arrowleft" class="jssora03l" style="width: 55px; height: 55px; top: 123px; left: 8px;">
-            </span>
-            <!-- Arrow Right -->
-            <span u="arrowright" class="jssora03r" style="width: 55px; height: 55px; top: 123px; right: 8px">
-            </span>
-       
-            <script>
-                jssor_slider1_starter('slider');
-            </script>
         </div>
     </div>
-</div>

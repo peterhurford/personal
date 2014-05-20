@@ -1,0 +1,39 @@
+<div id="slideNav" class="panel">
+		<a href="javascript:jQuery.pageslide.close()" class="closeBtn"></a>								
+		<div id="mainNav">
+			<div class="menu-main-menu-container">
+				<ul id="menu-main-menu" class="">
+					<li><a href="/">Home</a></li>
+
+					{% if page.index == true %}
+						<li><div id="to-webdev"><a href="#">Web Development</a></div></li>
+						<li><div id="to-stats"><a href="#">Statistics</a></div></li>
+						<li><div id="to-writing"><a href="#">Writing and Speaking</a></div></li>
+					{% endif %}
+					
+					<li><a href="resume.pdf">Resume</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="widgets">
+			<div id="text-2" class="widget_text sidebarBox widgetBox">
+				<span class="widgetTitle">Peter Hurford</span>
+				<div class="textwidget">
+					<p>Peter Hurford is a web developer, statisician, and writer currently working for <a href="http://www.avantcredit.com">Avant Credit</a> in Chicago.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="container">	
+		<div id="header">
+			<div class="top">
+				<div class="inside clearfix">
+					<div id="logo">
+						<h1 class="logo">
+							<a href="/">PETER HURFORD</a>
+						</h1>
+					</div>
+					<a href="#slideNav" class="menuToggle"></a>				
+				</div>		
+			</div>

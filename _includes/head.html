@@ -5,67 +5,13 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Peter Hurford</title>
 	<meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold" />
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif:regular,bold" />
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Alegreya+Sans:regular,italic,bold,bolditalic" />
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Nixie+One:regular,italic,bold,bolditalic" />
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Alegreya+SC:regular,italic,bold,bolditalic" />
 	<link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="screen" />
-	<style type="text/css">
-		#homeBanner {
-			background-image: url(http://everydayutilitarian.com/personal/images/{{page.image}});
-			height: {{page.bannerheight}};
-		}
-		{% if page.index == true %}
-			#bannerText {
-				top: {{page.topheight}};
-				position: fixed;
-				text-align: center;		
-				width: 100%;	
-			}
 
-			@media only screen and (min-device-width: 768px) and (max-device-width: 1024px), @media only screen and (max-device-width: 480px) {
-				#bannerText {
-					position: absolute;
-					top: {{page.topheight}};
-					text-align: center;		
-					width: 100%;	
-				}
-			}
-		{% else %}
-			#bannerText {
-				position: absolute;
-				top: {{page.topheight}};
-				text-align: center;		
-				width: 100%;
-			}
-		{% endif %}
-	</style>
+	<script type='text/javascript' src='/assets/js/jquery.js'></script>
+	<script type='text/javascript' src='/assets/js/jquery-migrate.js'></script>
 </head>
-
-<body class="home page page-template">
-	<div id="container">		
-		<a href="/index.html"><div id="homeBanner">			
-			<div id="bannerText">
-				<h2>PETER HURFORD</h2>
-				{% if page.index == true %} <p>Web Developer. Statistician. Writer.</p> {% endif %}
-			</div>
-		</div></a>
-		
-		{% if page.index == false %}
-			<div id="breadcrumbs">
-				{% capture url_parts %} {{ page.url | remove: "/index.html" | replace:'/'," " }}{% endcapture %}
-				{% capture num_parts %}{{ url_parts | number_of_words | minus: 1 }}{% endcapture %}
-				{% assign previous="" %}
-				{% if num_parts == "0" or num_parts == "-1" %}
-					<a href="/">Home</a> &nbsp; 
-				{% else %}
-					<a href="/">Home</a> &#187;
-					{% for unused in page.content limit:num_parts %}
-						{% capture first_word %}{{ url_parts | truncatewords:1 | remove:"..."}}{% endcapture %}
-						{% capture previous %}{{ previous }}/{{ first_word }}{% endcapture %}
-						<a href="{{previous}}">{{ first_word | capitalize }}</a> &#187;
-						{% capture url_parts %}{{ url_parts | remove_first:first_word }}{% endcapture %}
-					{% endfor %}
-				{% endif %}
-			</div>
-		{% endif %}
-
-	</div>
