@@ -63,6 +63,20 @@ td {
 
 tbody tr:hover td { color: #009; }
 
+textarea, input[type=text] {
+ 	border: 3px solid #cccccc;
+ 	padding: 5px;
+ }
+ 
+ .button, input[type=button] {
+ 	color: #ffffff;
+ 	background: #555555;
+ 	border: 3px solid #cccccc;
+ 	padding: 5px;
+ }
+ 
+ .button:hover, input[type=button]:hover { background: #000000; }
+
 strong { font-weight:bold; }
 em { font-style:italic; }
 
