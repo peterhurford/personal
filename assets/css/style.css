@@ -71,7 +71,7 @@ textarea, input[type=text] {
  .button, input[type=button] {
  	color: #000000;
  	background: #f1f0f0;
- 	border: 3px solid #000000;
+ 	border: 3px solid #f1f0f0;
  	padding: 5px;
  }
  
