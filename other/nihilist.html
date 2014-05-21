@@ -1,488 +1,498 @@
 ---
 layout: default
 index: false
-image: other.jpg
-bannerheight: 150px
-topheight: 30px
 ---
 
-<div class="wrap">
-    <div id="main" class="clearfix">
-        <div id="content" class="full">
-			<p>A JavaScript implementation of ciphers in the <a href="https://en.wikipedia.org/wiki/https://en.wikipedia.org/wiki/Nihilist_cipher">Nihilist family</a>.</p>
+<body class="page page-id-81 page-template page-template-page-full-width-php chrome has-banner" >
 
-			Plaintext<br/> 
-			<textarea id="p" name="p" rows="4" cols="50">defend the east wall of the castle</textarea><br/><br/> 
+    {% include nav.html %}
+    </div>
+        
+    <div id="pageHead">
+        <div class="inside">
+            <h1>404'd!</h1>
+        </div>          
+    </div>
 
-			number key = <input id="k" size="12" maxchars="10" value="1234567890" type="text"> <input name="btnmake" value="<- Make Num" onclick="MakeNum()" type="button"> <input id="make" size="12" maxchars="10" value="DONNANOBLE" type="text"><br/>
-			lower alphabet = <input id="la" name="key" size="26" maxchars="20" value="bcdfghjklmpquvwxyz**" type="text"> (* represents a blank) <input name="shuff" value="Shuffle w/ # Key" onclick="Permutate()" type="button"> <input name="btnnormal" value="(Revert)" onclick="Normal()" type="button"><br/>
-			additive key = <input id="add" name="add" size="26" maxchars="20" value="31445" type="text"><br/>
-			additive mode = <select id="mode" name="mode"><option value=0>Repeat</option><option value=1>Autokey</option><!--<option value=2>Running key</option> broken --><option value=3>Single Columnar</option><option value=4>Double Columnar</option><option value=5>Nicodemus I</option><option value=6>Nicodemus II</option><option value=7>Nicodemus III</option><!-- <option value=8>VIC</option> would be cool to add --><option value=-1>None</option></select><br/>
-			second key (for Nicodemus II & III, and Double Columnar) = <input id="sec" name="sec" size="26" maxchars="20" value="226948" type="text"><br/>
-			<br/> 
-			 
-			<input name="btnEn" value="v Encrypt v" onclick="Encrypt()" type="button"> 
-			<input name="btnDe" value="^ Decrypt ^" onclick="Decrypt()" type="button"><br/><br/> 
-			 
-			Ciphertext<br/> 
-			<textarea id="c" name="c" rows="4" cols="50"></textarea>
-			<p>&nbsp;</p>
-			<p>Nicodemus I is a repeating key followed by a columnar transposition with that key.<br>
+    <div id="middle" class="clearfix">
+        <div id="inner">         
+            <div id="content" class="clearfix full">
+                <div class="post-81 page type-page status-publish hentry clearfix">
+                    <p>A JavaScript implementation of ciphers in the <a href="https://en.wikipedia.org/wiki/https://en.wikipedia.org/wiki/Nihilist_cipher">Nihilist family</a>.</p>
 
-			Nicodemus II is a repeating key followed by a double columnar transposition with that key and another key.<br>
+					Plaintext<br/> 
+					<textarea id="p" name="p" rows="4" cols="50">defend the east wall of the castle</textarea><br/><br/> 
 
-			Nicodemus III is an autokey followed by a double columnar transposition with that key and another key.</p>
+					number key = <input id="k" size="12" maxchars="10" value="1234567890" type="text"> <input name="btnmake" value="<- Make Num" onclick="MakeNum()" type="button"> <input id="make" size="12" maxchars="10" value="DONNANOBLE" type="text"><br/>
+					lower alphabet = <input id="la" name="key" size="26" maxchars="20" value="bcdfghjklmpquvwxyz**" type="text"> (* represents a blank) <input name="shuff" value="Shuffle w/ # Key" onclick="Permutate()" type="button"> <input name="btnnormal" value="(Revert)" onclick="Normal()" type="button"><br/>
+					additive key = <input id="add" name="add" size="26" maxchars="20" value="31445" type="text"><br/>
+					additive mode = <select id="mode" name="mode"><option value=0>Repeat</option><option value=1>Autokey</option><!--<option value=2>Running key</option> broken --><option value=3>Single Columnar</option><option value=4>Double Columnar</option><option value=5>Nicodemus I</option><option value=6>Nicodemus II</option><option value=7>Nicodemus III</option><!-- <option value=8>VIC</option> would be cool to add --><option value=-1>None</option></select><br/>
+					second key (for Nicodemus II & III, and Double Columnar) = <input id="sec" name="sec" size="26" maxchars="20" value="226948" type="text"><br/>
+					<br/> 
+					 
+					<input name="btnEn" value="v Encrypt v" onclick="Encrypt()" type="button"> 
+					<input name="btnDe" value="^ Decrypt ^" onclick="Decrypt()" type="button"><br/><br/> 
+					 
+					Ciphertext<br/> 
+					<textarea id="c" name="c" rows="4" cols="50"></textarea>
+					<p>&nbsp;</p>
+					<p>Nicodemus I is a repeating key followed by a columnar transposition with that key.<br>
 
-			<script type="text/javascript">
-			function ColTrans(encdec, text, key) {
-			   var NumberList = ColTrans_Split(key);
-			   if (typeof(NumberList) != 'object')  { return NumberList; }
-			   if (NumberList.length < 2) { return text; }
-			   var textenc = text;
-			   
-			   if (encdec < 0) { textenc = ColTrans_Decode(textenc, NumberList); }
-			   else { textenc = ColTrans_Encode(textenc, NumberList); }
-			   return textenc;
-			}
-			 
-			// Loads the key and makes sure the numbers are good.
-			function ColTrans_Split(k) {
-			   var c, n, numberlist, zero = '0'.charCodeAt(0);   
-			   k += ' ';
-			   numberlist = new Array();
-			   
-			   while (k.length) {
-			      n = 0;
-			      while (k.charAt(0) >= '0' && k.charAt(0) <= '9') {
-			         n *= 10;
-							 n += k.charCodeAt(0) - zero;
-							 k = k.slice(1, k.length);
-			      }
-			      k = k.slice(1, k.length);
-			      while ((k.charAt(0) < '0' || k.charAt(0) > '9') && k.length) { k = k.slice(1, k.length); }
-			      numberlist[numberlist.length] = n;
-			   }
-			   return numberlist;
-			}
-			 
-			// Performs the actual transposition.
-			function ColTrans_Encode(t, NumberList) {
-			   var s = new Array(NumberList.length);
-			   var back = new Array(NumberList.length);
-			   var out = "", i;
-			   
-			   for (i = 0; i < s.length; i ++) {
-			      s[i] = "";
-			      back[NumberList[i] - 1] = i;
-			   }
-			   
-			   for (i = 0; i < t.length; i ++) {
-			      s[i % NumberList.length] += t.charAt(i);
-			   }
-			   
-			   for (i = 0; i < NumberList.length; i ++) {
-			      out += s[back[i]];
-			   }
-			   
-			   return out;
-			}
-			 
-			// Undoes the columnar transposition.  A bit more involved because the columns can have different lengths, depending on the message length.
-			function ColTrans_Decode(t, NumberList) {
-			   var num = new Array(NumberList.length);
-			   var back = new Array(NumberList.length);
-			   var s = new Array(NumberList.length);
-			   var i, j, out = "", minNum;
-			 
-			   minNum = Math.floor(t.length / NumberList.length);
-			   
-			   for (i = 0; i < num.length; i ++) {
-			      num[i] = minNum;
-			      back[NumberList[i] - 1] = i;
-			   }
-			   
-			   j = minNum * NumberList.length;
-			   i = 0;
-			   
-			   while (j < t.length) {
-			      num[NumberList[i] - 1] ++;
-			      i ++;
-			      j ++;
-			   }
-			   
-			   for (i = 0; i < NumberList.length; i++) {
-			      s[back[i]] = t.slice(0, num[i]);
-			      t = t.slice(num[i], t.length);
-			   }
-			   
-			   for (i = 0; i < minNum + 1; i ++) {
-			      for (j = 0; j < s.length; j ++) {
-			         if (s[j].length > i) { out += s[j].charAt(i); }
-			      }
-			   }
-			   return out;
-			}
-			 
-			// Changes a keyword or a string of numbers into a valid key
-			function MakeColumnKey(meth, text) {
-			   var values = new Array();
-			   if (meth == "num") {
-			      // Break on whitespace
-			      var zero = '0'.charCodeAt(0);
-			      text = text + ' ';
-			      if (text == ' ') {
-			         values[0] = 1;
-				 			 return values;
-			      }
-			      while (text.length) {
-			         var n = 0;
-							 while (text.charAt(0) >= '0' && text.charAt(0) <= '9') {
-							    n *= 10;
-				    			n += text.charCodeAt(0) - zero;
-							    text = text.slice(1, text.length);
-							  }
-						text = text.slice(1, text.length);
-				 		while (text.length && (text.charAt(0) < '0' || text.charAt(0) > '9')) { text = text.slice(1, text.length); }
-						values[values.length] = n;
-			      }
-			   }
-			   else {
-			      // Break on every letter, skip whitespace
-			      if (text == '') {
-			         values[0] = 1;
-			         return values;
-			      }
-			      while (text.length) {
-			         values[values.length] = text.charCodeAt(0);
-				 text = text.slice(1, text.length);
-			      }
-			   }
-			   
-			   // Values is an array of numbers.  Convert to an array of numbers that start from 1 and progress up without duplicates.
-			   var values2 = new Array(values.length);
-			   for (var i = 0; i < values2.length; i ++) { values2[i] = 0; }
-			   for (var loop = 0; loop < values2.length; loop ++) {
-			      var lowestIdx = -1;
-			      for (var i = 0; i < values2.length; i ++) {
-			        if (values2[i] == 0) {
-							  if (lowestIdx == -1) { lowestIdx = i; }
-				    		else {
-				   			 	var a = values[lowestIdx];
-				      		var b = values[i];
-							  	if (a > b || (a == b && meth == 'ahpla')) { lowestIdx = i; }
-							  }
-							}
+					Nicodemus II is a repeating key followed by a double columnar transposition with that key and another key.<br>
+
+					Nicodemus III is an autokey followed by a double columnar transposition with that key and another key.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<script type="text/javascript">
+		function ColTrans(encdec, text, key) {
+		   var NumberList = ColTrans_Split(key);
+		   if (typeof(NumberList) != 'object')  { return NumberList; }
+		   if (NumberList.length < 2) { return text; }
+		   var textenc = text;
+		   
+		   if (encdec < 0) { textenc = ColTrans_Decode(textenc, NumberList); }
+		   else { textenc = ColTrans_Encode(textenc, NumberList); }
+		   return textenc;
+		}
+		 
+		// Loads the key and makes sure the numbers are good.
+		function ColTrans_Split(k) {
+		   var c, n, numberlist, zero = '0'.charCodeAt(0);   
+		   k += ' ';
+		   numberlist = new Array();
+		   
+		   while (k.length) {
+		      n = 0;
+		      while (k.charAt(0) >= '0' && k.charAt(0) <= '9') {
+		         n *= 10;
+						 n += k.charCodeAt(0) - zero;
+						 k = k.slice(1, k.length);
+		      }
+		      k = k.slice(1, k.length);
+		      while ((k.charAt(0) < '0' || k.charAt(0) > '9') && k.length) { k = k.slice(1, k.length); }
+		      numberlist[numberlist.length] = n;
+		   }
+		   return numberlist;
+		}
+		 
+		// Performs the actual transposition.
+		function ColTrans_Encode(t, NumberList) {
+		   var s = new Array(NumberList.length);
+		   var back = new Array(NumberList.length);
+		   var out = "", i;
+		   
+		   for (i = 0; i < s.length; i ++) {
+		      s[i] = "";
+		      back[NumberList[i] - 1] = i;
+		   }
+		   
+		   for (i = 0; i < t.length; i ++) {
+		      s[i % NumberList.length] += t.charAt(i);
+		   }
+		   
+		   for (i = 0; i < NumberList.length; i ++) {
+		      out += s[back[i]];
+		   }
+		   
+		   return out;
+		}
+		 
+		// Undoes the columnar transposition.  A bit more involved because the columns can have different lengths, depending on the message length.
+		function ColTrans_Decode(t, NumberList) {
+		   var num = new Array(NumberList.length);
+		   var back = new Array(NumberList.length);
+		   var s = new Array(NumberList.length);
+		   var i, j, out = "", minNum;
+		 
+		   minNum = Math.floor(t.length / NumberList.length);
+		   
+		   for (i = 0; i < num.length; i ++) {
+		      num[i] = minNum;
+		      back[NumberList[i] - 1] = i;
+		   }
+		   
+		   j = minNum * NumberList.length;
+		   i = 0;
+		   
+		   while (j < t.length) {
+		      num[NumberList[i] - 1] ++;
+		      i ++;
+		      j ++;
+		   }
+		   
+		   for (i = 0; i < NumberList.length; i++) {
+		      s[back[i]] = t.slice(0, num[i]);
+		      t = t.slice(num[i], t.length);
+		   }
+		   
+		   for (i = 0; i < minNum + 1; i ++) {
+		      for (j = 0; j < s.length; j ++) {
+		         if (s[j].length > i) { out += s[j].charAt(i); }
+		      }
+		   }
+		   return out;
+		}
+		 
+		// Changes a keyword or a string of numbers into a valid key
+		function MakeColumnKey(meth, text) {
+		   var values = new Array();
+		   if (meth == "num") {
+		      // Break on whitespace
+		      var zero = '0'.charCodeAt(0);
+		      text = text + ' ';
+		      if (text == ' ') {
+		         values[0] = 1;
+			 			 return values;
+		      }
+		      while (text.length) {
+		         var n = 0;
+						 while (text.charAt(0) >= '0' && text.charAt(0) <= '9') {
+						    n *= 10;
+			    			n += text.charCodeAt(0) - zero;
+						    text = text.slice(1, text.length);
+						  }
+					text = text.slice(1, text.length);
+			 		while (text.length && (text.charAt(0) < '0' || text.charAt(0) > '9')) { text = text.slice(1, text.length); }
+					values[values.length] = n;
+		      }
+		   }
+		   else {
+		      // Break on every letter, skip whitespace
+		      if (text == '') {
+		         values[0] = 1;
+		         return values;
+		      }
+		      while (text.length) {
+		         values[values.length] = text.charCodeAt(0);
+			 text = text.slice(1, text.length);
+		      }
+		   }
+		   
+		   // Values is an array of numbers.  Convert to an array of numbers that start from 1 and progress up without duplicates.
+		   var values2 = new Array(values.length);
+		   for (var i = 0; i < values2.length; i ++) { values2[i] = 0; }
+		   for (var loop = 0; loop < values2.length; loop ++) {
+		      var lowestIdx = -1;
+		      for (var i = 0; i < values2.length; i ++) {
+		        if (values2[i] == 0) {
+						  if (lowestIdx == -1) { lowestIdx = i; }
+			    		else {
+			   			 	var a = values[lowestIdx];
+			      		var b = values[i];
+						  	if (a > b || (a == b && meth == 'ahpla')) { lowestIdx = i; }
+						  }
 						}
-			      values2[lowestIdx] = loop + 1;
-			   }
-			   
-			   var out = '';
-			   for (var i = 0; i < values2.length; i ++) { out += ' ' + values2[i]; }
-			   return out.slice(1, out.length);
-			}
+					}
+		      values2[lowestIdx] = loop + 1;
+		   }
+		   
+		   var out = '';
+		   for (var i = 0; i < values2.length; i ++) { out += ' ' + values2[i]; }
+		   return out.slice(1, out.length);
+		}
 
-			function Encrypt() {
-			    plaintext = document.getElementById("p").value.toLowerCase().replace(/[^a-z]/g, "").split(""); 
-			    key = document.getElementById("k").value.replace(/[^0-9]/g, "").split("");
-			    add = document.getElementById("add").value.replace(/[^0-9]/g, "").split("");
-			    addbeforesplit = add.join(" ").replace("0", "10");
-			    secbeforesplit = document.getElementById("sec").value.replace(/[^0-9]/g, "").split("").join(" ").replace("0", "10");
-			    sec = secbeforesplit.split("");
-			    mode = document.getElementById("mode").value;
-			    addlen = add.length;
-			    if (addlen == 0) { mode = -1; }
-			    la = document.getElementById("la").value.toLowerCase().replace(/[^a-z/*]/g, "").split("");
-			    len = plaintext.length;
-			    stageone = "";
+		function Encrypt() {
+		    plaintext = document.getElementById("p").value.toLowerCase().replace(/[^a-z]/g, "").split(""); 
+		    key = document.getElementById("k").value.replace(/[^0-9]/g, "").split("");
+		    add = document.getElementById("add").value.replace(/[^0-9]/g, "").split("");
+		    addbeforesplit = add.join(" ").replace("0", "10");
+		    secbeforesplit = document.getElementById("sec").value.replace(/[^0-9]/g, "").split("").join(" ").replace("0", "10");
+		    sec = secbeforesplit.split("");
+		    mode = document.getElementById("mode").value;
+		    addlen = add.length;
+		    if (addlen == 0) { mode = -1; }
+		    la = document.getElementById("la").value.toLowerCase().replace(/[^a-z/*]/g, "").split("");
+		    len = plaintext.length;
+		    stageone = "";
+		    for (i=0; i<len; i++) {
+		    	test = plaintext[i];
+		    	if (test == "e") { say = key[0]; }
+		    	else if (test == "s") { say = key[1]; }
+		    	else if (test == "t") { say = key[2]; }
+		    	else if (test == "o") { say = key[3]; }
+		    	else if (test == "n") { say = key[4]; }
+		    	else if (test == "i") { say = key[5]; }
+		    	else if (test == "a") { say = key[6]; } // 7 and 8 are the blanks
+		    	else if (test == "r") { say = key[9]; }
+		    	else if (test == la[0]) { say = key[7] + key[0]; } //Give lower alphabet by column and row
+		    	else if (test == la[1]) { say = key[7] + key[1]; }
+		    	else if (test == la[2]) { say = key[7] + key[2]; }
+		    	else if (test == la[3]) { say = key[7] + key[3]; }
+		    	else if (test == la[4]) { say = key[7] + key[4]; }
+		    	else if (test == la[5]) { say = key[7] + key[5]; }
+		    	else if (test == la[6]) { say = key[7] + key[6]; }
+		    	else if (test == la[7]) { say = key[7] + key[7]; }
+		    	else if (test == la[8]) { say = key[7] + key[8]; }
+		    	else if (test == la[9]) { say = key[7] + key[9]; }
+		    	else if (test == la[10]) { say = key[8] + key[0]; }
+		    	else if (test == la[11]) { say = key[8] + key[1]; }
+		    	else if (test == la[12]) { say = key[8] + key[2]; }
+		    	else if (test == la[13]) { say = key[8] + key[3]; }
+		    	else if (test == la[14]) { say = key[8] + key[4]; }
+		    	else if (test == la[15]) { say = key[8] + key[5]; }
+		    	else if (test == la[16]) { say = key[8] + key[6]; }
+		    	else if (test == la[17]) { say = key[8] + key[7]; }
+		    	else if (test == la[18]) { say = key[8] + key[8]; }
+		    	else if (test == la[19]) { say = key[8] + key[9]; }	
+		    	stageone += say;
+		    }
+		    len = stageone.length;
+		    ciphertext = "";
+		    if (mode == -1) { ciphertext = stageone; } //No additive
+		    if (mode == 0) { //Repeating key
 			    for (i=0; i<len; i++) {
-			    	test = plaintext[i];
-			    	if (test == "e") { say = key[0]; }
-			    	else if (test == "s") { say = key[1]; }
-			    	else if (test == "t") { say = key[2]; }
-			    	else if (test == "o") { say = key[3]; }
-			    	else if (test == "n") { say = key[4]; }
-			    	else if (test == "i") { say = key[5]; }
-			    	else if (test == "a") { say = key[6]; } // 7 and 8 are the blanks
-			    	else if (test == "r") { say = key[9]; }
-			    	else if (test == la[0]) { say = key[7] + key[0]; } //Give lower alphabet by column and row
-			    	else if (test == la[1]) { say = key[7] + key[1]; }
-			    	else if (test == la[2]) { say = key[7] + key[2]; }
-			    	else if (test == la[3]) { say = key[7] + key[3]; }
-			    	else if (test == la[4]) { say = key[7] + key[4]; }
-			    	else if (test == la[5]) { say = key[7] + key[5]; }
-			    	else if (test == la[6]) { say = key[7] + key[6]; }
-			    	else if (test == la[7]) { say = key[7] + key[7]; }
-			    	else if (test == la[8]) { say = key[7] + key[8]; }
-			    	else if (test == la[9]) { say = key[7] + key[9]; }
-			    	else if (test == la[10]) { say = key[8] + key[0]; }
-			    	else if (test == la[11]) { say = key[8] + key[1]; }
-			    	else if (test == la[12]) { say = key[8] + key[2]; }
-			    	else if (test == la[13]) { say = key[8] + key[3]; }
-			    	else if (test == la[14]) { say = key[8] + key[4]; }
-			    	else if (test == la[15]) { say = key[8] + key[5]; }
-			    	else if (test == la[16]) { say = key[8] + key[6]; }
-			    	else if (test == la[17]) { say = key[8] + key[7]; }
-			    	else if (test == la[18]) { say = key[8] + key[8]; }
-			    	else if (test == la[19]) { say = key[8] + key[9]; }	
-			    	stageone += say;
-			    }
-			    len = stageone.length;
-			    ciphertext = "";
-			    if (mode == -1) { ciphertext = stageone; } //No additive
-			    if (mode == 0) { //Repeating key
-				    for (i=0; i<len; i++) {
-				    	j = i % addlen;
-			   		 	addit = stageone[i]*1 + add[j]*1;
-			   		 	addit = addit % 10;
-			   		 	if (addit == 10) { addit = 0; }
-			   		 	ciphertext += addit;
-			   	 	}
-			    }
-			    if (mode == 1) { //Autokey
-			    	for (i=0; i<len; i++) {
-				    	if (i < addlen) { addor = add[i]; }
-				    	else { j = i-addlen; addor = stageone[j]; }
-			   		 	addit = stageone[i]*1 + addor*1;
-			   		 	addit = addit % 10;
-			   		 	if (addit == 10) { addit = 0; }
-			   		 	ciphertext += addit;
-			   	 	}
-			    }
-			    if (mode == 2) { //Running key
-			    	for (i=0; i<len; i++) {
-				    	if (i < addlen) { addor = add[i]; }
-				    	else {
-				    		j = i-addlen;
-				    		k = j+2;  //Doubled to solve the comma bug.
-				    		addor = add[j]*1 + add[k]*1 % 10;
-				    	}
-				    	add += addor;
-				    	add += addor; //Doubled to solve the comma bug.
-			   		 	addit = stageone[i]*1 + addor*1;
-			   		 	addit = addit % 10;
-			   		 	if (addit == 10) { addit = 0; }
-			   		 	ciphertext += addit;
-			   	 	}
-			    }
-			    if (mode == 3) { // Single columnar
-			   	    colkey = MakeColumnKey("num", addbeforesplit);
-			   	    ciphertext = ColTrans(1, stageone, colkey);
-			   	}
-			   	if (mode == 4) { // Double columnar
-			   	    colkey = MakeColumnKey("num", addbeforesplit);
-			   	    seccol = MakeColumnKey("num", secbeforesplit);
-			   	 		ciphertext = ColTrans(1, stageone, colkey);
-			   	 		ciphertext = ColTrans(1, ciphertext, seccol);
-			   	}
-
-			    if (mode == 5) { //Nicodemus I (Repeating key + Columnar transposition w/key)
-			    	for (i=0; i<len; i++) {
-				    	j = i % addlen;
-			   		 	addit = stageone[i]*1 + add[j]*1;
-			   		 	addit = addit % 10;
-			   		 	if (addit == 10) { addit = 0; }
-			   		 	ciphertext += addit;
-			   	 	}
-			   	 	colkey = MakeColumnKey("num", addbeforesplit);
-			   	 	ciphertext = ColTrans(1, ciphertext, colkey);
-			   	 }
-			   	 if (mode == 6) { //Nicodemus II (Repeating key + Double columnar transposition w/key)
-			    	for (i=0; i<len; i++) {
-				    	j = i % addlen;
-			   		 	addit = stageone[i]*1 + add[j]*1;
-			   		 	addit = addit % 10;
-			   		 	if (addit == 10) { addit = 0; }
-			   		 	ciphertext += addit;
-			   	 	}
-			   	 	colkey = MakeColumnKey("num", addbeforesplit);
-			   	    seccol = MakeColumnKey("num", secbeforesplit);
-			   	 	ciphertext = ColTrans(1, ciphertext, colkey);
-			   	 	ciphertext = ColTrans(1, ciphertext, seccol);
-			   	 }
-			   	 if (mode == 7) { //Nicodemus III (Autokey + Double columnar transposition w/key)
-			    	for (i=0; i<len; i++) {
-				    	if (i < addlen) { addor = add[i]; }
-				    	else { j = i-addlen; addor = stageone[j]; }
-			   		 	addit = stageone[i]*1 + addor*1;
-			   		 	addit = addit % 10;
-			   		 	if (addit == 10) { addit = 0; }
-			   		 	ciphertext += addit;
-			   	 	}
-			   	 colkey = MakeColumnKey("num", addbeforesplit);
-			   	 seccol = MakeColumnKey("num", secbeforesplit);
-			   	 ciphertext = ColTrans(1, ciphertext, colkey);
-			   	 ciphertext = ColTrans(1, ciphertext, seccol);
-			   	}   	 
-			    document.getElementById("c").value = ciphertext;
-			}
-
-			function Permutate() {
-				key = document.getElementById("la").value.toLowerCase().replace(/[^a-z/*]/g, "");
-				add = document.getElementById("k").value.replace(/[^0-9]/g, "").split("");
-				addbeforesplit = add.join(" ").replace("0", "10");
-				colkey = MakeColumnKey("num", addbeforesplit);
-				ciphertext = ColTrans(1, key, colkey);
-				document.getElementById("la").value = ciphertext;
-			}
-
-			function Normal() { document.getElementById("la").value = "bcdfghjklmpquvwxyz**"; }
-
-			function MakeNum() {
-				tomake = document.getElementById("make").value.toLowerCase().replace(/[^a-z/*]/g, "");
-				if (tomake.length != 10) { alert("The letter key made into numbers must still have a length of ten.  It's current length is " + tomake.length) }
-				else {
-					colkey = MakeColumnKey("alpha", tomake).replace("10", "0").replace(/[/ ]/g, "");
-				    document.getElementById("k").value = colkey;
-				}
-			}
-			 
-			function Decrypt(f) {
-					stageone = document.getElementById("c").value.toLowerCase().replace(/[^0-9]/g, "");
-			    key = document.getElementById("k").value.replace(/[^0-9]/g, "").split("");
-			    add = document.getElementById("add").value.replace(/[^0-9]/g, "").split("");
-			    addbeforesplit = add.join(" ").replace("0", "10");
-			    secbeforesplit = document.getElementById("sec").value.replace(/[^0-9]/g, "").split("").join(" ").replace("0", "10");
-			    sec = secbeforesplit.split("");
-			    mode = document.getElementById("mode").value;
-			    addlen = add.length;
-			    if (addlen == 0) { mode = -1; }
-			    la = document.getElementById("la").value.toLowerCase().replace(/[^a-z/*]/g, "").split("");
-			    ciphertext = "";
-			    len = stageone.length;
-			    if (mode == -1) { // No additive
-			    	stageone = stageone.split("");
-			    	ciphertext = stageone;
-			    }
-			    if (mode == 0) { // Repeating
-			       	stageone = stageone.split("");
-				    for (i=0; i<len; i++) {
-				    	j = i % addlen;
-			   		 	addit = stageone[i]*1 - add[j]*1;
-			   	 		if (addit < 0) { addit = 10 + addit; } // + because addit would be negative
-			    		ciphertext += addit;
-			    	}
-			    }
-			    if (mode == 1) { //Autokey
-			    	subkey = "";
-			    	stageone = stageone.split("");
-			        for (i=0; i<len; i++) {
-				    	if (i < addlen) { addor = add[i]; }
-				    	else { j = i-addlen; addor = subkey[j]; }
-			   		 	addit = stageone[i]*1 - addor*1;
-			   		 	if (addit < 0) { addit = 10 + addit; }
-			   		 	ciphertext += addit;
-			   		 	subkey += addit;
-			   	 	}
-			    }
-			    if (mode == 2) { // Running Key
-			        for (i=0; i<len; i++) {
-				    	if (i < addlen) { addor = add[i]; }
-				    	else {
-				    		j = i-addlen;
-				    		k = j+2;  //Doubled to solve the comma bug.
-				    		addor = add[j]*1 + add[k]*1 % 10;
-				    	}
-				    	add += addor;
-				    	add += addor; //Doubled to solve the comma bug.
-			   		 	addit = stageone[i]*1 - addor*1;
-			   		 	if (addit < 0) { addit = 10 + addit; }
-			   		 	ciphertext += addit;
-			   	 	}
-			    }
-			    if (mode == 3) { // Single Columnar
-			       	colkey = MakeColumnKey("num", addbeforesplit);
-			   	 	ciphertext = ColTrans(-1, stageone, colkey);
-			    }    
-			    if (mode == 4) { // Double Columnar
-			       	colkey = MakeColumnKey("num", addbeforesplit);
-			       	seccol = MakeColumnKey("num", secbeforesplit);
-			   	 	ciphertext = ColTrans(-1, stageone, seccol);
-			   	 	ciphertext = ColTrans(-1, ciphertext, colkey);
-			    }     
-			    if (mode == 5) { //Nicodemus I
-			       	colkey = MakeColumnKey("num", addbeforesplit);
-			   	 	stageone = ColTrans(-1, stageone, colkey);
-			   	 	stageone = stageone.split("");
-				    for (i=0; i<len; i++) {
-				    	j = i % addlen;
-			   		 	addit = stageone[i]*1 - add[j]*1;
-			    		addit = addit % 10;
-			   	 		if (addit < 0) { addit = 10 + addit; }
-			    		ciphertext += addit;
-			    	}
-			    }
-			    if (mode == 6) { //Nicodemus II
-			       	colkey = MakeColumnKey("num", addbeforesplit);
-			       	seccol = MakeColumnKey("num", secbeforesplit);
-			   	 	stageone = ColTrans(-1, stageone, seccol);
-			   	 	stageone = ColTrans(-1, stageone, colkey);
-			   	 	stageone = stageone.split("");
-				    for (i=0; i<len; i++) {
-				    	j = i % addlen;
-			   		 	addit = stageone[i]*1 - add[j]*1;
-			    		addit = addit % 10;
-			   	 		if (addit < 0) { addit = 10 + addit; }
-			    		ciphertext += addit;
-			    	}
-			    }
-			    if (mode == 7) { //Nicodemus III
-			       	colkey = MakeColumnKey("num", addbeforesplit);
-			       	seccol = MakeColumnKey("num", secbeforesplit);
-			   	 	stageone = ColTrans(-1, stageone, seccol);
-			   	 	stageone = ColTrans(-1, stageone, colkey);
-			   	 	stageone = stageone.split("");
-			   	 	subkey = "";
-			        for (i=0; i<len; i++) {
-				    	if (i < addlen) { addor = add[i]; }
-				    	else { j = i-addlen; addor = subkey[j]; }
-			   		 	addit = stageone[i]*1 - addor*1;
-			   		 	if (addit < 0) { addit = 10 + addit; }
-			   		 	ciphertext += addit;
-			   		 	subkey += addit;
-			   	 	}
-			    }    
-			    len = ciphertext.length;
-			    plaintext = "";
-			    for (i=0; i<len; i++) {
-			    	test = ciphertext[i];
-			    	if (test == key[0]) { say = "e"; }
-			    	else if (test == key[1]) { say = "s"; }
-			    	else if (test == key[2]) { say = "t"; }
-			    	else if (test == key[3]) { say = "o"; }
-			    	else if (test == key[4]) { say = "n"; }
-			    	else if (test == key[5]) { say = "i"; }
-			    	else if (test == key[6]) { say = "a"; }
-			    	else if (test == key[9]) { say = "r"; }
+			    	j = i % addlen;
+		   		 	addit = stageone[i]*1 + add[j]*1;
+		   		 	addit = addit % 10;
+		   		 	if (addit == 10) { addit = 0; }
+		   		 	ciphertext += addit;
+		   	 	}
+		    }
+		    if (mode == 1) { //Autokey
+		    	for (i=0; i<len; i++) {
+			    	if (i < addlen) { addor = add[i]; }
+			    	else { j = i-addlen; addor = stageone[j]; }
+		   		 	addit = stageone[i]*1 + addor*1;
+		   		 	addit = addit % 10;
+		   		 	if (addit == 10) { addit = 0; }
+		   		 	ciphertext += addit;
+		   	 	}
+		    }
+		    if (mode == 2) { //Running key
+		    	for (i=0; i<len; i++) {
+			    	if (i < addlen) { addor = add[i]; }
 			    	else {
-			    		j = i+1;
-			    		test += ciphertext[j];
-			   		 	if (test == key[7] + key[0]) { say = la[0]; }
-			   		 	else if (test == key[7] + key[1]) { say = la[1]; }
-			   		 	else if (test == key[7] + key[2]) { say = la[2]; }
-			   		 	else if (test == key[7] + key[3]) { say = la[3]; }
-			   		 	else if (test == key[7] + key[4]) { say = la[4]; }
-			   		 	else if (test == key[7] + key[5]) { say = la[5]; }
-			   		 	else if (test == key[7] + key[6]) { say = la[6]; }
-			   		 	else if (test == key[7] + key[7]) { say = la[7]; }
-			   		 	else if (test == key[7] + key[8]) { say = la[8]; }
-			   		 	else if (test == key[7] + key[9]) { say = la[9]; }
-			   		 	else if (test == key[8] + key[0]) { say = la[10]; }
-			   		 	else if (test == key[8] + key[1]) { say = la[11]; }
-			   		 	else if (test == key[8] + key[2]) { say = la[12]; }
-			   		 	else if (test == key[8] + key[3]) { say = la[13]; }
-			   		 	else if (test == key[8] + key[4]) { say = la[14]; }
-			   		 	else if (test == key[8] + key[5]) { say = la[15]; }
-			   		 	else if (test == key[8] + key[6]) { say = la[16]; }
-			   		 	else if (test == key[8] + key[7]) { say = la[17]; }
-			   		 	else if (test == key[8] + key[8]) { say = la[18]; }
-			   		 	else if (test == key[8] + key[9]) { say = la[19]; }
-			   		 	i++;
+			    		j = i-addlen;
+			    		k = j+2;  //Doubled to solve the comma bug.
+			    		addor = add[j]*1 + add[k]*1 % 10;
 			    	}
-			    	plaintext += say;
-			    }
-			    document.getElementById("p").value = plaintext;
+			    	add += addor;
+			    	add += addor; //Doubled to solve the comma bug.
+		   		 	addit = stageone[i]*1 + addor*1;
+		   		 	addit = addit % 10;
+		   		 	if (addit == 10) { addit = 0; }
+		   		 	ciphertext += addit;
+		   	 	}
+		    }
+		    if (mode == 3) { // Single columnar
+		   	    colkey = MakeColumnKey("num", addbeforesplit);
+		   	    ciphertext = ColTrans(1, stageone, colkey);
+		   	}
+		   	if (mode == 4) { // Double columnar
+		   	    colkey = MakeColumnKey("num", addbeforesplit);
+		   	    seccol = MakeColumnKey("num", secbeforesplit);
+		   	 		ciphertext = ColTrans(1, stageone, colkey);
+		   	 		ciphertext = ColTrans(1, ciphertext, seccol);
+		   	}
+
+		    if (mode == 5) { //Nicodemus I (Repeating key + Columnar transposition w/key)
+		    	for (i=0; i<len; i++) {
+			    	j = i % addlen;
+		   		 	addit = stageone[i]*1 + add[j]*1;
+		   		 	addit = addit % 10;
+		   		 	if (addit == 10) { addit = 0; }
+		   		 	ciphertext += addit;
+		   	 	}
+		   	 	colkey = MakeColumnKey("num", addbeforesplit);
+		   	 	ciphertext = ColTrans(1, ciphertext, colkey);
+		   	 }
+		   	 if (mode == 6) { //Nicodemus II (Repeating key + Double columnar transposition w/key)
+		    	for (i=0; i<len; i++) {
+			    	j = i % addlen;
+		   		 	addit = stageone[i]*1 + add[j]*1;
+		   		 	addit = addit % 10;
+		   		 	if (addit == 10) { addit = 0; }
+		   		 	ciphertext += addit;
+		   	 	}
+		   	 	colkey = MakeColumnKey("num", addbeforesplit);
+		   	    seccol = MakeColumnKey("num", secbeforesplit);
+		   	 	ciphertext = ColTrans(1, ciphertext, colkey);
+		   	 	ciphertext = ColTrans(1, ciphertext, seccol);
+		   	 }
+		   	 if (mode == 7) { //Nicodemus III (Autokey + Double columnar transposition w/key)
+		    	for (i=0; i<len; i++) {
+			    	if (i < addlen) { addor = add[i]; }
+			    	else { j = i-addlen; addor = stageone[j]; }
+		   		 	addit = stageone[i]*1 + addor*1;
+		   		 	addit = addit % 10;
+		   		 	if (addit == 10) { addit = 0; }
+		   		 	ciphertext += addit;
+		   	 	}
+		   	 colkey = MakeColumnKey("num", addbeforesplit);
+		   	 seccol = MakeColumnKey("num", secbeforesplit);
+		   	 ciphertext = ColTrans(1, ciphertext, colkey);
+		   	 ciphertext = ColTrans(1, ciphertext, seccol);
+		   	}   	 
+		    document.getElementById("c").value = ciphertext;
+		}
+
+		function Permutate() {
+			key = document.getElementById("la").value.toLowerCase().replace(/[^a-z/*]/g, "");
+			add = document.getElementById("k").value.replace(/[^0-9]/g, "").split("");
+			addbeforesplit = add.join(" ").replace("0", "10");
+			colkey = MakeColumnKey("num", addbeforesplit);
+			ciphertext = ColTrans(1, key, colkey);
+			document.getElementById("la").value = ciphertext;
+		}
+
+		function Normal() { document.getElementById("la").value = "bcdfghjklmpquvwxyz**"; }
+
+		function MakeNum() {
+			tomake = document.getElementById("make").value.toLowerCase().replace(/[^a-z/*]/g, "");
+			if (tomake.length != 10) { alert("The letter key made into numbers must still have a length of ten.  It's current length is " + tomake.length) }
+			else {
+				colkey = MakeColumnKey("alpha", tomake).replace("10", "0").replace(/[/ ]/g, "");
+			    document.getElementById("k").value = colkey;
 			}
-			</script>
-		</div>
-	</div>
-</div>
+		}
+		 
+		function Decrypt(f) {
+				stageone = document.getElementById("c").value.toLowerCase().replace(/[^0-9]/g, "");
+		    key = document.getElementById("k").value.replace(/[^0-9]/g, "").split("");
+		    add = document.getElementById("add").value.replace(/[^0-9]/g, "").split("");
+		    addbeforesplit = add.join(" ").replace("0", "10");
+		    secbeforesplit = document.getElementById("sec").value.replace(/[^0-9]/g, "").split("").join(" ").replace("0", "10");
+		    sec = secbeforesplit.split("");
+		    mode = document.getElementById("mode").value;
+		    addlen = add.length;
+		    if (addlen == 0) { mode = -1; }
+		    la = document.getElementById("la").value.toLowerCase().replace(/[^a-z/*]/g, "").split("");
+		    ciphertext = "";
+		    len = stageone.length;
+		    if (mode == -1) { // No additive
+		    	stageone = stageone.split("");
+		    	ciphertext = stageone;
+		    }
+		    if (mode == 0) { // Repeating
+		       	stageone = stageone.split("");
+			    for (i=0; i<len; i++) {
+			    	j = i % addlen;
+		   		 	addit = stageone[i]*1 - add[j]*1;
+		   	 		if (addit < 0) { addit = 10 + addit; } // + because addit would be negative
+		    		ciphertext += addit;
+		    	}
+		    }
+		    if (mode == 1) { //Autokey
+		    	subkey = "";
+		    	stageone = stageone.split("");
+		        for (i=0; i<len; i++) {
+			    	if (i < addlen) { addor = add[i]; }
+			    	else { j = i-addlen; addor = subkey[j]; }
+		   		 	addit = stageone[i]*1 - addor*1;
+		   		 	if (addit < 0) { addit = 10 + addit; }
+		   		 	ciphertext += addit;
+		   		 	subkey += addit;
+		   	 	}
+		    }
+		    if (mode == 2) { // Running Key
+		        for (i=0; i<len; i++) {
+			    	if (i < addlen) { addor = add[i]; }
+			    	else {
+			    		j = i-addlen;
+			    		k = j+2;  //Doubled to solve the comma bug.
+			    		addor = add[j]*1 + add[k]*1 % 10;
+			    	}
+			    	add += addor;
+			    	add += addor; //Doubled to solve the comma bug.
+		   		 	addit = stageone[i]*1 - addor*1;
+		   		 	if (addit < 0) { addit = 10 + addit; }
+		   		 	ciphertext += addit;
+		   	 	}
+		    }
+		    if (mode == 3) { // Single Columnar
+		       	colkey = MakeColumnKey("num", addbeforesplit);
+		   	 	ciphertext = ColTrans(-1, stageone, colkey);
+		    }    
+		    if (mode == 4) { // Double Columnar
+		       	colkey = MakeColumnKey("num", addbeforesplit);
+		       	seccol = MakeColumnKey("num", secbeforesplit);
+		   	 	ciphertext = ColTrans(-1, stageone, seccol);
+		   	 	ciphertext = ColTrans(-1, ciphertext, colkey);
+		    }     
+		    if (mode == 5) { //Nicodemus I
+		       	colkey = MakeColumnKey("num", addbeforesplit);
+		   	 	stageone = ColTrans(-1, stageone, colkey);
+		   	 	stageone = stageone.split("");
+			    for (i=0; i<len; i++) {
+			    	j = i % addlen;
+		   		 	addit = stageone[i]*1 - add[j]*1;
+		    		addit = addit % 10;
+		   	 		if (addit < 0) { addit = 10 + addit; }
+		    		ciphertext += addit;
+		    	}
+		    }
+		    if (mode == 6) { //Nicodemus II
+		       	colkey = MakeColumnKey("num", addbeforesplit);
+		       	seccol = MakeColumnKey("num", secbeforesplit);
+		   	 	stageone = ColTrans(-1, stageone, seccol);
+		   	 	stageone = ColTrans(-1, stageone, colkey);
+		   	 	stageone = stageone.split("");
+			    for (i=0; i<len; i++) {
+			    	j = i % addlen;
+		   		 	addit = stageone[i]*1 - add[j]*1;
+		    		addit = addit % 10;
+		   	 		if (addit < 0) { addit = 10 + addit; }
+		    		ciphertext += addit;
+		    	}
+		    }
+		    if (mode == 7) { //Nicodemus III
+		       	colkey = MakeColumnKey("num", addbeforesplit);
+		       	seccol = MakeColumnKey("num", secbeforesplit);
+		   	 	stageone = ColTrans(-1, stageone, seccol);
+		   	 	stageone = ColTrans(-1, stageone, colkey);
+		   	 	stageone = stageone.split("");
+		   	 	subkey = "";
+		        for (i=0; i<len; i++) {
+			    	if (i < addlen) { addor = add[i]; }
+			    	else { j = i-addlen; addor = subkey[j]; }
+		   		 	addit = stageone[i]*1 - addor*1;
+		   		 	if (addit < 0) { addit = 10 + addit; }
+		   		 	ciphertext += addit;
+		   		 	subkey += addit;
+		   	 	}
+		    }    
+		    len = ciphertext.length;
+		    plaintext = "";
+		    for (i=0; i<len; i++) {
+		    	test = ciphertext[i];
+		    	if (test == key[0]) { say = "e"; }
+		    	else if (test == key[1]) { say = "s"; }
+		    	else if (test == key[2]) { say = "t"; }
+		    	else if (test == key[3]) { say = "o"; }
+		    	else if (test == key[4]) { say = "n"; }
+		    	else if (test == key[5]) { say = "i"; }
+		    	else if (test == key[6]) { say = "a"; }
+		    	else if (test == key[9]) { say = "r"; }
+		    	else {
+		    		j = i+1;
+		    		test += ciphertext[j];
+		   		 	if (test == key[7] + key[0]) { say = la[0]; }
+		   		 	else if (test == key[7] + key[1]) { say = la[1]; }
+		   		 	else if (test == key[7] + key[2]) { say = la[2]; }
+		   		 	else if (test == key[7] + key[3]) { say = la[3]; }
+		   		 	else if (test == key[7] + key[4]) { say = la[4]; }
+		   		 	else if (test == key[7] + key[5]) { say = la[5]; }
+		   		 	else if (test == key[7] + key[6]) { say = la[6]; }
+		   		 	else if (test == key[7] + key[7]) { say = la[7]; }
+		   		 	else if (test == key[7] + key[8]) { say = la[8]; }
+		   		 	else if (test == key[7] + key[9]) { say = la[9]; }
+		   		 	else if (test == key[8] + key[0]) { say = la[10]; }
+		   		 	else if (test == key[8] + key[1]) { say = la[11]; }
+		   		 	else if (test == key[8] + key[2]) { say = la[12]; }
+		   		 	else if (test == key[8] + key[3]) { say = la[13]; }
+		   		 	else if (test == key[8] + key[4]) { say = la[14]; }
+		   		 	else if (test == key[8] + key[5]) { say = la[15]; }
+		   		 	else if (test == key[8] + key[6]) { say = la[16]; }
+		   		 	else if (test == key[8] + key[7]) { say = la[17]; }
+		   		 	else if (test == key[8] + key[8]) { say = la[18]; }
+		   		 	else if (test == key[8] + key[9]) { say = la[19]; }
+		   		 	i++;
+		    	}
+		    	plaintext += say;
+		    }
+		    document.getElementById("p").value = plaintext;
+		}
+	</script>
