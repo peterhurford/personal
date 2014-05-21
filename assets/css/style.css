@@ -44,14 +44,25 @@ a {
 }
 
 table {
-    border-collapse:collapse;
-    border-spacing:0;
+  margin: 45px;
+  width: 480px;
+  border-collapse: collapse;
+  text-align: left;
 }
 
-th, td { 
-	text-align:left; 
-	font-weight:normal; 
+th {
+  font-weight: normal;
+  color: #039;
+  padding: 10px 8px;
+  border-bottom: 2px solid #6678b1;
 }
+
+td {
+  color: #669;
+  padding: 9px 8px 0px 8px;
+}
+
+tbody tr:hover td { color: #009; }
 
 strong { font-weight:bold; }
 em { font-style:italic; }
