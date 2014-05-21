@@ -61,21 +61,21 @@ td {
   padding: 9px 8px 0px 8px;
 }
 
-tbody tr:hover td { color: #009; }
+tbody tr:hover td { color: #66a2b8; }
 
 textarea, input[type=text] {
- 	border: 3px solid #cccccc;
+ 	border: 3px solid #f1f0f0;
  	padding: 5px;
  }
  
  .button, input[type=button] {
  	color: #ffffff;
  	background: #555555;
- 	border: 3px solid #cccccc;
+ 	border: 3px solid #f1f0f0;
  	padding: 5px;
  }
  
- .button:hover, input[type=button]:hover { background: #000000; }
+ .button:hover, input[type=button]:hover { background: #66a2b8; }
 
 strong { font-weight:bold; }
 em { font-style:italic; }
