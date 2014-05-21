@@ -69,13 +69,16 @@ textarea, input[type=text] {
  }
  
  .button, input[type=button] {
- 	color: #ffffff;
- 	background: #555555;
- 	border: 3px solid #f1f0f0;
+ 	color: #000000;
+ 	background: #f1f0f0;
+ 	border: 3px solid #000000;
  	padding: 5px;
  }
  
- .button:hover, input[type=button]:hover { background: #66a2b8; }
+ .button:hover, input[type=button]:hover {
+ 	color: #ffffff;
+ 	background: #66a2b8;
+ }
 
 strong { font-weight:bold; }
 em { font-style:italic; }
