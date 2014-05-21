@@ -102,6 +102,9 @@ p {
 	font-style: normal;	
 }
 
+li { margin: 10px; }
+ul { margin-bottom: 20px; }
+
 img {
 	margin: 0;
 }
