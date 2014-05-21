@@ -6,6 +6,16 @@
 	Footer "mac dock"-style zoom adapted from GirlieMac <http://girliemac.com/blog/2010/06/02/simulating-macos-dock-like-menu-with-css3/>.
 */
 
+* { 
+    margin:0;
+    padding:0;
+    border:0;
+    font-style:inherit;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
 html { 
     -webkit-font-smoothing:antialiased;
     text-rendering:optimizeLegibility;
