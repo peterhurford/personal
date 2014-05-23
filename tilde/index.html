@@ -4,17 +4,16 @@
 <div id="main">
 <b>Admin</b>
 <ul>
-	<li><a href="https://workflowy.com/#/9aba28c7-f96a-8016-fcd0-619d34c37ba8">Workflowy > Now</a></li>
 	<li><a href="https://www.google.com/calendar/b/1/render?tab=mc">Calendar</a></li>
+	<li><a href="https://workflowy.com/#/9aba28c7-f96a-8016-fcd0-619d34c37ba8">Workflowy > Now</a></li>
+	<li><a href="https://workflowy.com/#/c609b90f-7ee6-12bf-36c1-4b5bd9bf8f61">Workflowy > Diet > Today</a></li>
+	<li><a href="https://workflowy.com/#/e59f96bc-8457-f000-a274-35810ad2e995">Workflowy > Projects > Watch</a></li>
 	<li><a href="https://www.beeminder.com/peterhurford">Beeminder Goals</a></li>
-	<li><a href="http://www.everydayutilitarian.com">Everyday Utilitarian</a></li></li>
-	<li><a href="http://www.everydayutilitarian.com/logs">EU > Logs</a></li>
-	<li><a href="http://www.peterhurford.com">Peter Hurford</a></li>
-	<li><a href="http://peterhurford.tumblr.com">Tumblr</a></li>
 	<li><i>More...</i> <span id="adminmore"><button onclick=expandadminmore();>+</button></span>
 	<script>
 	function expandadminmore() {
-		document.getElementById("adminmore").innerHTML = "<ul><li><a href=http://www.everydayutilitarian.com/wp-admin/index.php>EU: WpAdmin</a></li><li><a href=files>Files</a></li><li><a href=http://drive.google.com>Google Drive</a></li><li><a href=https://workflowy.com/>Workflowy</a></li><li><a href=https://github.com/peterhurford>GitHub</a></li><li><a href=http://www.heroku.com>Heroku</a></li><li><a href=http://www.dotimpact.im>.impact</a></li><li><a href=https://bufferapp.com>Buffer</a></li></ul><button onclick=contractadminmore();>-</button>";
+		document.getElementById("adminmore").innerHTML = "<ul>
+		<li><a href=http://www.everydayutilitarian.com>Everyday Utilitarian</a></li><li><a href=http://www.peterhurford.com>Peter Hurford</a></li><li><a href=http://peterhurford.tumblr.com>Tumblr</a></li><li><a href=http://www.everydayutilitarian.com/wp-admin/index.php>EU: WpAdmin</a></li><li><a href=files>Files</a></li><li><a href=http://drive.google.com>Google Drive</a></li><li><a href=https://workflowy.com/>Workflowy</a></li><li><a href=https://github.com/peterhurford>GitHub</a></li><li><a href=http://www.heroku.com>Heroku</a></li><li><a href=http://www.dotimpact.im>.impact</a></li><li><a href=https://bufferapp.com>Buffer</a></li></ul><button onclick=contractadminmore();>-</button>";
 	}
 	function contractadminmore() {
 		document.getElementById("adminmore").innerHTML = "<button onclick=expandadminmore();>+</button>";
