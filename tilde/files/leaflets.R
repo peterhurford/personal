@@ -39,6 +39,16 @@ red_drop[red.1 == 7 & red < 7] <- -1             # Code as -1 if meat is added
 table(red_drop)
 
 
+# Total Poultry Elimination
+length(poultry); length(poultry.1)               # Get size of variables
+poultry_drop <- rep(NA, 623)                     # Start change variable by making it the same size
+poultry_drop[poultry.1 < 7 & poultry == 7] <- 1         # Code as 1 if poultry is eliminated between times
+poultry_drop[poultry.1 < 7 & poultry < 7] <- 0          # Code as 0 if no poultry elimination between times
+poultry_drop[poultry.1 == 7 & poultry == 7] <- 0        # Code as 0 if already poultry free at beginning
+poultry_drop[poultry.1 == 7 & poultry < 7] <- -1        # Code as -1 if is added
+table(poultry_drop)
+
+
 ## Change in Vegetarian / Vegan Status
 veget[is.na(veget)] <- 0                      # 1 is vegetarian, 0 not vegetarian
 vegan[is.na(vegan)] <- 0                      # 1 is vegan, 0 not vegan
@@ -52,6 +62,19 @@ veg_change <- veget_change + vegan_change
 veg_change[veg_change > 1] <- 1
 
 table(vegan3, vegan, veget, veget3)
+
+
+## Change in Pescatarian / Meat Reduction Status
+pesce[is.na(pesce)] <- 0                  # 1 is pescearian, 0 not pescearian
+m.r[is.na(m.r)] <- 0                      # 1 is meat reducer, 0 not meat reducer
+pesce3 <- pesce.1
+m.r3 <- m.r.1
+pesce3[is.na(pesce3)] <- 0                # 1 is pescearian, 0 not pescearian
+m.r3[is.na(m.r3)] <- 0                    # 1 is meat reducer, 0 not meat reducer
+pesce_change <- pesce - pesce3
+mr_change <- m.r - m.r3
+
+table(m.r3, m.r, pesce, pesce3)
 
 
 ## How much meat do vegans / vegetarians eat?
@@ -121,10 +144,21 @@ table(red_drop, f_treat)
 table(red_drop, f_control)
 table(red_drop, f_none)
 
+table(poultry_drop, f_treat)
+table(poultry_drop, f_control)
+table(poultry_drop, f_none)
+
 table(veg_change, f_treat)
 table(veg_change, f_control)
 table(veg_change, f_none)
 
+table(pesce_change, f_treat)
+table(pesce_change, f_control)
+table(pesce_change, f_none)
+
+table(mr_change, f_treat)
+table(mr_change, f_control)
+table(mr_change, f_none)
 
 ## T-tests
 t.test(meat_elim ~ f_treat) 
@@ -136,8 +170,17 @@ t.test(meat_reduce ~ f_treat, subset=f_all == T)
 t.test(red_drop ~ f_treat) 
 t.test(red_drop ~ f_treat, subset=f_all == T)
 
+t.test(poultry_drop ~ f_treat) 
+t.test(poultry_drop ~ f_treat, subset=f_all == T)
+
 t.test(veg_change ~ f_treat) 
 t.test(veg_change ~ f_treat, subset=f_all == T)
+
+t.test(pesce_change ~ f_treat) 
+t.test(pesce_change ~ f_treat, subset=f_all == T)
+
+t.test(mr_change ~ f_treat) 
+t.test(mr_change ~ f_treat, subset=f_all == T)
 
 
 ## Read leaflet
@@ -149,6 +192,9 @@ table(read_f[E == 1])
 table(read_f[f_none == 1])
 table(read_f[f_treat == 1], veg_change[f_treat == 1])
 table(read_f[f_treat == 1], red_drop[f_treat == 1])
+
+t.test(read_f[is.na(f_control) == F] ~ f_control[is.na(f_control) == F], subset=f_all == T)
+t.test(read_f ~ f_treat, subset=f_all == T)
 
 
 ## Leaflet influence?
