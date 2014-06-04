@@ -95,6 +95,9 @@ summary(r_anproducts_r[veget == 0 & vegan == 0])
 summary(r_anproducts_r[veget == 1 & vegan == 0])
 summary(r_anproducts_r[vegan == 1])
 
+## Pescetarian vs. FFQ check
+table(red_drop, poultry_drop, pesce_change)                          # Changed
+table(pesce[red == 7 & red.1 == 7 & poultry == 7 & poultry.1 == 7])  # Always pescetarian
 
 ## Flyer Received
 
