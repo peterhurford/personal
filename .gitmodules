@@ -1,0 +1,3 @@
+[submodule "other/portalsnake"]
+	path = other/portalsnake
+	url = git://github.com/peterhurford/portalsnake.git
