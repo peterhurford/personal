@@ -1,6 +1,3 @@
-[submodule "other/portalsnake"]
-	path = other/portalsnake
-	url = git://github.com/peterhurford/portalsnake.git
 [submodule "other/calculator"]
 	path = other/calculator
 	url = git://github.com/peterhurford/jscalculator.git
