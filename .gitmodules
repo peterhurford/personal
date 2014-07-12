@@ -4,6 +4,3 @@
 [submodule "other/calculator"]
 	path = other/calculator
 	url = git://github.com/peterhurford/jscalculator.git
-[submodule "other/etchsketch"]
-	path = other/etchsketch
-	url = git://github.com/peterhurford/etchsketch.git
