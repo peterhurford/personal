@@ -37,112 +37,129 @@ index: false
 <script>
   // Donation script borrowed with permission from www.benkuhn.net/ea/
   var CS = {
-    name: 'Charity Science',
-    href: 'http://www.charityscience.com/',
+    name: "Charity Science",
+    href: "http://www.charityscience.com/",
   };
   var SCI = {
-    name: 'Schistosomiasis Control Initiative',
-    href: 'http://www3.imperial.ac.uk/schisto',
+    name: "Schistosomiasis Control Initiative",
+    href: "http://www3.imperial.ac.uk/schisto",
   };
   var RF = {
-    name: 'Reducetarian Foundation',
-    href: 'http://www.reducetarian.com',
+    name: "Reducetarian Foundation",
+    href: "http://www.reducetarian.com",
   };
   var GD = {
-    name: 'GiveDirectly',
-    href: 'https://www.givedirectly.org/',
+    name: "GiveDirectly",
+    href: "https://www.givedirectly.org/",
   };
   var AMF = {
-    name: 'Against Malaria Foundation',
-    href: 'https://www.againstmalaria.com/',
+    name: "Against Malaria Foundation",
+    href: "https://www.againstmalaria.com/",
   };
   var DGB = {
-    name: 'Doing Good Better'
+    name: "Doing Good Better"
   };
   var LOAN = {
-    name: 'Loan to a fellow EA'
+    name: "Loan to a fellow EA"
   }
   var IM = {
-    name: '.impact',
-    href: 'http://dotimpact.im'
+    name: ".impact",
+    href: "http://dotimpact.im"
   };
   var MFA = {
-    name: 'Mercy for Animals',
-    href: 'http://www.mercyforanimals.org/'
+    name: "Mercy for Animals",
+    href: "http://www.mercyforanimals.org/"
   };
   var DTW = {
-    name: 'Deworm the World',
-    href: 'http://www.evidenceaction.org/dewormtheworld/'
+    name: "Deworm the World",
+    href: "http://www.evidenceaction.org/dewormtheworld/"
   };
   var E80K = {
-    name: '80,000 Hours',
-    href: 'http://www.80000hours.org/'
+    name: "80,000 Hours",
+    href: "http://www.80000hours.org/"
   };
   var MIRI = {
-    name: 'Machine Intelligence Research Institute',
-    href: 'http://www.intelligence.org/'
+    name: "Machine Intelligence Research Institute",
+    href: "http://www.intelligence.org/"
   };
   var CEA = {
-    name: 'Center for Effective Altruism',
-    href: 'http://home.centreforeffectivealtruism.org/'
+    name: "Center for Effective Altruism",
+    href: "http://home.centreforeffectivealtruism.org/"
   };
   var GWWC = {
-    name: 'Giving What We Can',
-    href: 'http://www.givingwhatwecan.org/'
+    name: "Giving What We Can",
+    href: "http://www.givingwhatwecan.org/"
   };
   var ACE = {
-    name: 'Animal Charity Evaluators',
-    href: 'http://www.animalcharityevaluators.org/'
+    name: "Animal Charity Evaluators",
+    href: "http://www.animalcharityevaluators.org/"
   };
-  // TODO: Notes + donation receipts + money moved
+  // TODO: donation receipts + money moved
   var donations = [
-    { year: 2016, day: '', org: CS, amount: 8350 },
-    { year: 2015, day: '29 Dec', org: SCI, amount: 2650 },
-    { year: 2015, day: '28 Dec', org: CS, amount: 25000 },
-    { year: 2015, day: '16 Dec', org: RF, amount: 2500 },
-    { year: 2015, day: '16 Dec', org: RF, amount: 2500 },
-    { year: 2015, day: '3 Dec', org: AMF, amount: 150 },
-    { year: 2015, day: '8 Oct', org: DGB, amount: 110 },
-    { year: 2015, day: '3 Sep', org: LOAN, amount: 449 },
-    { year: 2015, day: '3 Sep', org: IM, amount: 47 },
-    { year: 2015, day: '9 Aug', org: MFA, amount: 2000 },
-    { year: 2015, day: '14 Aug', org: IM, amount: 40 },
-    { year: 2015, day: '24 Apr', org: CS, amount: 5200 },
-    { year: 2015, day: '23 Apr', org: DTW, amount: 45 },
-    { year: 2015, day: '20 Apr', org: IM, amount: 36 },
-    { year: 2015, day: '6 Apr', org: DTW, amount: 177 },
-    { year: 2015, day: '6 Apr', org: DTW, amount: 177 },
-    { year: 2015, day: '28 Mar', org: SCI, amount: 493 },
-    { year: 2015, day: '22 Mar', org: SCI, amount: 519 },
-    { year: 2015, day: '23 Jan', org: MFA, amount: 1300 },
-    { year: 2015, day: '2 Jan', org: AMF, amount: 1524 },
-    { year: 2014, day: '31 Dec', org: AMF, amount: 634 },
-    { year: 2014, day: '31 Dec', org: AMF, amount: 80 },
-    { year: 2014, day: '31 Dec', org: AMF, amount: 545 },
-    { year: 2014, day: '19 Dec', org: E80K, amount: 100 },
-    { year: 2014, day: '14 Dec', org: IM, amount: 435 },
-    { year: 2014, day: '25 Nov', org: IM, amount: 13 },
-    { year: 2014, day: '30 Sep', org: CS, amount: 516 },
-    { year: 2014, day: '7 Sep', org: IM, amount: 79 },
-    { year: 2014, day: '15 Aug', org: CS, amount: 1000 },
-    { year: 2014, day: '12 Jul', org: CS, amount: 1000 },
-    { year: 2014, day: '17 Jun', org: GD, amount: 46 },
-    { year: 2014, day: '6 May', org: MIRI, amount: 90 },
-    { year: 2014, day: '14 Jan', org: IM, amount: 10 },
-    { year: 2013, day: '24 Dec', org: IM, amount: 6 },
-    { year: 2013, day: '22 Dec', org: SCI, amount: 33 },
-    { year: 2013, day: '17 Dec', org: IM, amount: 6 },
-    { year: 2013, day: '12 Dec', org: CEA, amount: 80 },
-    { year: 2013, day: '4 Jul', org: GWWC, amount: 1700 },
-    { year: 2012, day: '25 Dec', org: ACE, amount: 660 },
-    { year: 2012, day: '18 Dec', org: GD, amount: 20 },
-    { year: 2012, day: '10 May', org: AMF, amount: 123 },
-    { year: 2012, day: '10 Apr', org: AMF, amount: 200 },
-    { year: 2011, day: '31 Dec', org: AMF, amount: 10 }
+    { year: 2016, day: "", org: CS, amount: 8350,
+        note: "$6K to support fundraising project and $3350 to support .impact" },
+    { year: 2015, day: "29 Dec", org: SCI, amount: 2650,
+        note: "For <a href='http://wedding.causevox.com/'>Joey and Katherine's Wedding</a>" },
+    { year: 2015, day: "28 Dec", org: CS, amount: 25000,
+        note: "$20K to support <a href='http://www.charityentrepreneurship.com/'>Charity Entrepreneurship</a> and $5K to support .impact" },
+    { year: 2015, day: "16 Dec", org: RF, amount: 2500,
+        note: "Pro-veg research partnership with Center for Ethical Eating" },
+    { year: 2015, day: "16 Dec", org: RF, amount: 2500,
+        note: "Pro-veg research partnership with Center for Ethical Eating" },
+    { year: 2015, day: "3 Dec", org: AMF, amount: 150,
+        note: "Donation in exchange for selling something" },
+    { year: 2015, day: "8 Oct", org: DGB, amount: 110,
+        note: "Buying copies of Doing Good Better to distribute to friends and family." },
+    { year: 2015, day: "3 Sep", org: LOAN, amount: 449,
+        note: "For a ticket to a conference for networking. Will be repaid as a donation to GiveWell when he gets a job." },
+    { year: 2015, day: "3 Sep", org: IM, amount: 47,
+        note: "Funding for meetups groups" },
+    { year: 2015, day: "9 Aug", org: MFA, amount: 2000,
+        note: "For a study on FB ads" },
+    { year: 2015, day: "14 Aug", org: IM, amount: 40,
+        note: "For Shop for Charity plugin development" },
+    { year: 2015, day: "24 Apr", org: CS, amount: 5200 },
+    { year: 2015, day: "23 Apr", org: DTW, amount: 45,
+        note: "Seeding money for the Experience Poverty fundraiser" },
+    { year: 2015, day: "20 Apr", org: IM, amount: 36,
+        note: "Meetup groups funding" },
+    { year: 2015, day: "6 Apr", org: DTW, amount: 177,
+        note: "Seeding money for the Experience Poverty fundraiser" },
+    { year: 2015, day: "6 Apr", org: DTW, amount: 177,
+        note: "Seeding money for the Experience Poverty fundraiser" },
+    { year: 2015, day: "28 Mar", org: SCI, amount: 493,
+        note: "Seeding money for the Experience Poverty fundraiser" },
+    { year: 2015, day: "22 Mar", org: SCI, amount: 519,
+        note: "Seeding money for the Experience Poverty fundraiser" },
+    { year: 2015, day: "23 Jan", org: MFA, amount: 1300,
+        note: "For a study on FB ads" },
+    { year: 2015, day: "2 Jan", org: AMF, amount: 1524,
+        note: "Matching money for Birthday Fundraisers" },
+    { year: 2014, day: "31 Dec", org: AMF, amount: 1259,
+        note: "Matching money for Birthday Fundraisers" },
+    { year: 2014, day: "19 Dec", org: E80K, amount: 100 },
+    { year: 2014, day: "14 Dec", org: IM, amount: 435,
+        note: "Contracted some veg advocacy research" },
+    { year: 2014, day: "25 Nov", org: IM, amount: 13 },
+    { year: 2014, day: "30 Sep", org: CS, amount: 516 },
+    { year: 2014, day: "7 Sep", org: IM, amount: 79 },
+    { year: 2014, day: "15 Aug", org: CS, amount: 1000 },
+    { year: 2014, day: "12 Jul", org: CS, amount: 1000 },
+    { year: 2014, day: "17 Jun", org: GD, amount: 46,
+        note: "Matching for a family fundraiser" },
+    { year: 2014, day: "6 May", org: MIRI, amount: 90,
+        note: "For <a href='http://intelligence.org/14/05/04/calling-all-miri-supporters/'>SVGives</a>" },
+    { year: 2013, day: "22 Dec", org: SCI, amount: 33 },
+    { year: 2013, day: "12 Dec", org: CEA, amount: 80 },
+    { year: 2013, day: "4 Jul", org: GWWC, amount: 1700 },
+    { year: 2012, day: "25 Dec", org: ACE, amount: 660 },
+    { year: 2012, day: "18 Dec", org: GD, amount: 20 },
+    { year: 2012, day: "10 May", org: AMF, amount: 123 },
+    { year: 2012, day: "10 Apr", org: AMF, amount: 200 },
+    { year: 2011, day: "31 Dec", org: AMF, amount: 10 }
   ];
-  //TODO: Spending, Taxes, Saving
   var income = {
-    2016: '???',
+    2016: "???",
     2015: 92627,
     2014: 41399,
     2013: 76300,
@@ -152,51 +169,50 @@ index: false
 
   function fmt(amt) {
     if (!_.isNumber(amt)) {
-      return '' + amt;
+      return "" + amt;
     }
     if (amt < 1000) {
-      return '$' + amt;
+      return "$" + amt;
     }
     else {
-      return fmt(Math.floor(amt / 1000)) + ',' + _.padLeft(amt % 1000, 3, '0');
+      return fmt(Math.floor(amt / 1000)) + "," + _.padLeft(amt % 1000, 3, "0");
     }
   }
 
   function getYearText(don) {
-    return don.year + '<br/> (income: ' + fmt(income[don.year]) + ')';
+    return don.year + "<br/> (income: " + fmt(income[don.year]) + ")";
   }
-  var getDay = _.property('day');
+  var getDay = _.property("day");
   var getOrg = function (don) {
     if (don.org.href == undefined) {
       return don.org.name;
     }
     else {
-      return '<a href="' + don.org.href + '">' + don.org.name + '</a>';
+      return '<a href="' + don.org.href + '">' + don.org.name + "</a>";
     }
   }
   function getDate(don) {
-    return don.day + ' ' + don.year;
+    return don.day + " " + don.year;
   }
   function chronView() {
-    doView(getYearText, [getDay, getOrg], 1, ['Year', 'Date', 'Organization']);
+    doView(getYearText, [getDay, getOrg], 1, ["Year", "Date", "Organization"]);
   }
   function orgView() {
-    doView(getOrg, [getDate], 0, ['Organization', 'Date']);
+    doView(getOrg, [getDate], 0, ["Organization", "Date"]);
   }
 
   function doView(grouper, otherfields, total_ix, colnames) {
-    var h = jQuery('#donations-header');
-    var b = jQuery('#donations-body');
+    var h = jQuery("#donations-header");
+    var b = jQuery("#donations-body");
     h.empty();
     b.empty()
-    _.forEach(colnames, function (colname) {
-      h.append(jQuery('<th />').text(colname));
+    th_widths = { Year: "15%", Date: "11%", Amount: "10%", Organization: "28%" }
+    _.forEach(colnames.concat(["Amount", "Note"]), function (colname) {
+      h.append(jQuery("<th />").width(th_widths[colname]).text(colname));
     });
-    h.append(jQuery('<th />').text('Amount'));
     _.forEach(_.groupBy(donations, grouper),
       function (group_dons, grptxt) {
-        var n = group_dons.length;
-        n += 1;
+        var n = group_dons.length + 1;
         var don = group_dons[0];
         var row = jQuery('<tr><td rowspan="' + n + '">' + grptxt + '</td></td>');
         doDon(row, otherfields, don);
@@ -205,29 +221,34 @@ index: false
         for (var i = 1; i < group_dons.length; i++) {
           don = group_dons[i];
           total += don.amount;
-          row = jQuery('<tr />');
+          row = jQuery("<tr />");
           doDon(row, otherfields, don);
           b.append(row);
         }
-        row = jQuery('<tr />');
+        row = jQuery("<tr />");
         for (var i = 0; i < otherfields.length; i++) {
           if (i == total_ix) {
-            row.append(jQuery('<th>(total)</th>'));
+            row.append(jQuery("<th>(total)</th>"));
           }
           else {
-            row.append(jQuery('<th>&ndash;</th>'));
+            row.append(jQuery("<th>&ndash;</th>"));
           }
         }
-        row.append(jQuery('<th />').text(fmt(total)));
+        row.append(jQuery("<th />").text(fmt(total)));
         b.append(row);
       });
   }
   function doDon(row, otherfields, don) {
     for (var i = 0; i < otherfields.length; i++) {
-      row.append(jQuery('<td />').html(otherfields[i](don)))
+      row.append(jQuery("<td />").html(otherfields[i](don)))
     }
-    row.append(jQuery('<th />').text(fmt(don.amount)));
+    row.append(jQuery("<td />").text(fmt(don.amount)));
+    row.append(jQuery("<td />").html(don.note));
   }
 
   chronView();
 </script>
+                </div>
+            </div>
+        </div>
+    </div>
