@@ -95,13 +95,16 @@ index: false
     { year: 2016, day: "", org: CS, amount: 8350,
         note: "$6K to support fundraising project and $3350 to support .impact" },
     { year: 2015, day: "29 Dec", org: SCI, amount: 2650,
-        note: "For <a href='http://wedding.causevox.com/'>Joey and Katherine's Wedding</a>" },
+        note: "For <a href='http://wedding.causevox.com/'>Joey and Katherine's Wedding</a>",
+        receipt: "givewell-29dec2015.pdf" },
     { year: 2015, day: "28 Dec", org: CS, amount: 25000,
         note: "$20K to support <a href='http://www.charityentrepreneurship.com/'>Charity Entrepreneurship</a> and $5K to support .impact" },
     { year: 2015, day: "16 Dec", org: RF, amount: 2500,
-        note: "Pro-veg research partnership with Center for Ethical Eating" },
+        note: "Pro-veg research partnership with Center for Ethical Eating",
+        receipt: "reducitarian-1150-16dec2015.pdf" },
     { year: 2015, day: "16 Dec", org: RF, amount: 2500,
-        note: "Pro-veg research partnership with Center for Ethical Eating" },
+        note: "Pro-veg research partnership with Center for Ethical Eating",
+        receipt: "reducitarian-1151-16dec2015.pdf" },
     { year: 2015, day: "3 Dec", org: AMF, amount: 150,
         note: "Donation in exchange for selling something" },
     { year: 2015, day: "8 Oct", org: DGB, amount: 110,
@@ -111,26 +114,33 @@ index: false
     { year: 2015, day: "3 Sep", org: CS, amount: 47,
         note: "Funding for meetups groups" },
     { year: 2015, day: "9 Aug", org: MFA, amount: 2000,
-        note: "For a study on FB ads" },
+        note: "For a study on FB ads",
+        receipt: "mfa-18-sep-2015.JPG" },
     { year: 2015, day: "14 Aug", org: CS, amount: 40,
         note: "For Shop for Charity plugin development" },
-    { year: 2015, day: "24 Apr", org: CS, amount: 5200 },
+    { year: 2015, day: "24 Apr", org: CS, amount: 5200,
+        receipt: "charity-science-24-april-2015.pdf" },
     { year: 2015, day: "23 Apr", org: DTW, amount: 45,
         note: "Seeding money for the Experience Poverty fundraiser" },
     { year: 2015, day: "20 Apr", org: CS, amount: 36,
         note: "Meetup groups funding" },
     { year: 2015, day: "6 Apr", org: DTW, amount: 177,
-        note: "Seeding money for the Experience Poverty fundraiser" },
+        note: "Seeding money for the Experience Poverty fundraiser",
+        receipt: "dtw-6-apr-2015.png" },
     { year: 2015, day: "6 Apr", org: DTW, amount: 177,
-        note: "Seeding money for the Experience Poverty fundraiser" },
+        note: "Seeding money for the Experience Poverty fundraiser",
+        receipt: "dtw-6-apr-2015.png" },
     { year: 2015, day: "28 Mar", org: SCI, amount: 493,
-        note: "Seeding money for the Experience Poverty fundraiser" },
+        note: "Seeding money for the Experience Poverty fundraiser",
+        receipt: "dtw-28-mar-2015.png" },
     { year: 2015, day: "22 Mar", org: SCI, amount: 519,
         note: "Seeding money for the Experience Poverty fundraiser" },
     { year: 2015, day: "23 Jan", org: MFA, amount: 1300,
-        note: "For a study on FB ads" },
+        note: "For a study on FB ads",
+        receipt: "mfa-23-jan-2015.png" },
     { year: 2015, day: "2 Jan", org: AMF, amount: 1524,
-        note: "Matching money for Birthday Fundraisers" },
+        note: "Matching money for Birthday Fundraisers",
+        receipt: "amf-2-jan-2015.png" },
     { year: 2014, day: "31 Dec", org: AMF, amount: 1259,
         note: "Matching money for Birthday Fundraisers" },
     { year: 2014, day: "19 Dec", org: E80K, amount: 100 },
@@ -169,8 +179,7 @@ index: false
     }
     if (amt < 1000) {
       return "$" + amt;
-    }
-    else {
+    } else {
       return fmt(Math.floor(amt / 1000)) + "," + _.padLeft(amt % 1000, 3, "0");
     }
   }
@@ -182,14 +191,29 @@ index: false
   var getOrg = function (don) {
     if (don.org.href == undefined) {
       return don.org.name;
-    }
-    else {
+    } else {
       return '<a href="' + don.org.href + '">' + don.org.name + "</a>";
     }
   }
   function getDate(don) {
     return don.day + " " + don.year;
   }
+  function getNoteAndReceipt(don) {
+    if (don.receipt == undefined) {
+      if (don.note == undefined) {
+        return "";
+      } else {
+        return don.note;
+      }
+    } else {
+      receipt_link = " <a href='donation_receipts/" + don.receipt + "'>(receipt)</a>";
+      if (don.note == undefined) {
+        return receipt_link;
+      } else {
+        return don.note + receipt_link;
+      }
+    }
+  }  
   function chronView() {
     doView(getYearText, [getDay, getOrg], 1, ["Year", "Date", "Organization"]);
   }
@@ -239,7 +263,7 @@ index: false
       row.append(jQuery("<td />").html(otherfields[i](don)))
     }
     row.append(jQuery("<td />").text(fmt(don.amount)));
-    row.append(jQuery("<td />").html(don.note));
+    row.append(jQuery("<td />").html(getNoteAndReceipt(don)));
   }
 
   chronView();
