@@ -226,7 +226,6 @@ jQuery(document).ready(function(){
 	});
 	
 	jQuery('img').attr('title','');	
-	jQuery("#content").fitVids();		
 });
 
 jQuery(window).load(function(){
