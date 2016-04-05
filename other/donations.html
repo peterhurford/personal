@@ -34,21 +34,6 @@ index: false
   </tbody>
 </table>
 
-<h2>Money Moved</h2>
-<p>Money moved is money that I had counterfactual influence over, but not money that I donated myself. In 2016, this got complicated because I did some fundraising by personally collecting the money for later redistrubiton -- this money is counted above as a donation.</p>
-<p>
-  View:
-  <input type="radio" name="view" value="chron" checked="true" onclick="chronView()">chronological
-  <input type="radio" name="view" value="org" onclick="orgView()">by organization
-</p>
-<table>
-  <thead>
-    <tr id="moneymoved-header"></tr>
-  </thead>
-  <tbody id="moneymoved-body">
-  </tbody>
-</table>
-
 <script>
   // Donation script borrowed with permission from www.benkuhn.net/ea/
   var CS = {
@@ -273,14 +258,10 @@ index: false
   function doView(grouper, otherfields, total_ix, colnames) {
     var h = jQuery("#donations-header");
     var b = jQuery("#donations-body");
-    var mmh = jQuery("#moneymoved-header");
-    var mmb = jQuery("#moneymoved-body");
     h.empty();
-    mmh.empty();
     b.empty();
-    mmb.empty()
     th_widths = { Year: "15%", Date: "11%", Amount: "10%", Organization: "28%" }
-    _.forEach([h, mmh], function (zone) {
+    _.forEach([h], function (zone) {
       _.forEach(colnames.concat(["Amount", "Note"]), function (colname) {
         zone.append(jQuery("<th />").width(th_widths[colname]).text(colname));
       });
@@ -315,8 +296,6 @@ index: false
 
     _.forEach(_.groupBy(donations, grouper),
       function(group_dons, grptxt) { printDonations(b, group_dons, grptxt) });
-    _.forEach(_.groupBy(moneymoved, grouper),
-      function(group_dons, grptxt) { printDonations(mmb, group_dons, grptxt) });
   }
   function doDon(row, otherfields, don) {
     for (var i = 0; i < otherfields.length; i++) {
