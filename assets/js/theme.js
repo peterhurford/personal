@@ -108,8 +108,8 @@ function gridResize() {
 
 function setHomeBannerHeight() {
 	var windowHeight = jQuery(window).height()-topOffest;	
-	jQuery('.home #homeBanner').height(windowHeight);	
-	jQuery('.home #header .bottom').height(windowHeight);	
+	jQuery('.home #homeBanner').height(windowHeight / 2.5);	
+	jQuery('.home #header .bottom').height(windowHeight / 2.5);	
 	
 }
 
