@@ -36,17 +36,53 @@ index: false
 
 <script>
   // Donation script borrowed with permission from www.benkuhn.net/ea/
-  var CS = {
-    name: "Charity Science",
+  var VN = {
+    name: "Vipul's Contract work",
+    href: "https://contractwork.vipulnaik.com/payer.php?payer=Peter%20Hurford"
+  };
+  var BE = {
+    name: "Better Eating",
+    href: "https://www.kickstarter.com/projects/bettereating/better-eating-targeted-vegan-educational-videos"
+  };
+  var EAF = {
+    name: "Effective Altruism Funds",
+    href: "https://app.effectivealtruism.org/funds"
+  };
+  var ACLU = {
+    name: "American Civil Liberties Union",
+    href: "https://www.aclu.org"
+  };
+  var REG = {
+    name: "Raising for Effective Giving",
+    href: "http://www.reg-charity.org"
+  };
+  var DDP = {
+    name: "Defend Democracy PAC",
+    href: "https://secure.actblue.com/entity/fundraisers/47111?ref=topherbrennan_donate"
+  };
+  var CSO = {
+    name: "Charity Science Outreach",
     href: "http://www.charityscience.com/",
   };
   var CE = {
     name: "Charity Entrepreneurship",
     href: "http://www.charityentrepreneurship.com/",
   };
+  var MRTV = {
+    name: "My Ride to Vote",
+    href: "https://www.crowdpac.com/campaigns/100604/the-best-way-you-can-help-hillary-now-fund-rides-to-the-polls"
+  };
+  var HC = {
+    name: "Hillary for America",
+    href: "https://www.hillaryclinton.com/"
+  };
+  var OFA = {
+    name: "Obama for America",
+    href: "https://www.barackobama.com/"
+  };
   var I = {
-    name: ".impact",
-    href: "http://www.dotimpact.im/",
+    name: "Rethink Charity",
+    href: "http://www.rtcharity.org/",
   };
   var SCI = {
     name: "Schistosomiasis Control Initiative",
@@ -72,10 +108,6 @@ index: false
     name: "Deworm the World",
     href: "http://www.evidenceaction.org/dewormtheworld/"
   };
-  var E80K = {
-    name: "80,000 Hours",
-    href: "http://www.80000hours.org/"
-  };
   var MIRI = {
     name: "Machine Intelligence Research Institute",
     href: "http://www.intelligence.org/"
@@ -84,33 +116,91 @@ index: false
     name: "Center for Effective Altruism",
     href: "http://home.centreforeffectivealtruism.org/"
   };
-  var GWWC = {
-    name: "Giving What We Can",
-    href: "http://www.givingwhatwecan.org/"
-  };
   var ACE = {
     name: "Animal Charity Evaluators",
     href: "http://www.animalcharityevaluators.org/"
   };
+
   var donations = [
-    { year: 2016, day: "28 Aug", org: I, amount: 90, note: "For meetup.com fees" },
-    { year: 2016, day: "24 Aug", org: ACE, amount: 24, note: "For UPS fees" },
-    { year: 2016, day: "24 Aug", org: I, amount: 500 },
-    { year: 2016, day: "7 Aug", org: I, amount: 192, note: "Payment received for services" },
-    { year: 2016, day: "1 May", org: I, amount: 12000,
-      note: "$10660 personal donation and $1340 redistributed from others."},
+    { year: 2017, day: "TBD", org: VN, amount: 400,
+        note: "For a <a href='https://timelines.issarice.com/wiki/Timeline_of_the_environmentalist_movement'>timeline of the environmental movement</a>" },
+    { year: 2017, day: "TBD", org: VN, amount: 570,
+        note: "For research into foundation grantmaking (not yet published)" },
+    { year: 2017, day: "TBD", org: VN, amount: 400,
+        note: "For <a href='https://timelines.issarice.com/wiki/Timeline_of_tetanus'>tetanus</a> and <a href='https://timelines.issarice.com/wiki/Timeline_of_diphtheria'>diptheria</a> timelines" },
+    { year: 2017, day: "TBD", org: I, amount: 1150,
+        note: "See previous" },
+    { year: 2017, day: "30 June", org: I, amount: 5030,
+        note: "<a href='http://effective-altruism.com/ea/128/students_for_high_impact_charity_review_and_10k/'>(Write-up)</a>" },
+    { year: 2017, day: "13 May", org: SCI, amount: 200,
+        note: "Payment received for services" },
+    { year: 2017, day: "9 May", org: BE, amount: 10000,
+        note: "TBA" },
+    { year: 2017, day: "19 Apr", org: ACE, amount: 9,
+        note: "For UPS Fees" },
+    { year: 2017, day: "18 Apr", org: CE, amount: 37,
+        note: "Research materials" },
+    { year: 2017, day: "4 Apr", org: EAF, amount: 100,
+      note: "25% allocation to each fund for informational purposes",
+      receipt: "effective_altruism_funds_4_apr_2017.pdf" },
+    { year: 2017, day: "1 Mar", org: I, amount: 90,
+        note: "For meetup.com fees" },
+    { year: 2017, day: "29 Jan", org: ACLU, amount: 50 },
+    { year: 2017, day: "18 Jan", org: RF, amount: 2000,
+        note: "Pro-veg research partnership with AWAL",
+        receipt: "18jan2017reducetarian.pdf" },
+    { year: 2017, day: "13 Jan", org: I, amount: 4000,
+        note: "<a href='http://effective-altruism.com/ea/128/students_for_high_impact_charity_review_and_10k/'>(Write-up)</a>" },
+    { year: 2016, day: "30 Dec", org: SCI, amount: 337,
+        note: "From a fundraiser",
+        receipt: "sci-30dec2016.png" },
+      { year: 2016, day: "29 Dec", org: ACE, amount: 1000,
+        receipt: "ace-29dec2016.pdf" },
+    { year: 2016, day: "24 Dec", org: AMF, amount: 50,
+        receipt: "amf-24dec2016.png" },
+    { year: 2016, day: "23 Dec", org: REG, amount: 50,
+        note: "For a fundraiser",
+        receipt: "reg-23dec2016.png" },
+    { year: 2016, day: "17 Dec", org: AMF, amount: 1000,
+        note: "For a fundraiser",
+        receipt: "amf-17dec2016.png" },
+    { year: 2016, day: "14 Dec", org: DDP, amount: 1000,
+        note: "FB Ads Experiment" },
+    { year: 2016, day: "28 Nov", org: I, amount: 13,
+        note: "For domain name" },
+    { year: 2016, day: "7 Nov", org: MRTV, amount: 25 },
+    { year: 2016, day: "5 Nov", org: HC, amount: 25 },
+    { year: 2016, day: "13 Oct", org: AMF, amount: 35,
+        note: "Payment received for services" },
+    { year: 2016, day: "26 Sep", org: AMF, amount: 50,
+        note: "Payment received for services" },
+    { year: 2016, day: "28 Aug", org: I, amount: 90,
+        note: "For meetup.com fees" },
+    { year: 2016, day: "24 Aug", org: ACE, amount: 24,
+        note: "For UPS fees" },
+    { year: 2016, day: "24 Aug", org: I, amount: 500,
+        receipt: "impact-24aug2016.png" },
+    { year: 2016, day: "7 Aug", org: I, amount: 192,
+        note: "Payment received for services" },
+    { year: 2016, day: "16 May", org: I, amount: 12000,
+      note: "$10660 personal donation and $1340 redistributed from others.",
+      receipt: "impact-16-may-2016.png" },
     { year: 2016, day: "29 Apr", org: AMF, amount: 100,
-      note: "Payment for creation of http://www.effective-altruism.com/ea/vx/effects_of_major_events_on_ea_activity/",
-      receipt: "amf-29-apr.png" },
-    { year: 2016, day: "20 Apr", org: CS, amount: 6000, receipt: "charity-science-2-april-2016.JPG" },
+        note: "Payment for creation of http://www.effective-altruism.com/ea/vx/effects_of_major_events_on_ea_activity/",
+        receipt: "amf-29-apr.png" },
+    { year: 2016, day: "20 Apr", org: CSO, amount: 6000,
+        receipt: "charity-science-2-april-2016.JPG" },
     { year: 2016, day: "20 Apr", org: I, amount: 7792,
-      note: "Money redistributed from others.",
-      receipt: "charity-science-2-april-2016.JPG" },
-    { year: 2016, day: "26 Mar", org: ACE, amount: 12, note: "For UPS fees" },
-    { year: 2016, day: "1 Mar", org: I, amount: 90, note: "For meetup.com subscription" },
+        note: "Money redistributed from others.",
+        receipt: "charity-science-2-april-2016.JPG" },
+    { year: 2016, day: "26 Mar", org: ACE, amount: 12,
+        note: "For UPS fees" },
+    { year: 2016, day: "1 Mar", org: I, amount: 90,
+        note: "For meetup.com subscription" },
     { year: 2016, day: "11 Jan", org: AMF, amount: 106,
-      note: "Payment given for services.",
-      receipt: "amf-11jan2016.png" },
+        note: "Payment given for services.",
+        receipt: "amf-11jan2016.png" },
+
     { year: 2015, day: "22 Dec", org: SCI, amount: 2650,
         note: "For <a href='http://wedding.causevox.com/'>Joey and Katherine's Wedding</a>",
         receipt: "givewell-29dec2015.pdf" },
@@ -120,24 +210,27 @@ index: false
     { year: 2015, day: "23 Dec", org: I, amount: 5377,
         note: "Part of a larger donation sent through Tides",
         receipt: "tides-cs-impact-23dec2015.JPG" },
-    { year: 2015, day: "23 Dec", org: CE, amount: 15717, receipt: "tides-cs-23dec2015.pdf"},
+    { year: 2015, day: "23 Dec", org: CE, amount: 15717,
+        receipt: "tides-cs-23dec2015.pdf"},
     { year: 2015, day: "16 Dec", org: RF, amount: 2500,
-        note: "Pro-veg research partnership with Center for Ethical Eating",
+        note: "Pro-veg research partnership with AWAL",
         receipt: "reducitarian-1150-16dec2015.pdf" },
     { year: 2015, day: "16 Dec", org: RF, amount: 2500,
-        note: "Pro-veg research partnership with Center for Ethical Eating",
+        note: "Pro-veg research partnership with AWAL",
         receipt: "reducitarian-1151-16dec2015.pdf" },
     { year: 2015, day: "3 Dec", org: AMF, amount: 150,
         note: "Donation recieved for services" },
     { year: 2015, day: "3 Sep", org: I, amount: 500,
         note: "Originally given as a $449 loan to an EA and was repaid five months later as a $500 donation to .impact." },
-    { year: 2015, day: "3 Sep", org: I, amount: 47, note: "Funding for meetups groups" },
+      { year: 2015, day: "3 Sep", org: I, amount: 47,
+        note: "Funding for meetups groups" },
     { year: 2015, day: "18 Aug", org: MFA, amount: 2000,
         note: "For a study on FB ads",
         receipt: "mfa-18-sep-2015.JPG" },
     { year: 2015, day: "14 Aug", org: I, amount: 40,
         note: "For Shop for Charity plugin development" },
-    { year: 2015, day: "24 Apr", org: CS, amount: 5200, receipt: "charity-science-24-april-2015.pdf" },
+      { year: 2015, day: "24 Apr", org: CSO, amount: 5200,
+        receipt: "charity-science-24-april-2015.pdf" },
     { year: 2015, day: "23 Apr", org: DTW, amount: 45,
         note: "Seeding money for the Experience Poverty fundraiser" },
     { year: 2015, day: "20 Apr", org: I, amount: 36,
@@ -160,48 +253,35 @@ index: false
         receipt: "amf-2-jan-2015.png" },
     { year: 2014, day: "31 Dec", org: AMF, amount: 1259,
         note: "Matching money for Birthday Fundraisers" },
-    { year: 2014, day: "19 Dec", org: E80K, amount: 100 },
+    { year: 2014, day: "19 Dec", org: CEA, amount: 100 },
     { year: 2014, day: "14 Dec", org: I, amount: 435,
         note: "Contracted some veg advocacy research" },
     { year: 2014, day: "25 Nov", org: I, amount: 13 },
     { year: 2014, day: "30 Sep", org: I, amount: 516 },
     { year: 2014, day: "7 Sep", org: I, amount: 79 },
-    { year: 2014, day: "15 Aug", org: CS, amount: 1000 },
-    { year: 2014, day: "12 Jul", org: CS, amount: 1000 },
+    { year: 2014, day: "15 Aug", org: CSO, amount: 1000 },
+    { year: 2014, day: "12 Jul", org: CSO, amount: 1000 },
     { year: 2014, day: "17 Jun", org: GD, amount: 46,
         note: "Matching for a family fundraiser" },
     { year: 2014, day: "6 May", org: MIRI, amount: 90,
         note: "For <a href='http://intelligence.org/14/05/04/calling-all-miri-supporters/'>SVGives</a>" },
     { year: 2013, day: "22 Dec", org: SCI, amount: 33 },
     { year: 2013, day: "12 Dec", org: CEA, amount: 80 },
-    { year: 2013, day: "4 Jul", org: GWWC, amount: 1700 },
+    { year: 2013, day: "4 Jul", org: CEA, amount: 1700 },
     { year: 2012, day: "25 Dec", org: ACE, amount: 660 },
     { year: 2012, day: "18 Dec", org: GD, amount: 20 },
     { year: 2012, day: "10 May", org: AMF, amount: 123 },
     { year: 2012, day: "10 Apr", org: AMF, amount: 200 },
-    { year: 2011, day: "31 Dec", org: AMF, amount: 10 }
+    { year: 2012, day: "31 Apr", org: OFA, amount: 20 },
+    { year: 2012, day: "31 Mar", org: OFA, amount: 20 },
+    { year: 2011, day: "31 Dec", org: AMF, amount: 10 },
+    { year: 2011, day: "31 Dec", org: OFA, amount: 5 }
   ];
 
-  var moneymoved = [
-    { year: 2016, day: "27 Mar", org: SCI, amount: 48 },
-    { year: 2015, day: "31 Dec", org: SCI, amount: 5000, note: "5% of Charity Science" },
-    { year: 2015, day: "11 Dec", org: SCI, amount: 450, note: "Birthday fundraiser" },
-    { year: 2015, day: "9 Aug", org: MFA, amount: 2000, note: "For a study on FB ads" },
-    { year: 2015, day: "13 Jul", org: AMF, amount: 250 },
-    { year: 2015, day: "7 Jul", org: MFA, amount: 2000, note: "For a study on FB ads" },
-    { year: 2014, day: "31 Dec", org: SCI, amount: 17727, note: "14.2% of Charity Science" },
-    { year: 2014, day: "31 Dec", org: AMF, amount: 2063,
-        note: "<a href='http://birthday.causevox.com/peter-hurford'>My Birthday Fundraiser</a>" },
-    { year: 2014, day: "19 Dec", org: MFA, amount: 1900, note: "For a study on FB ads" },
-    { year: 2014, day: "17 Dec", org: AMF, amount: 25 },
-    { year: 2014, day: "17 June", org: GD, amount: 138, note: "Family fundraiser" },
-    { year: 2013, day: "11 Dec", org: GD, amount: 138, note: "Birthday fundraiser" },
-    { year: 2012, day: "11 Dec", org: AMF, amount: 72, note: "Birthday fundraiser" }
-  ]
-
   var income = {
-    2016: "???",
-    2015: 92627,
+    2017: "???",
+    2016: 136904,
+    2015: 83777,
     2014: 41399,
     2013: 76300,
     2012: 5900,
