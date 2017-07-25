@@ -357,7 +357,7 @@ index: false
     var b = jQuery("#donations-body");
     h.empty();
     b.empty();
-    th_widths = { Year: "15%", Date: "11%", Amount: "10%", Organization: "28%" }
+    th_widths = { Year: "15%", Date: "15%", Amount: "10%", Organization: "28%" }
     _.forEach([h], function (zone) {
       _.forEach(colnames.concat(["Amount", "Note"]), function (colname) {
         zone.append(jQuery("<th />").width(th_widths[colname]).text(colname));
