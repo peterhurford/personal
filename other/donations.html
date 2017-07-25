@@ -391,8 +391,11 @@ index: false
       zone.append(row);
     }
 
-    _.forEach(_.groupBy(donations, grouper),
-      function(group_dons, grptxt) { printDonations(b, group_dons, grptxt) });
+    var donation_data = _.map(_.groupBy(donations, grouper), function(donations, grptxt) { return {'donations': donations, 'grptext': grptxt, 'total': donations.map(a => a['amount']).reduce((a, b) => a + b)}})
+    if (grouper == getOrg) {
+      donation_data = _.sortBy(donation_data, 'total').reverse()
+    }
+    _.forEach(donation_data, function(donations) { printDonations(b, donations['donations'], donations['grptext']) })
   }
   function doDon(row, otherfields, don) {
     for (var i = 0; i < otherfields.length; i++) {
