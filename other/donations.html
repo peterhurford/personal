@@ -150,11 +150,13 @@ index: false
     { year: 2017, day: "22 July", org: CE, amount: 150,
         note: "For a review of mental health research" },
     { year: 2017, day: "30 June", org: I, amount: 5030,
-        note: "<a href='http://effective-altruism.com/ea/128/students_for_high_impact_charity_review_and_10k/'>(Write-up)</a>" },
+        note: "<a href='http://effective-altruism.com/ea/128/students_for_high_impact_charity_review_and_10k/'>(Write-up)</a>",
+        receipt: "TODO" },
     { year: 2017, day: "13 May", org: SCI, amount: 200,
         note: "Payment received for services" },
     { year: 2017, day: "9 May", org: BE, amount: 10000,
-        note: "TBA" },
+        note: "TBA",
+        receipt: "TODO" },
     { year: 2017, day: "19 Apr", org: ACE, amount: 9,
         note: "For UPS Fees" },
     { year: 2017, day: "18 Apr", org: CE, amount: 37,
@@ -164,12 +166,14 @@ index: false
       receipt: "effective_altruism_funds_4_apr_2017.pdf" },
     { year: 2017, day: "1 Mar", org: I, amount: 90,
         note: "For meetup.com fees" },
-    { year: 2017, day: "29 Jan", org: ACLU, amount: 50 },
+    { year: 2017, day: "29 Jan", org: ACLU, amount: 50,
+        receipt: "TODO" },
     { year: 2017, day: "18 Jan", org: RF, amount: 2000,
         note: "Pro-veg research partnership with AWAL",
         receipt: "18jan2017reducetarian.pdf" },
     { year: 2017, day: "13 Jan", org: I, amount: 4000,
-        note: "<a href='http://effective-altruism.com/ea/128/students_for_high_impact_charity_review_and_10k/'>(Write-up)</a>" },
+        note: "<a href='http://effective-altruism.com/ea/128/students_for_high_impact_charity_review_and_10k/'>(Write-up)</a>",
+        receipt: "TODO" },
     { year: 2016, day: "30 Dec", org: SCI, amount: 337,
         note: "From a fundraiser",
         receipt: "sci-30dec2016.png" },
@@ -340,7 +344,12 @@ index: false
         return don.note;
       }
     } else {
-      receipt_link = " <a href='donation_receipts/" + don.receipt + "'>(receipt)</a>";
+      if (don.recepit == "TODO") {
+        receipt_link = "(receipt forthcoming)"
+      }
+      else {
+        receipt_link = " <a href='donation_receipts/" + don.receipt + "'>(receipt)</a>";
+      }
       if (don.note == undefined) {
         return receipt_link;
       } else {
