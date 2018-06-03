@@ -234,9 +234,33 @@ ctab(data2, change_diet, treatment)
 
 
 #         Welch Two Sample t-test
-
+ 
 # data:  x by y
 # t = -3.554, df = 1266.2, p-value = 0.0003934
+# data:  x by y
+# t = -3.554, df = 1266.2, p-value = 0.0003934
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#  -0.32019925 -0.09242631
+
+
+ctab(data, change_diet, treatment)
+# change_diet ### treatment
+# # A tibble: 2 x 5
+#   treatment     N    mean median    sd
+#   <lgl>     <int>   <dbl>  <dbl> <dbl>
+#   1 FALSE      1181 -0.0762     0. 0.855
+#   2 TRUE       1797 -0.218      0. 0.920
+
+
+#           Welch Two Sample t-test
+
+#   data:  x by y
+#   t = -4.2993, df = 2649.3, p-value = 1.775e-05
+#   alternative hypothesis: true difference in means is not equal to 0
+#   95 percent confidence interval:
+#    -0.20666887 -0.07720061
+
 
 
 ctab(data2, change_food, treatment)
