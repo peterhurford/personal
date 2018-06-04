@@ -47,6 +47,7 @@ data$change_food <- data$food.t2 - data$food.t1
 # Impute people who aren't at T2 as no change
 data[is.na(data$change_nonpork), "change_nonpork"] <- 0
 data[is.na(data$change_diet), "change_diet"] <- 0
+data[is.na(data$change_food), "change_food"] <- 0
 
 # Drop people who aren't at T2
 data2 <- filter(data, !is.na(no_pork.t2))
@@ -276,6 +277,9 @@ ctab(data2, change_food, treatment)
 
 # data:  x by y
 # t = -2.7883, df = 1262.3, p-value = 0.005378
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#  -1.7809882 -0.3098758
 
 
 ctab(data, change_nonpork, treatment)
@@ -339,19 +343,19 @@ ctab(data, change_diet, treatment)
 ctab(data, change_food, treatment)
 # change_food ### treatment
 # # A tibble: 2 x 5
-#   treatment     N  mean median    sd
-#   <lgl>     <int> <dbl>  <dbl> <dbl>
-# 1 FALSE      1181 -1.01     0.  7.58
-# 2 TRUE       1797 -2.05     0.  7.38
+#   treatment     N   mean median    sd
+#   <lgl>     <int>  <dbl>  <dbl> <dbl>
+#   1 FALSE      1181 -0.533     0.  5.53
+#   2 TRUE       1797 -1.28      0.  5.91
 
 
-#         Welch Two Sample t-test
+#           Welch Two Sample t-test
 
-# data:  x by y
-# t = -2.7883, df = 1262.3, p-value = 0.005378
-# alternative hypothesis: true difference in means is not equal to 0
-# 95 percent confidence interval:
-#  -1.7809882 -0.3098758
+#   data:  x by y
+#   t = -3.4988, df = 2637.2, p-value = 0.0004751
+#   alternative hypothesis: true difference in means is not equal to 0
+#   95 percent confidence interval:
+#    -1.1626627 -0.3275084
 
 
 summarise(group_by(data, treatment), mean(food.t1, na.rm = TRUE))
@@ -410,29 +414,29 @@ var_summary(filter(data2, treatment == 0, change_food < 0)$change_food, verbose 
        # length           sum        num_na num_over_zero
    # 159.000000  -1583.000000      0.000000      0.000000
 
-var_summary(filter(data2, treatment == 1, change_food < 0)$change_food, verbose = TRUE)
-         # mean        median           min           max            sd
-    # -9.356948     -9.000000    -31.000000     -2.000000      7.159052
-       # length           sum        num_na num_over_zero
-   # 367.000000  -3434.000000      0.000000      0.000000
-
 var_summary(filter(data2, treatment == 0, change_food == 0)$change_food, verbose = TRUE)
          # mean        median           min           max            sd
          #    0             0             0             0             0
        # length           sum        num_na num_over_zero
          #  342             0             0             0
 
-var_summary(filter(data2, treatment == 1, change_food == 0)$change_food, verbose = TRUE)
-         # mean        median           min           max            sd
-         #    0             0             0             0             0
-       # length           sum        num_na num_over_zero
-         #  607             0             0             0
-
 var_summary(filter(data2, treatment == 0, change_food > 0)$change_food, verbose = TRUE)
          # mean        median           min           max            sd
      # 7.693548      8.000000      2.000000     31.000000      6.082331
        # length           sum        num_na num_over_zero
    # 124.000000    954.000000      0.000000    124.000000
+
+var_summary(filter(data2, treatment == 1, change_food < 0)$change_food, verbose = TRUE)
+         # mean        median           min           max            sd
+    # -9.356948     -9.000000    -31.000000     -2.000000      7.159052
+       # length           sum        num_na num_over_zero
+   # 367.000000  -3434.000000      0.000000      0.000000
+
+var_summary(filter(data2, treatment == 1, change_food == 0)$change_food, verbose = TRUE)
+         # mean        median           min           max            sd
+         #    0             0             0             0             0
+       # length           sum        num_na num_over_zero
+         #  607             0             0             0
 
 var_summary(filter(data2, treatment == 1, change_food > 0)$change_food, verbose = TRUE)
          # mean        median           min           max            sd
@@ -594,9 +598,80 @@ ctab(data, is.na(no_pork.t2), treatment == TRUE)
 # data:  x and y
 # X-squared = 212.19, df = 1, p-value < 2.2e-16
 
-browser()
+
+summarise(group_by(data, gender == 2), mean(food.t1, na.rm = TRUE))
+# # A tibble: 2 x 2
+#   `gender == 2` `mean(food.t1, na.rm = TRUE)`
+#   <lgl>                                 <dbl>
+# 1 FALSE                                  6.03
+# 2 TRUE                                   9.06
+
+summarise(group_by(data, gender == 2), mean(food.t2, na.rm = TRUE))
+# # A tibble: 2 x 2
+#   `gender == 2` `mean(food.t2, na.rm = TRUE)`
+#   <lgl>                                 <dbl>
+# 1 FALSE                                  3.99
+# 2 TRUE                                   6.66
+
+summarise(group_by(data, gender == 2, treatment), mean(food.t2, na.rm = TRUE))
+# A tibble: 4 x 3
+# Groups:   gender == 2 [?]
+  # `gender == 2` treatment `mean(food.t2, na.rm = TRUE)`
+  # <lgl>         <lgl>                             <dbl>
+# 1 FALSE         FALSE                              4.70
+# 2 FALSE         TRUE                               3.59
+# 3 TRUE          FALSE                              7.31
+# 4 TRUE          TRUE                               6.29
 
 
+ctab(filter(data, treatment == 0), minimize.pork.t1 >= 4, gender == 2, na.rm = TRUE)
+# minimize.pork.t1 >= 4 ### gender == 2 (nas removed)
 
-# Coastal difference
-# Gender difference
+#          FALSE   TRUE
+#   FALSE 0.3079 0.5093
+#   TRUE  0.6921 0.4907
+
+
+#         Pearson's Chi-squared test with Yates' continuity correction
+
+# data:  x and y
+# X-squared = 49.095, df = 1, p-value = 2.439e-12
+
+ctab(filter(data, treatment == 0), suffering.t1 >= 4, gender == 2, na.rm = TRUE)
+# suffering.t1 >= 4 ### gender == 2 (nas removed)
+
+#          FALSE   TRUE
+#   FALSE 0.2519 0.4238
+#   TRUE  0.7481 0.5762
+
+
+#         Pearson's Chi-squared test with Yates' continuity correction
+
+# data:  x and y
+# X-squared = 109.26, df = 1, p-value < 2.2e-16
+
+ctab(filter(data, treatment == 1), minimize.pork.t1 >= 4, gender == 2, na.rm = TRUE)
+# minimize.pork.t1 >= 4 ### gender == 2 (nas removed)
+
+#          FALSE   TRUE
+#   FALSE 0.1680 0.3011
+#   TRUE  0.8320 0.6989
+
+
+#         Pearson's Chi-squared test with Yates' continuity correction
+
+# data:  x and y
+# X-squared = 461.72, df = 1, p-value < 2.2e-16
+
+ctab(filter(data, treatment == 1), suffering.t1 >= 4, gender == 2, na.rm = TRUE)
+# suffering.t1 >= 4 ### gender == 2 (nas removed)
+
+#          FALSE   TRUE
+#   FALSE 0.1515 0.2679
+#   TRUE  0.8485 0.7321
+
+
+#         Pearson's Chi-squared test with Yates' continuity correction
+
+# data:  x and y
+# X-squared = 530.91, df = 1, p-value < 2.2e-16
