@@ -675,3 +675,4 @@ ctab(filter(data, treatment == 1), suffering.t1 >= 4, gender == 2, na.rm = TRUE)
 
 # data:  x and y
 # X-squared = 530.91, df = 1, p-value < 2.2e-16
+browser()
