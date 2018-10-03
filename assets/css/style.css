@@ -261,7 +261,7 @@ body.home #middle {
 }
 
 body.home.has-banner #middle {	
-	padding: 0 0 !important;
+	padding: 0 20px !important;
 }
 
 body.home.blog.has-banner #middle {	
@@ -1287,7 +1287,7 @@ a:hover {color: #4290ae;}
 	/*Header ------------------*/	
 	
 	#header .inside {		
-		padding: 15px 20px 15px 0px !important;	
+		padding: 15px 20px !important;	
 	}
 	
 	#header .top { position: relative; }
