@@ -1,0 +1,128 @@
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+<style>
+	/* Tooltip container */
+	.tip {
+			position: relative;
+			border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+			display: inline-block;
+	}
+
+	/* Tooltip text */
+	.tip .tiptext {
+			position: absolute;
+			width: 400px;
+			padding: 10px;
+			visibility: hidden;
+			background-color: #cccccc;
+			white-space: pre-wrap !important;
+			word-wrap: break-word;
+			z-index: 1000;
+	}
+
+	/* Show the tip text when you mouse over the tip container */
+	.tip:hover .tiptext {
+			visibility: visible;
+	}
+</style>
+<script>
+	$(document).ready(function() {
+      $('#example').DataTable({
+        "scrollX": true,
+        "scrollY": "600px",
+        "paging": false,
+        "dom": "Bfrtip",
+				columnDefs: [
+          {
+            targets: 1,
+            className: 'noVis'
+          }
+        ],
+        buttons: [
+          {
+            extend: 'colvis',
+            columns: ':not(.noVis)'
+          }, {
+            extend: 'colvisGroup',
+            text: 'Neurological',
+            show: [ 1, 2, 3, 4, 5, 6 ],
+            hide: [ 7, 8, 9, 10, 11 ]
+          }, {
+            extend: 'colvisGroup',
+            text: 'Noxious response',
+            show: [ 7, 8, 9, 10, 11],
+            hide: [ 1, 2, 3, 4, 5, 6 ]
+          }, {
+            extend: 'colvisGroup',
+            text: 'Show all',
+            show: ':hidden'
+          }
+        ]
+      });
+
+      $('a.toggle-vis').on( 'click', function (e) {
+        e.preventDefault();
+        // Get the column API object
+        var column = table.column( $(this).attr('data-column') );
+        // Toggle the visibility
+        column.visible( ! column.visible() );
+     });
+	});
+</script>
+<table id="example" class="display nowrap" style="width:100%">
+			<thead>
+					<tr>
+							<th>&nbsp;</th>
+							<th coldiv=6>Neurological</th>
+							<th coldiv=5>Noxious response</th>
+					<tr>
+							<th>Species</th>
+							<th>Neuron count</th>
+							<th>Brain size</th>
+              <th>Nociception (loose)</th>
+              <th>Nociception (strict)</th>
+              <th>Centralized information processing</th>
+              <th>Vertebrate midbrain-like function</th>
+
+              <th>Nociceptive response</th>
+              <th>Protective Behavior</th>
+              <th>Defensive behavior</th>
+              <th>Vocalizations</th>
+              <th>Movement away</th>
+					</tr>
+			</thead>
+			<tbody>
+					<tr>
+							<td>Honeybee</td>
+							<td id="honeybee_neuron_count"><div class="tip">960,000 <div class="tiptext">Menzel R, Giurfa M (February 2001). <a href="https://www.ncbi.nlm.nih.gov/pubmed/11166636">"Cognitive architecture of a mini-brain: the honeybee"</a>. Trends Cogn. Sci. 5 (2): 62–71</div></div></td>
+							<td id="honeybee_brain_size">1mm^3</td>
+              <td id="honeybee_nociception_loose">Yes</td>
+              <td id="honeybee_nociception_strict">Unknown</td>
+              <td id="honeybee_centralized_info">Yes</td>
+              <td id="honeybee_vertebrate_midbrain">Yes</td>
+              <td id="honeybee_nociceptive_response">Yes</td>
+              <td id="honeybee_protective_behavior">Maybe yes</td>
+              <td id="honeybee_defensive_behavior">Yes</td>
+              <td id="honeybee_vocalizations">Yes</td>
+              <td id="honeybee_movement_away">Yes</td>
+					</tr>
+					<tr>
+							<td>Cockroach</td>
+							<td id="cockroach_neuron_count"><div class="tip">100,000 <div class="tiptext">Fox, Douglas (December 2006). <a href="https://web.archive.org/web/20070113062540/http://www.discover.com:80/issues/jan-07/features/cockroach-consciousness-neuron-similarity/">"Consciousness of a Cockroach"</a>. Discover Magazine.</div></div></td>
+							<td id="cockroach_brain_size">0.7 to 2 mm wide</td>
+              <td id="cockroach_nociception_loose">Yes</td>
+              <td id="cockroach_nociception_strict">Unknown</td>
+              <td id="cockroach_centralized_info">Yes</td>
+              <td id="cockroach_vertebrate_midbrain">Yes</td>
+              <td id="cockroach_nociceptive_response">Unknown</td>
+              <td id="cockroach_protective_behavior">Not observed</td>
+              <td id="cockroach_defensive_behavior">Uknown</td>
+              <td id="cockroach_vocalizations">Not observed</td>
+              <td id="cockroach_movement_away">Yes</td>
+					</tr>
+			</tbody>
+	</table>
