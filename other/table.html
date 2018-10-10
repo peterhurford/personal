@@ -12,6 +12,11 @@
 			display: inline-block;
 	}
 
+  .rank {
+    visibility: hidden;
+    font-size: 1px;
+  }
+
 	/* Tooltip text */
 	.tip .tiptext {
 			position: absolute;
@@ -37,10 +42,7 @@
         "paging": false,
         "dom": "Bfrtip",
 				columnDefs: [
-          {
-            targets: 1,
-            className: 'noVis'
-          }
+          { targets: 1, className: 'noVis' }
         ],
         buttons: [
           {
@@ -77,8 +79,8 @@
 			<thead>
 					<tr>
 							<th>&nbsp;</th>
-							<th coldiv=6>Neurological</th>
-							<th coldiv=5>Noxious response</th>
+							<th colspan=6>Neurological</th>
+							<th colspan=5>Noxious response</th>
 					<tr>
 							<th>Species</th>
 							<th>Neuron count</th>
@@ -97,9 +99,23 @@
 			</thead>
 			<tbody>
 					<tr>
+							<td>Human</td>
+              <td id="human_neuron_count"><div class="rank">AA</div> <div class="tip">100,000,000,000 <div class="tiptext">Herculano-Houzel, Suzana (2009). <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2776484/">The Human Brain in Numbers: A Linearly Scaled-up Primate Brain</a> Front Hum Neurosci. 2009; 3: 31.</div></div></td>
+              <td id="human_brain_size"><div class="rank">AA</div> <div class="tip">974.9cm^3 - 1498.5cm^3 <div class="tiptext">Allen, JS; Damasio H; Grabowski TJ (2002). <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/ajpa.10092">"Normal neuroanatomical variation in the human brain: An MRI-volumetric study"</a>. Am J Phys Anthropol. 118 (4): 341–58.</div></div></td>
+              <td id="human_nociception_loose">Yes</td>
+              <td id="human_nociception_strict">Yes</td>
+              <td id="human_centralized_info">Yes</td>
+              <td id="human_vertebrate_midbrain">Yes</td>
+              <td id="human_nociceptive_response">Yes</td>
+              <td id="human_protective_behavior">Yes</td>
+              <td id="human_defensive_behavior">Yes</td>
+              <td id="human_vocalizations">Yes</td>
+              <td id="human_movement_away">Yes</td>
+					</tr>
+					<tr>
 							<td>Honeybee</td>
-							<td id="honeybee_neuron_count"><div class="tip">960,000 <div class="tiptext">Menzel R, Giurfa M (February 2001). <a href="https://www.ncbi.nlm.nih.gov/pubmed/11166636">"Cognitive architecture of a mini-brain: the honeybee"</a>. Trends Cogn. Sci. 5 (2): 62–71</div></div></td>
-							<td id="honeybee_brain_size">1mm^3</td>
+              <td id="honeybee_neuron_count"><div class="rank">AB</div> <div class="tip">960,000 <div class="tiptext">Menzel R, Giurfa M (February 2001). <a href="https://www.ncbi.nlm.nih.gov/pubmed/11166636">"Cognitive architecture of a mini-brain: the honeybee"</a>. Trends Cogn. Sci. 5 (2): 62–71</div></div></td>
+              <td id="honeybee_brain_size"><div class="rank">AB</div> 1mm^3</td>
               <td id="honeybee_nociception_loose">Yes</td>
               <td id="honeybee_nociception_strict">Unknown</td>
               <td id="honeybee_centralized_info">Yes</td>
@@ -112,8 +128,8 @@
 					</tr>
 					<tr>
 							<td>Cockroach</td>
-							<td id="cockroach_neuron_count"><div class="tip">100,000 <div class="tiptext">Fox, Douglas (December 2006). <a href="https://web.archive.org/web/20070113062540/http://www.discover.com:80/issues/jan-07/features/cockroach-consciousness-neuron-similarity/">"Consciousness of a Cockroach"</a>. Discover Magazine.</div></div></td>
-							<td id="cockroach_brain_size">0.7 to 2 mm wide</td>
+              <td id="cockroach_neuron_count"><div class="rank">AC</div> <div class="tip">100,000 <div class="tiptext">Fox, Douglas (December 2006). <a href="https://web.archive.org/web/20070113062540/http://www.discover.com:80/issues/jan-07/features/cockroach-consciousness-neuron-similarity/">"Consciousness of a Cockroach"</a>. Discover Magazine.</div></div></td>
+              <td id="cockroach_brain_size"><div class="rank">AC</div> 0.7 to 2 mm wide</td>
               <td id="cockroach_nociception_loose">Yes</td>
               <td id="cockroach_nociception_strict">Unknown</td>
               <td id="cockroach_centralized_info">Yes</td>
