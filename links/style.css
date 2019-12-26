@@ -1,0 +1,34 @@
+/*
+  www.peterhurford.com, Design 1.2.0
+  
+  Inspiration for home page design from Patrick Brinich-Langlois's web page <patrickbrinichlanglois.com> who made the site via Nanoc <http://nanoc.ws/>.
+  
+  Font for main site from Brian Tomasik's Utilitarian Essays <http://www.utilitarian-essays.com>, picked by Lucius Caviola.
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family:"Palatino Linotype",serif;
+  color:#343333;
+  line-height:150%;
+  max-width:650px;
+}
+
+a { color: blue; }
+a:visited { color: purple; }
+a:hover { color: red; }
+
+
+#main {
+  position: absolute;
+  top: 40px;
+  left: 200px;
+  width: 1000px;
+}
+#main ul {
+  margin: 20px;
+}
+#main ul li {
+  margin: 10px;
+}
