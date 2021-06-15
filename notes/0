@@ -1,0 +1,46 @@
+---
+layout: default
+index: false
+---
+
+<body class="page page-id-81 page-template page-template-page-full-width-php chrome has-banner" >
+
+  {% include nav.html %}
+  </div>
+    
+  <div id="pageHead">
+    <div class="inside">
+      <h1>Blog</h1>
+    </div>      
+  </div>
+
+  <div id="middle" class="clearfix">
+    <div id="inner">     
+      <div id="content" class="clearfix full">
+        <div class="post-81 page type-page status-publish hentry clearfix">
+          <p>Various notes I have collected, mainly from <a href="https://twitter.com/peterhurford">my Twitter</a>. Does not include notes on my reading stored in DJ Longread (forthcoming). Last updated: 14 June 2021.</p>
+          <ul>
+            <li><a href="https://www.twitter.com/davidwdowdy/status/1404221673256148993">Six qualities you can foster to bolster your reputation, in rough order of importance: Conscientiousness, Reliable communication, Supportiveness (toward peers/teammates), Graciousness (especially w authorship), Intellectual engagement, Work ethic.</a> (13 Jun 2021)</li>
+            <li><a href="https://www.twitter.com/peterwildeford/status/1404253231761481729">On Metaculus, legal issues are the hardest to predict, and social issues are the easiest.</a> (13 Jun 2021)</li>
+            <li><a href="https://www.twitter.com/albrgr/status/1403769286947000326">Where's the best list of important technicalish things that should have (at least maybe) been done differently with Covid?</a> (12 Jun 2021)</li>
+            <li><a href="https://www.twitter.com/peterwildeford/status/1403006062324686853">AI now has superhuman chip design skills?</a> (10 Jun 2021)</li>
+            <li><a href="https://www.twitter.com/devonzuegel/status/1400933942803456007">Date at which over 50% of American households had the following technologies</a> (4 Jun 2021)</li>
+            <li><a href="https://www.twitter.com/peterwildeford/status/1400932313177985028">Will humanity survive the next 100 years or will we end all human life on earth? If we do end, how will it happen? Here is one great view of the odds.</a> (4 Jun 2021)</li>
+            <li><a href="https://www.twitter.com/thegallowboob/status/1399175652662644739">normalize pots with architecture for insects</a>(30 May 2021)</li>
+            <li><a href="https://www.twitter.com/nateliason/status/1397719837204418561">This is a six figure meme making job at a legit company.</a> (26 May 2021)</li>
+            <li><a href="https://www.twitter.com/fitzfromdublin/status/1395839604914335746">The accuracy of Spocks predictions. Not great.</a> (21 May 2021)</li>
+            <li><a href="https://www.twitter.com/Jake_Hanrahan/status/1395462622816899076">The IDF has been using small drones to drop tear gas on protesters in Ramallah in the West Bank.</a> (20 May 2021)</li>
+            <li><a href="https://www.twitter.com/peterwildeford/status/1394782763040088065">I still am genuinely curious if we'd see a Trump dimension in the next DW-NOMINATE data</a> (18 May 2021)</li>
+            <li><a href="https://www.twitter.com/PoliticalKiwi/status/1394446638442192899">Gonna say now, before the data is complete, that I think % vaccinated will be a useful predictor of voting in the future.</a> (17 May 2021)</li>
+            <li><a href="https://www.twitter.com/peterwildeford/status/1393660169712807938">Optical illusion technology is becoming a bit too powerful.</a> (15 May 2021)</li>
+            <li><a href="https://www.twitter.com/peterwildeford/status/1391894452210446336">Many Americans think a lot of animals - including bugs - have the capacity to suffer</a> (10 May 2021)</li>
+            <li><a href="https://mobile.twitter.com/AlecStapp/status/1391580015981117441">Final results from the Nordic natural experiment - Sweden did worse on both COVID and economy</a> (9 May 2021)</li>
+            <li><a href="https://mobile.twitter.com/peterwildeford/status/1391057273145933825">Biden nomination/election odds Twitter poll</a> (8 May 2021)</li>
+            <li><a href="https://mobile.twitter.com/peterwildeford/status/1391047577165041664">Trump nomination/election odds Twitter poll</a> (8 May 2021)</li>
+            <li><a href="">Just remember that "curves have matched the data fairly well" does not mean you're going to have a good model</a> (4 May 2021)</li>
+            <li><a href="https://www.twitter.com/patrickc/status/1214662478883241984">I really do look forward to these cities existing some day.</a> (7 Jan 2020)</li>
+          </ul>
+      </div>
+    </div>
+  </div>
+</div>
