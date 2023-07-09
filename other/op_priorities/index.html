@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Urgent Update: New OpenPhil Priorities</title>
+</head>
+<body>
+		<h2>Urgent Update: New OpenPhil Priorities</h2>
+		<p>I was just talking with Holden and he said that as of yesterday OpenPhil's new top three priorities are:
+		  <ol>
+        <li id="priority1"></li>
+        <li id="priority2"></li>
+        <li id="priority3"></li>
+      </ol>
+    </p>
+    <p>Naturally, we at Rethink Priorities should drop everything and focus on these.</p>
+    <p>...Though we better be quick because I have a feeling these priorities may change soon.</p>
+
+    <script>
+        var priorities = [
+            "Acausal trade",
+            "Electron suffering",
+            "Digital sentience",
+            "The orthogonality thesis",
+            "Whether Eliezer's fedora is a PR risk",
+            "Whether a teleported version of you is still you",
+            "The nature of free will",
+            "The existence of abstract objects",
+            "Whether to 'one box' or 'two box' in Newcomb's problem",
+            "Whether babies are consicous",
+            "Logical positivism",
+            "The correct decision theory",
+            "Whether many-worlds hypothesis is correct",
+            "Whether the universe is infinite",
+            "Frequentism vs. Bayesianism",
+            "Automating OP researchers within four years",
+            "Whether longtermists are in an epistemic bubble",
+            "Third wave effective altruism",
+            "Adding more worldviews to worldview diversification",
+            "Moral weight of inanimate objects",
+            "Whether plants can suffer",
+            "Identifying the correct theory of consciousness",
+            "Getting GPT4 to solve trolley problems",
+            "Whether or not to pave over the rainforest",
+            "AI timelines",
+            "Optimal caffeine dosing for OP researchers",
+            "Whether saving a child now matters as much as saving a child ten years from now",
+            "How much OP should spend on furniture",
+            "Whether to give credit cards to high schoolers",
+            "How to split time between blogging and managing",
+            "Wild animal welfare",
+            "Carbon offsets",
+            "Whether or not there is advanced extraterrestrial life",
+            "The simulation hypothesis",
+            "Shrimp welfare",
+            "Defending heirarchialism",
+            "Pivoting to strong longtermism",
+            "How to alleviate suffering in dreams",
+            "Time travel",
+            "Finding the Fountain of Youth",
+            "Getting an OP team to work from Mars as fast as possible",
+            "Building a bunker in Antartica",
+            "Geomagnetic storms",
+            "Whether solipsism is true",
+            "Alternative foods",
+            "The expected value of information",
+            "Reanimating Richard Feynman",
+            "Anthropics",
+            "Whether Anthropic has anthropics",
+            "Whether OpenPhil (the organization) is sentient",
+            "Block time",
+            "Open individualism",
+        ];
+
+        function getRandomPriority() {
+            var index = Math.floor(Math.random() * priorities.length);
+            var priority = priorities[index];
+            priorities.splice(index, 1);
+            return priority;
+        }
+
+        window.onload = function() {
+            document.getElementById('priority1').innerText = getRandomPriority();
+            document.getElementById('priority2').innerText = getRandomPriority();
+            document.getElementById('priority3').innerText = getRandomPriority();
+        };
+    </script>
+</body>
+</html>
