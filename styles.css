@@ -42,6 +42,17 @@ footer {
     border-top: 1px solid #e0e0e0;
 }
 
+ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+    color: #444;
+    margin-bottom: 2.5rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
 a {
     color: #555;
     text-decoration: underline;
