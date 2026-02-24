@@ -1,0 +1,115 @@
+/*
+	www.peterhurford.com, Design 1.2.0
+	
+	Inspiration for home page design from Patrick Brinich-Langlois's web page <patrickbrinichlanglois.com> who made the site via Nanoc <http://nanoc.ws/>.
+	
+	Font for main site from Brian Tomasik's Utilitarian Essays <http://www.utilitarian-essays.com>, picked by Lucius Caviola.
+	
+	Résumé page a modification of David Towers's <http://www.david-towers.co.uk/> modification of Terrill Dent's design <http://www.terrill.ca/design/html_resume/template_5.html>.
+	
+	Roll-over buttons from http://www.elated.com/articles/css-rollover-buttons/.
+	
+	Position of buttons adapted from the .impact main page <http://www.dotimpact.im> from Ozzie Gooen.
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family:"Palatino Linotype",serif;
+    color:#343333;
+	line-height:150%;
+	max-width:650px;
+}
+
+
+a { color: blue; }
+a:visited { color: purple; }
+a:hover { color: red; }
+
+
+#main {
+    position: absolute;
+    top: 80px;
+    left: 400px;
+    width: 500px;
+}
+#main ul {
+	margin: 20px;
+}
+#main ul li {
+	margin: 10px;
+}
+#main h1 {
+    font-size: 40px;
+    font-weight: normal;
+    line-height: 40px;
+    letter-spacing: -1px;
+}
+#main h2 {
+    font-size: 20px;
+    line-height: 20px;
+    letter-spacing: -1px;
+    padding-top: 20px;
+}
+#main p {
+    margin: 20px 0;
+    font-size: 15px;
+    line-height: 20px;
+}
+
+
+#nav {
+    position: absolute;
+    top: 80px;
+    left: 140px;
+    width: 200px;
+    padding: 0 20px 0 0;
+    border-right: 1px solid #ccc;
+    text-align: right;
+}
+#nav p {
+	padding: 20px 0 0 0;
+}
+
+
+.side {
+	float:right;
+	color:gray;
+}
+
+
+
+#button-nav {
+	float: right;
+	padding-top: 10px;
+}
+#button-nav li {
+	float:right;
+	padding-left:5px;
+	list-style:none;
+}
+#twitter-button {
+	display: block;
+	width: 30px;
+	height: 25px;
+	background: url("http://www.peterhurford.com/buttons/twitter.png") no-repeat 0 0;
+}
+#github-button {
+	display: block;
+	width: 30px;
+	height: 25px;
+	background: url("http://www.peterhurford.com/buttons/github.png") no-repeat 0 0;
+}
+#linkedin-button {
+	display: block;
+	width: 30px;
+	height: 25px;
+	background: url("http://www.peterhurford.com/buttons/linkedin.png") no-repeat 0 0;
+}
+#linkedin-button:hover, #github-button:hover, #twitter-button:hover { 
+	background-position: 0 -25px;
+}
+#linkedin-button span, #github-button span, #twitter-button span {
+	position: absolute;
+	top: -999em;
+}
