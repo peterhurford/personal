@@ -483,7 +483,7 @@
   </div>
 
   <div class="story-grid">
-    <button class="story-card" data-file="grady_hospital_crisis.md" data-accent="hospital" data-title="The Georgia Hospital Crisis">
+    <button class="story-card" data-file="grady_hospital_crisis.md" data-accent="hospital" data-title="The Georgia Hospital Crisis" data-slug="grady">
       <div class="card-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
@@ -495,7 +495,7 @@
       </div>
     </button>
 
-    <button class="story-card" data-file="the_phoenix_waymo_cascade.md" data-accent="waymo" data-title="The Phoenix Cascade">
+    <button class="story-card" data-file="the_phoenix_waymo_cascade.md" data-accent="waymo" data-title="The Phoenix Cascade" data-slug="waymo">
       <div class="card-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="10"/>
@@ -508,7 +508,7 @@
       </div>
     </button>
 
-    <button class="story-card" data-file="the_marib_strike.md" data-accent="marib" data-title="The Marib Wedding Strike">
+    <button class="story-card" data-file="the_marib_strike.md" data-accent="marib" data-title="The Marib Wedding Strike" data-slug="marib">
       <div class="card-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
@@ -521,7 +521,7 @@
       </div>
     </button>
 
-    <button class="story-card" data-file="the_flash_crash.md" data-accent="crash" data-title="The Flash Crash">
+    <button class="story-card" data-file="the_flash_crash.md" data-accent="crash" data-title="The Flash Crash" data-slug="crash">
       <div class="card-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
@@ -624,22 +624,34 @@
   // story card click
   document.querySelectorAll('.story-card').forEach(card => {
     card.addEventListener('click', () => {
-      const file = card.dataset.file;
-      const title = card.dataset.title;
-      const accent = card.dataset.accent;
-      loadStory(file, title, accent);
+      const slug = card.dataset.slug;
+      window.location.hash = slug;
     });
   });
 
   // back button
-  backBtn.addEventListener('click', goBack);
-
-  // keyboard nav
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && reader.classList.contains('active')) {
-      goBack();
-    }
+  backBtn.addEventListener('click', () => {
+    history.pushState(null, '', window.location.pathname);
+    goBack();
   });
+
+  // handle hash changes (back/forward browser buttons)
+  window.addEventListener('hashchange', handleHash);
+
+  // load from hash on page load
+  handleHash();
+
+  function handleHash() {
+    const slug = window.location.hash.replace('#', '');
+    if (!slug) {
+      if (reader.classList.contains('active')) goBack();
+      return;
+    }
+    const card = document.querySelector(`.story-card[data-slug="${slug}"]`);
+    if (card) {
+      loadStory(card.dataset.file, card.dataset.title, card.dataset.accent);
+    }
+  }
 
   // scroll progress
   window.addEventListener('scroll', () => {
@@ -695,6 +707,14 @@
       window.scrollTo(0, 0);
     }, 100);
   }
+
+  // keyboard nav - also clear hash
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && reader.classList.contains('active')) {
+      history.pushState(null, '', window.location.pathname);
+      goBack();
+    }
+  });
 </script>
 </body>
 </html>
