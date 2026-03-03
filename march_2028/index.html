@@ -22,6 +22,8 @@
     --waymo: #d4a017;
     --marib: #6b8f3e;
     --crash: #3d7dca;
+    --champaign: #8b6bb0;
+    --sentinel: #c27233;
   }
 
   html {
@@ -144,6 +146,8 @@
   .story-card[data-accent="waymo"]::before { background: var(--waymo); }
   .story-card[data-accent="marib"]::before { background: var(--marib); }
   .story-card[data-accent="crash"]::before { background: var(--crash); }
+  .story-card[data-accent="champaign"]::before { background: var(--champaign); }
+  .story-card[data-accent="sentinel"]::before { background: var(--sentinel); }
 
   .card-icon {
     flex-shrink: 0;
@@ -170,6 +174,8 @@
   .story-card[data-accent="waymo"] .card-icon svg { color: var(--waymo); }
   .story-card[data-accent="marib"] .card-icon svg { color: var(--marib); }
   .story-card[data-accent="crash"] .card-icon svg { color: var(--crash); }
+  .story-card[data-accent="champaign"] .card-icon svg { color: var(--champaign); }
+  .story-card[data-accent="sentinel"] .card-icon svg { color: var(--sentinel); }
 
   .card-text h2 {
     font-family: 'Cormorant Garamond', Georgia, serif;
@@ -467,7 +473,7 @@
 <main id="landing">
   <header class="site-header">
     <h1>March 2028</h1>
-    <p class="subtitle">Four crisis vignettes</p>
+    <p class="subtitle">Six crisis vignettes</p>
   </header>
 
   <div class="countdown" id="countdown">
@@ -483,19 +489,19 @@
   </div>
 
   <div class="story-grid">
-    <button class="story-card" data-file="grady_hospital_crisis.md" data-accent="hospital" data-title="The Georgia Hospital Crisis" data-slug="grady">
+    <button class="story-card" data-file="grady_hospital_crisis.md" data-accent="hospital" data-title="A Cyber Crisis at Grady Hospital" data-slug="grady">
       <div class="card-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
         </svg>
       </div>
       <div class="card-text">
-        <h2>The Georgia Hospital Crisis</h2>
+        <h2>A Cyber Crisis at Grady Hospital</h2>
         <p class="tagline">A cyberattack with autonomous AI malware cripples seventeen hospitals</p>
       </div>
     </button>
 
-    <button class="story-card" data-file="the_phoenix_waymo_cascade.md" data-accent="waymo" data-title="The Phoenix Cascade" data-slug="waymo">
+    <button class="story-card" data-file="the_phoenix_waymo_cascade.md" data-accent="waymo" data-title="The Phoenix Waymo Cascade" data-slug="waymo">
       <div class="card-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="10"/>
@@ -503,7 +509,7 @@
         </svg>
       </div>
       <div class="card-text">
-        <h2>The Phoenix Cascade</h2>
+        <h2>The Phoenix Waymo Cascade</h2>
         <p class="tagline">A flawed software update turns an autonomous vehicle fleet deadly</p>
       </div>
     </button>
@@ -521,7 +527,7 @@
       </div>
     </button>
 
-    <button class="story-card" data-file="the_flash_crash.md" data-accent="crash" data-title="The Flash Crash" data-slug="crash">
+    <button class="story-card" data-file="the_flash_crash.md" data-accent="crash" data-title="The AI Lightning Trade Flash Crash" data-slug="crash">
       <div class="card-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
@@ -529,8 +535,34 @@
         </svg>
       </div>
       <div class="card-text">
-        <h2>The March 2028 Flash Crash</h2>
+        <h2>The AI Lightning Trade Flash Crash</h2>
         <p class="tagline">AI trading systems cascade a routine Fed speech into a trillion-dollar rout</p>
+      </div>
+    </button>
+
+    <button class="story-card" data-file="the_champaign_cell.md" data-accent="champaign" data-title="The Champaign Cell" data-slug="champaign">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 2v2m10-2v2M9 4h6a1 1 0 0 1 1 1v4.5a5 5 0 0 1-2.5 4.33l-.5.29v2.38a3.5 3.5 0 1 1-2 0v-2.38l-.5-.29A5 5 0 0 1 8 9.5V5a1 1 0 0 1 1-1z"/>
+        </svg>
+      </div>
+      <div class="card-text">
+        <h2>The Champaign Cell</h2>
+        <p class="tagline">Four arrested after using an AI model to design a viable biological threat</p>
+      </div>
+    </button>
+
+    <button class="story-card" data-file="operation_vigilant_shield.md" data-accent="sentinel" data-title="The Failure of Operation Vigilant Shield" data-slug="sentinel">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+      </div>
+      <div class="card-text">
+        <h2>The Failure of Operation Vigilant Shield</h2>
+        <p class="tagline">A secret AI surveillance system invents a terrorist network — and a teenager dies in the raid</p>
       </div>
     </button>
   </div>

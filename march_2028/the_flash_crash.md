@@ -1,4 +1,4 @@
-# The March 2028 Flash Crash
+# The AI Lightning Trade Flash Crash
 
 ## A Crisis Vignette
 

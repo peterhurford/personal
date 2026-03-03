@@ -1,4 +1,4 @@
-# Tick-Tock: The Georgia Hospital Crisis (Revised)
+# A Cyber Crisis at Grady Hospital
 
 ## Hour 0–4: Something Wrong at Grady
 
