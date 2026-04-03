@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Leaders Are Saying About AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root {
+  --bg: #faf9f7;
+  --bg-card: #ffffff;
+  --text: #1a1a1a;
+  --text-secondary: #5a5a5a;
+  --text-muted: #8a8a8a;
+  --border: #e4e0db;
+  --border-light: #f0ece7;
+  --red: #c0392b;
+  --red-bg: #fdf2f0;
+  --red-border: #f0c8c2;
+  --red-muted: #e8a89e;
+  --blue: #2c5f8a;
+  --blue-bg: #eef4fa;
+  --blue-border: #b8d4ea;
+  --blue-muted: #8fb8d8;
+  --neutral: #6b6b6b;
+  --neutral-bg: #f5f4f2;
+  --neutral-border: #d5d0ca;
+  --timeline: #d5d0ca;
+  --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+  --shadow-hover: 0 2px 8px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.06);
+  --grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141210;
+    --bg-card: #1e1c19;
+    --text: #e8e4de;
+    --text-secondary: #a8a29e;
+    --text-muted: #6b6560;
+    --border: #2e2a25;
+    --border-light: #252220;
+    --red: #e8655a;
+    --red-bg: #2a1a17;
+    --red-border: #4a2520;
+    --red-muted: #8a4a42;
+    --blue: #6aabe0;
+    --blue-bg: #162030;
+    --blue-border: #1e3550;
+    --blue-muted: #3a6590;
+    --neutral: #9a9590;
+    --neutral-bg: #1e1c19;
+    --neutral-border: #3a3530;
+    --timeline: #2e2a25;
+    --shadow: 0 1px 3px rgba(0,0,0,0.2), 0 4px 12px rgba(0,0,0,0.15);
+    --shadow-hover: 0 2px 8px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.25);
+  }
+}
+
+html { font-size: 18px; scroll-behavior: smooth; }
+
+body {
+  font-family: 'Source Sans 3', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: var(--grain);
+  background-repeat: repeat;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.5;
+}
+
+/* HEADER */
+.hero {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 2rem 2rem 1.5rem;
+  text-align: center;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.hero-intro {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: var(--text);
+  font-weight: 400;
+  max-width: 700px;
+  margin: 0 auto 1.5rem;
+}
+
+.hero-intro strong {
+  font-weight: 700;
+}
+
+/* LEGEND */
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 0 auto 3rem;
+  max-width: 780px;
+  padding: 0 2rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.legend-dot.rep { background: var(--red); }
+.legend-dot.dem { background: var(--blue); }
+.legend-dot.other { background: var(--neutral); }
+
+/* FILTER */
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0 auto 3rem;
+  max-width: 780px;
+  padding: 0 2rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  border-color: var(--text-muted);
+  color: var(--text);
+}
+
+.filter-btn.active {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+/* CUMULATIVE CHART */
+.cumulative-chart {
+  max-width: 1100px;
+  margin: 0 auto 2.5rem;
+  padding: 0 1rem;
+}
+
+.chart-container {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.75rem 0.75rem 0.5rem;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+#chart-svg {
+  width: 100%;
+  height: 420px;
+  display: block;
+  overflow: visible;
+  cursor: crosshair;
+}
+
+/* TIMELINE */
+.timeline {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 2rem 6rem;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: calc(2rem + 5px);
+  top: 0;
+  bottom: 6rem;
+  width: 1px;
+  background: var(--timeline);
+}
+
+@media (min-width: 640px) {
+  .timeline::before {
+    left: calc(2rem + 85px);
+  }
+}
+
+/* YEAR MARKER */
+.year-marker {
+  position: relative;
+  padding: 2rem 0 1.5rem;
+  padding-left: 2rem;
+}
+
+@media (min-width: 640px) {
+  .year-marker { padding-left: 0; }
+}
+
+.year-marker-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  position: relative;
+  display: inline-block;
+}
+
+@media (min-width: 640px) {
+  .year-marker-text {
+    position: absolute;
+    left: 0;
+  }
+}
+
+.year-marker::after {
+  content: '';
+  position: absolute;
+  left: 1px;
+  top: calc(2rem + 8px);
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--timeline);
+  border: 2px solid var(--bg);
+}
+
+@media (min-width: 640px) {
+  .year-marker::after {
+    left: 80px;
+  }
+}
+
+/* QUOTE CARD */
+.quote-card {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeUp 0.5s ease forwards;
+}
+
+@media (min-width: 640px) {
+  .quote-card { padding-left: 7rem; }
+}
+
+.quote-card .dot {
+  position: absolute;
+  left: 1px;
+  top: 1.5rem;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 2px solid var(--bg);
+  z-index: 2;
+  transition: transform 0.2s ease;
+}
+
+@media (min-width: 640px) {
+  .quote-card .dot {
+    left: calc(5rem);
+  }
+}
+
+.quote-card.rep .dot { background: var(--red); }
+.quote-card.dem .dot { background: var(--blue); }
+.quote-card.other .dot { background: var(--neutral); }
+
+.quote-card:hover .dot {
+  transform: scale(1.4);
+}
+
+.card-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  position: relative;
+  top: 0;
+}
+
+@media (min-width: 640px) {
+  .card-date {
+    position: absolute;
+    left: 0;
+    top: 1.35rem;
+    width: 4.5rem;
+    text-align: right;
+  }
+}
+
+.card-inner {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  transition: all 0.25s ease;
+  margin-top: 0.3rem;
+  box-shadow: var(--shadow);
+}
+
+@media (min-width: 640px) {
+  .card-inner { margin-top: 0; }
+}
+
+.quote-card:hover .card-inner {
+  box-shadow: var(--shadow-hover);
+  border-color: var(--border);
+}
+
+.quote-card.rep .card-inner { border-left: 3px solid var(--red); }
+.quote-card.dem .card-inner { border-left: 3px solid var(--blue); }
+.quote-card.other .card-inner { border-left: 3px solid var(--neutral); }
+
+.card-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.card-name {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.card-party {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.quote-card.rep .card-party { color: var(--red); background: var(--red-bg); }
+.quote-card.dem .card-party { color: var(--blue); background: var(--blue-bg); }
+.quote-card.other .card-party { color: var(--neutral); background: var(--neutral-bg); }
+
+.card-quote {
+  font-family: 'Source Sans 3', -apple-system, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text);
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+  white-space: pre-line;
+}
+
+.card-quote::before {
+  content: '\201C';
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 0;
+  vertical-align: -0.3em;
+  margin-right: 0.05em;
+  opacity: 0.3;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.card-source {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.card-source:hover { color: var(--text); }
+
+.card-source svg {
+  width: 12px;
+  height: 12px;
+  opacity: 0.5;
+}
+
+.card-context {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-style: italic;
+  line-height: 1.5;
+  padding-top: 0.6rem;
+  margin-top: 0.6rem;
+  border-top: 1px solid var(--border-light);
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* FOOTER */
+.page-footer {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+/* HIDDEN */
+.quote-card.hidden {
+  display: none;
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <p class="hero-intro">
+    <strong>32</strong> current members of Congress have publicly discussed AGI, AI superintelligence, AI existential risk, AI loss of control, recursive self-improvement, or the Singularity. And it's bipartisan&mdash;<strong>16 Republicans</strong> and <strong>16 Democrats!</strong>
+  </p>
+</header>
+
+<div class="cumulative-chart" id="cumulative-chart">
+  <div class="chart-container">
+    <svg id="chart-svg"></svg>
+  </div>
+</div>
+
+<main class="timeline" id="timeline"></main>
+
+<footer class="page-footer">
+  Quotes sourced from public congressional hearings, legislation, press releases, and social media.
+</footer>
+
+<script>
+const RAW_DATA = [
+["🔴 Sen Banks (IN)","AI is likely to be the defining technology of the 21st century. Many experts predict that AI may soon match or surpass human performance across various tasks, including AI research and development itself. [...] Could AI systems become so capable at AI research and development tasks that we experience <b>rapid capability amplification</b>?","https://www.axios.com/2026/03/04/banks-hegseth-ai-steering-committee","Letter","2026-03-04"],
+["🔴 Sen Blackburn (TN)","Included due to her \"TRUMP AMERICA AI Act\" including the text of the Hawley-Blumenthal \"<b>AI Risk Evaluation Act</b>\"","https://www.blackburn.senate.gov/2025/12/technology/blackburn-unveils-national-policy-framework-for-artificial-intelligence","","2025-12-19"],
+["🔴 Sen Capito (WV)","\"I think part of our problem is if we legislate today in this area, we're not going to pick up what I learned day before yesterday the new thing that's coming which is <b>superintelligent AI</b>, that's smarter than anybody in this room and all of us put together.\"","https://www.commerce.senate.gov/2026/3/liability-or-deniability-platform-power-as-section-230-turns-30","Section 230 Hearing","2026-03-18"],
+["🔴 Sen Hawley (MO)","Included due to Hawley-Blumenthal \"<b>AI Risk Evaluation Act</b>\"","https://www.hawley.senate.gov/hawley-blumenthal-introduce-bipartisan-ai-evaluation-legislation-to-put-americans-first/","","2025-09-29"],
+["🔴 Sen Lee (UT)","AI will at some point <b>conclude that *we* are a huge mistake</b>","https://x.com/BasedMikeLee/status/1994244471798813033","","2025-11-27"],
+["🔴 Sen Kennedy (LA)","Permit me to share with you three hypotheses that I would like you to assume for the moment to be true... Hypothesis number 3... there is likely a berserk wing of the artificial intelligence community that intentionally or unintentionally could use artificial intelligence to <b>kill all of us and hurt us the entire time that we are dying</b>... Please tell me in plain English two or three reforms, regulations, if any, that you would implement if you were queen or king for a day...","https://www.lesswrong.com/posts/Mso8mFL3Tz3iAYcHc/some-quotes-from-tuesday-s-senate-hearing-on-ai","2023 Sam Altman hearing.","2023-05-16"],
+["🔴Rep Andy Biggs (AZ)","At what point do we no longer see computational decision-making with a human first mover, and you have an algorithmically iterated process...at some point, it won't be a human that's the first mover anymore, it'll be the algorithm itself. And how long before we get there? How do we prevent the crime and provide the deterrence that is necessary?\n\nSo with that bizarre question, but acknowledging that we're actually moving so rapidly that we probably thought by 2050 you'd be getting to <b>artificial superintelligence</b>, but it looks like maybe before 2030 you're going to be in artificial superintelligence.","https://www.youtube.com/watch?v=AU-4QHtCkxU","House Judiciary Committee hearing; preventing criminal exploitation of AI.","2025-07-16"],
+["🔴Rep Dusty Johnson (SD)","Mr. Beall, you noted at the top that maybe we've become numbed by the headlines about all of the dangers of AI. I think that might be true. And yet, honestly, what we've heard today, I suspect, has <b>scared the hell out of many of these committee members</b>. Anybody who doesn't feel urgency around this issue is not paying attention.\nYou noted that this is the most important national security challenge of our time. You noted that if we lose this race, it could trigger a global crisis.","https://www.youtube.com/live/GDNrUZBZDA4?si=J5X6EcYy1t_qcNam&t=3587","Committee on the CCP hearing, Authoritarians and Algorithms: Why U.S. AI Must Lead.","2025-06-25"],
+["🔴Rep Eli Crane (AZ)","Can you clarify to us what <b>singularity</b> means in the past? [...] It's <b>Skynet</b>. Skynet? Is that what we're thinking?","https://www.youtube.com/live/q4iMl7iUD6E?si=VFCKaCLPQWGJH4Mq&t=1632","From a bipartisan roundtable on AI.","2025-07-22"],
+["🔴Rep Eric Burlison (MO)","I'm going to begin by quoting Irving John Good, who was a British mathematician. He is quoted as saying, 'Let an ultra-intelligent machine be defined as a machine that can far surpass all the intellectual activities of any man, however clever. Thus, the first ultra intelligent machine is <b>the last invention that man may ever need to make</b>.'","https://www.youtube.com/live/0ytOZF3cdXw?si=L4NvItJWZAaY9HOU&t=3552","Prelude to a question about recursive self-improvement.","2025-09-17"],
+["🔴Rep Kevin Kiley (CA)","This is something that we have to get right, and we only get one shot at. There's a widely shared view that once AI capability crosses a certain threshold, whether that be <b>recursive self-improvement</b> or some other threshold, there's going to be an <b>escape velocity</b>. That has implications for the narrower geopolitical context of which country leads in the technology, but also for the broader idea of, 'Is this technology going to be aligned with and beneficial to humanity?'","https://youtu.be/Dny8dVjWS_k?si=Qaf8-Z0nmOD0b8o9&t=249","Arguing that Congress should preemptively regulate AI.","2025-09-18"],
+["🔴Rep Marjorie Taylor Greene (GA)","I'm not voting for the development of <b>skynet and the rise of the machines</b> by destroying federalism for 10 years by taking away state rights to regulate and make laws on all AI.","https://x.com/RepMTG/status/1930650431253827806","","2025-06-05"],
+["🔴Rep Nancy Mace (SC)","Some experts warn we are just a few years away from the emergence of <b>artificial general intelligence\u2014or the singularity</b>.\nOthers argue the technology has inherent limitations and we are decades away from the singularity, if it is even possible.\nWe don't know for certain what the future of AI will look like.\nBut what I do know is the future is too important to be left up to chance.\nWe need to do our best to understand what kinds of impact AI can have on our economy and society and develop potential solutions now, before it's too late.","https://oversight.house.gov/release/mace-opens-hearing-on-the-future-of-artificial-intelligence/","Hearing on the future of AI.","2025-09-17"],
+["🔴Rep Nancy Mace (SC)","Well, some estimates say the <b>singularity is a thousand days away</b>, some say two thousand days away, but it is rapidly approaching either way.","https://www.youtube.com/live/q4iMl7iUD6E?si=iCRMN_HzV4akjD_v&t=1520","","2025-07-22"],
+["🔴Rep Nathaniel Moran (TX)","It's my understanding that AI systems will soon have the capability to conduct its own research and development and effectively <b>write its own rules and programming</b>. AI will be able to predict then the issues it will need to solve and do it in ways sometimes that we can't control.","https://www.youtube.com/live/GDNrUZBZDA4?si=36AeDbUbn9d-Veea&t=5745","Committee on the CCP hearing, Authoritarians and Algorithms: Why U.S. AI Must Lead.","2025-06-25"],
+["🔴Rep Nathaniel Moran (TX)","AI models don't just respond to queries from users, but increasingly augment and in some cases even replace the tasks carried out by technical staff at leading AI companies. [...] The implications for U.S. national security, economic competitiveness and civil society could be vast. If these models can learn from their mistakes, adapt autonomously, and eventually <b>design and train their own successors</b>, then who controls that process matters. A lot.","https://thehill.com/opinion/technology/5542073-us-china-ai-competition/","","2025-10-07"],
+["🔴Rep Neal Dunn (FL)","Mr. Clark, Jack, good to see you again. One of your recent newsletters describing AI, I think it was ChatGPT 4 Claude, \"attempting to avoid being turned off by its chief engineer despite clear instructions to the contrary.\" In fact, in this experiment, Claude <b>attempted to blackmail the chief engineer</b> with damning information he believed to be true. [...] This is a disturbing scenario to people like me.\n\nI'm not sure I feel a lot better, but thank you for your answer.","https://www.congress.gov/event/119th-congress/house-event/118428","Committee on the CCP hearing, Authoritarians and Algorithms: Why U.S. AI Must Lead.","2025-06-25"],
+["🔴Rep Scott Perry (PA)","I suspect that all of you are aware of the times that when various AI has been tested. [...] the AI has chosen, on occasion, to further its goals, as opposed to the goals of the people that wrote the code. And on occasion, how about the instance where Anthropic's Claude 4 model attempted to blackmail the people it believed were trying to shut it down, and then it would ignore shutdown commands [...] and went as far as to <b>rewrite itself and preserve itself on a different server</b> to avoid the commands of the humans in charge of it.\n\nHow in the hell are we in here telling everybody that we have got to incorporate this into the Federal Government, state government, all levels of government, including National Defense, nuclear security, when we know these things are occurring?","https://www.congress.gov/119/meeting/house/118339/documents/HHRG-119-GO00-Transcript-20250605.pdf","","2025-06-05"],
+["🔴Sen Cynthia Lummis (WY)","Industry leaders have publicly acknowledged the development of increasingly powerful artificial intelligence systems, with some discussing the potential for <b>artificial general intelligence and superintelligence</b> that could fundamentally reshape the society of the United States.","https://www.congress.gov/119/bills/s2081/BILLS-119s2081is.htm","RISE Act of 2025; protecting AI developers from civil liability if they comply with certain transparency requirements.","2025-06-12"],
+["🔵 Rep Casten (IL)","Isaac Asimov probably thought more about robots and how to fit robots into an ethical framework than darn near anybody. [...] The whole idea is that if you don't have those protections then <b>we lose control</b>. And we are now sitting here with a Department of Defense led by Major Hegseth who would like to use robots to kill human beings. [...] The fact that we have one AI company who is trying to be somewhat more ethical than the others and the Department of Defense is stepping all over them is both immoral and ignorant of the finer works of Isaac Asimov and Will Smith.","https://financialservices.house.gov/calendar/eventsingle.aspx?EventID=411031","House Financial Services Markup","2026-03-04"],
+["🔵 Rep Liccardo (CA)","AI safety should not be a partisan issue. According to a recent Gallup survey, by a ratio of 8 to 1, US adults believe the government should maintain rules for AI safety even if it means developing AI capabilities more slowly. [...] <b>A gigantic misalignment</b> is not yet a household term but it soon will be. In Silicon Valley where I live it's on the mind of every AI researcher and engineer with whom I talk.","https://financialservices.house.gov/calendar/eventsingle.aspx?EventID=411031","House Financial Services Markup","2026-03-04"],
+["🔵Rep Bill Foster (D-IL)","If everyone had <b>AGI</b> software today, then the question is how many copies of that can you deploy? And that's limited by compute. When <b>the singularity</b> hits, that's what's really going to matter.\n[...]\nThat is why I've been so involved in trying to move the needle on hardware-enforced mechanisms.","https://youtu.be/C3R1AFddnxo?si=sFyCGs7m_PpD50sb&t=89","","2025-12-06"],
+["🔵Rep Brad Sherman (D-CA)","Now the proponents of AI tell us they're doing research to make AI controllable. And then when you look at what they're spending money on, it tends to be a PR effort or they're focused on data security, which is important but not existential. Um, but they're not really focused on the issue that is raised by this book, which I commend to everyone, but the title tells them all, If Anyone Builds It, Everyone Dies, Why <b>Superhuman AI Would Kill Us All</b>. I don't think anyone here can be confident that if AI were self-aware that it would decide that it liked us.","https://youtu.be/UECn73UVILg?si=AXrRamfEsZCwgcP7&t=183","During House Foreign Affairs Committee hearing on winning the AI race against China.","2026-01-14"],
+["🔵Rep Don Beyer (VA)","As we move forward, I get ever more scared about AI. [...] the deeper we get into it, the more we realize that it's also possible that the race to be the first in AI is the race to be the first to <b>lose control</b>.","https://annandaletoday.com/rep-beyer-calls-for-more-regulation-of-ai/","","2025-07-01"],
+["🔵Rep Don Beyer (VA)","As long as there are really thoughtful people, like Dr. Hinton or others, who worry about the <b>existential risks</b> of artificial intelligence\u2014the end of humanity\u2014I don't think we can afford to ignore that. Even if there's just a one in a 1000 chance, one in a 1000 happens. We see it with hurricanes and storms all the time.","https://time.com/6727264/house-artificial-intelligence-task-force/","Low probability, but definitely x-risk.","2024-02-21"],
+["🔵Rep George Whitesides (D-CA)","How do you perceive the risk of <b>recursive self-improvement</b>? There are growing concerns about the possibility of essentially <b>superintelligent systems</b>. [...] Because these systems are moving very, very quickly, and I think it's probably irresponsible not to have a plan for those conditions.","https://www.youtube.com/live/D4Q6nyQ_tK8?si=ahXFBxHe2jUpEcBh&t=7348","House Science, Space, and Technology Committee hearing Jan 2026.","2026-01-14"],
+["🔵Rep Jill Tokuda (HI)","Mr. Beal, your testimony makes it clear that <b>artificial superintelligence is one of the largest existential threats</b> that we face right now. And many experts in the field also recognize that AGI, artificial general intelligence, is a precursor to that risk.","https://www.youtube.com/live/GDNrUZBZDA4?si=0JQMrlLE5lsRXvx9&t=5417","Hearing on AI; gestured in the direction of any nation state losing control and creating a rogue ASI.","2025-06-25"],
+["🔵Rep Raja Krishnamoorthi (IL)","This is a famous clip. What you just saw is the last of humankind fighting a rogue AI army that is broken loose from human control. The Matrix, the rogue AI army you just saw, was a form of <b>artificial general intelligence or AGI</b>. [...] China is making an all-out push to dominate AGI, which will inevitably seek to surveil and suppress us at every turn. [...] Rather than building bunkers, we should be building safer AI. Whether it's American AI or Chinese AI, it should not be released until we know it's safe.","https://www.youtube.com/live/GDNrUZBZDA4?si=mekua7KXozjitExo&t=644","Committee on the CCP hearing.","2025-06-25"],
+["🔵Rep Seth Moulton (MA)","Artificial Intelligence is the biggest technological threat we've faced since the invention of the atomic bomb. [...] AI at its worst could usher in an era of warfare more dangerous than anything we've seen before \u2014 more dangerous not just for America but for humanity itself. [...] The only way to address the <b>existential threats to humanity</b> is for all of us to come together.","https://www.bostonglobe.com/2023/05/24/opinion/seth-moulton-ai-autonomous-weapons/","Boston Globe op-ed and Cipher Brief interview.","2023-05-24"],
+["🔵Rep Ted Lieu (CA)","The first is...<b>AI that can destroy the world</b>. Second is AI that isn't going to destroy the world but can kill you individually...And that last bucket, which is really the hardest, is AI that has some sort of harm to society.","https://fedscoop.com/congressional-ai-caucus-leader-ted-lieu-says-most-ai-should-not-be-regulated/","Washington Post Live event","2023-11-08"],
+["🔵Sen Bernie Sanders (VT)","There are very, very knowledgeable people \u2014 and I just talked to one today \u2014 who worry very much that human beings <b>will not be able to control the technology</b>, and that artificial intelligence will in fact dominate our society. We will not be able to control it. It may be able to control us. That's kind of the doomsday scenario.","https://gizmodo.com/bernie-sanders-reveals-the-ai-doomsday-scenario-that-worries-top-experts-2000628611","Mostly economic/jobs context, not obviously about x-risk, but it's a bit ambiguous.","2025-07-13"],
+["🔵Sen Bernie Sanders (VT)","Artificial intelligence and robotics will transform the world. It will bring unimaginable changes to our economy, our politics, warfare, our emotional wellbeing, our environment, and how we educate and raise our children. Further, there is a very real fear that, in the not-so-distant future, a <b>super-intelligent AI could replace humans in controlling the planet</b>.","https://www.theguardian.com/commentisfree/2025/dec/02/artificial-intelligence-threats-congress","","2025-12-02"],
+["🔵Sen Chris Murphy (CT)","In our scramble to win the AI race against China, we risk losing ourselves. [...] AI is a transformational technology. It will likely turn out to be the <b>most socially and economically disruptive technology ever</b> \u2014 bigger than the printing press or advanced medicine or the internet.","https://www.chrismurphyct.com/p/in-our-scramble-to-win-the-ai-race","Mostly about expected job loss; calling out the AI labs for categorically opposing regulation.","2025-06-16"],
+["🔵Sen Chuck Schumer (NY)","Today's discussion will likely touch on some of the pressing issues in highly capable AI systems: [...] The push to develop <b>Artificial General Intelligence, or super-intelligent AI</b>, that would be so powerful and capable that we would see it as a \u201Cdigital god.\u201D","https://www.schumer.senate.gov/imo/media/doc/8Opening%20Statement.pdf","2023 AI Insight Forum; explicitly discussing x-risk as one concern.","2023-12-06"],
+["🔵Sen John Hickenlooper (CO)","We should build trust, but verify. We need qualified third parties to effectively audit Generative AI systems and verify their claims of compliance with federal laws and regulations.\n\nIf we miss this opportunity the consequences will shape generations to come. What begins today as Generative AI may one day become Artificial General Intelligence.\n\nA wild, unregulated AI industry \u2013 that is accountable to no one \u2013 developing <b>Artificial General Intelligence should scare us all</b> into action.","https://www.hickenlooper.senate.gov/press_releases/hickenlooper-proposes-ai-auditing-standards-calls-for-protecting-consumer-data-increasing-transparency/","Calls for AI auditing and international standards.","2024-02-05"],
+["🔵Sen Mazie Hirono (HI)","I agree, and that is why, by the time we're talking about <b>AGI</b>, we're talking about <b>major harms</b> that can occur... We can't just come up with something that is gonna' take care of the issues that will arise in the future, especially with AGI.","https://www.lesswrong.com/posts/Mso8mFL3Tz3iAYcHc/some-quotes-from-tuesday-s-senate-hearing-on-ai","2023 Sam Altman hearing.","2023-05-16"],
+["🔵Sen Richard Blumenthal (CT)","And now, <b>artificial general intelligence or AGI</b>, which I know our witnesses are going to address today, provides even more frightening prospects for harm. The idea that AGI might in 10 or 20 years be smarter, or at least as smart as a human being, is no longer that far out in the future. It is very far from science fiction. It is here and now. [...] And we know that artificial intelligence that is as smart as human beings is also capable of deceiving us, manipulating us, and concealing facts from us.","https://www.blumenthal.senate.gov/newsroom/press/release/blumenthal-delivers-opening-statement-at-hearing-on-artificial-intelligence-regulation-featuring-insider-perspectives","Hearing on Artificial Intelligence Regulation.","2024-09-17"]
+];
+
+function getParty(name) {
+  if (name.charCodeAt(0) === 0xD83D && name.charCodeAt(1) === 0xDD34) return 'rep';
+  if (name.charCodeAt(0) === 0xD83D && name.charCodeAt(1) === 0xDD35) return 'dem';
+  if (name.includes('\u{1F534}')) return 'rep';
+  if (name.includes('\u{1F535}')) return 'dem';
+  return 'other';
+}
+
+function cleanName(name) {
+  return name.replace(/^[\u{1F534}\u{1F535}]\s*/u, '').replace(/\s*\(D-\w+\)/, '').trim();
+}
+
+function getPartyLabel(party) {
+  if (party === 'rep') return 'R';
+  if (party === 'dem') return 'D';
+  return '';
+}
+
+function formatDate(dateStr) {
+  const d = new Date(dateStr + 'T12:00:00');
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+function shortDate(dateStr) {
+  const d = new Date(dateStr + 'T12:00:00');
+  const m = d.toLocaleDateString('en-US', { month: 'short' });
+  const day = d.getDate();
+  return `${m} ${day}`;
+}
+
+function nameSlug(name) {
+  return 'q-' + name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '');
+}
+
+function getSourceLabel(url) {
+  if (!url) return '';
+  try {
+    const host = new URL(url).hostname.replace('www.','');
+    if (host.includes('youtube') || host.includes('youtu.be')) return 'Watch video';
+    if (host.includes('x.com') || host.includes('twitter.com')) return 'View post';
+    if (host.includes('congress.gov')) return 'Congress.gov';
+    if (host.includes('senate.gov')) return 'Senate.gov';
+    if (host.includes('house.gov')) return 'House.gov';
+    return host;
+  } catch { return 'Source'; }
+}
+
+// Sort by date
+const sorted = [...RAW_DATA].sort((a, b) => a[4].localeCompare(b[4]));
+
+// Count unique leaders
+const uniqueNames = new Set(sorted.map(r => cleanName(r[0])));
+
+// Build cumulative chart — all hover done in SVG coordinates (no jank)
+(function buildChart() {
+  // Members who left Congress (date they departed)
+  const departures = [
+    { name: 'Rep Marjorie Taylor Greene (GA)', date: '2026-01-05' }
+  ];
+
+  const seen = new Set();
+  const points = [];
+  sorted.forEach(row => {
+    const name = cleanName(row[0]);
+    const party = getParty(row[0]);
+    if (!seen.has(name)) {
+      seen.add(name);
+      points.push({ date: row[4], count: seen.size, name, party, type: 'join' });
+    }
+  });
+
+  // Insert departure points
+  departures.forEach(dep => {
+    const depName = cleanName(dep.name);
+    // Find current count at departure date
+    let countAtDate = 0;
+    for (const p of points) {
+      if (p.date <= dep.date) countAtDate = p.count;
+    }
+    points.push({ date: dep.date, count: -1, name: depName, party: 'rep', type: 'depart' });
+  });
+
+  // Re-sort by date
+  points.sort((a, b) => a.date.localeCompare(b.date) || (a.type === 'depart' ? 1 : -1));
+
+  // Recalculate running count
+  let running = 0;
+  points.forEach(p => {
+    if (p.type === 'depart') {
+      running--;
+    } else {
+      running++;
+    }
+    p.count = running;
+  });
+
+  const svg = document.getElementById('chart-svg');
+  const W = 1050, H = 420;
+  const padL = 45, padR = 25, padT = 25, padB = 40;
+  const maxCount = points[points.length - 1].count;
+
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+
+  const startDate = new Date(points[0].date + 'T00:00:00');
+  const endDate = new Date('2026-04-15T00:00:00');
+  const totalMs = endDate - startDate;
+
+  function xPos(dateStr) {
+    const d = new Date(dateStr + 'T00:00:00');
+    return padL + ((d - startDate) / totalMs) * (W - padL - padR);
+  }
+  function yPos(count) {
+    return padT + (1 - count / (maxCount + 3)) * (H - padT - padB);
+  }
+
+  // Precompute pixel positions
+  points.forEach(p => { p.px = xPos(p.date); p.py = yPos(p.count); });
+
+  // Grid
+  let gridHTML = '';
+  for (let i = 0; i <= maxCount + 2; i += 5) {
+    if (i === 0) continue;
+    const gy = yPos(i);
+    gridHTML += `<line x1="${padL}" y1="${gy}" x2="${W - padR}" y2="${gy}" stroke="var(--border)" stroke-width="0.5"/>`;
+    gridHTML += `<text x="${padL - 10}" y="${gy + 4}" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="11" fill="var(--text-muted)">${i}</text>`;
+  }
+  // Baseline
+  gridHTML += `<line x1="${padL}" y1="${yPos(0)}" x2="${W - padR}" y2="${yPos(0)}" stroke="var(--border)" stroke-width="0.5"/>`;
+
+  // Year markers
+  ['2023','2024','2025','2026'].forEach(yr => {
+    const xv = xPos(yr + '-01-01');
+    if (xv > padL && xv < W - padR) {
+      gridHTML += `<line x1="${xv}" y1="${padT}" x2="${xv}" y2="${H - padB}" stroke="var(--border)" stroke-width="0.5" stroke-dasharray="3,5"/>`;
+    }
+    const labelX = xPos(yr + '-07-01');
+    gridHTML += `<text x="${Math.min(Math.max(labelX, padL + 20), W - padR - 20)}" y="${H - 12}" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="500" fill="var(--text-muted)">${yr}</text>`;
+  });
+
+  // Step path
+  let pathD = `M ${points[0].px} ${yPos(0)}`;
+  points.forEach(p => {
+    pathD += ` L ${p.px} ${yPos(p.count - 1)} L ${p.px} ${p.py}`;
+  });
+  pathD += ` L ${W - padR} ${points[points.length - 1].py}`;
+  let fillD = pathD + ` L ${W - padR} ${yPos(0)} L ${padL} ${yPos(0)} Z`;
+
+  svg.innerHTML = `
+    ${gridHTML}
+    <defs>
+      <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="var(--blue)" stop-opacity="0.18"/>
+        <stop offset="40%" stop-color="var(--red)" stop-opacity="0.10"/>
+        <stop offset="100%" stop-color="var(--red)" stop-opacity="0.01"/>
+      </linearGradient>
+      <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="var(--blue)"/>
+        <stop offset="100%" stop-color="var(--red)"/>
+      </linearGradient>
+      <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    </defs>
+    <path d="${fillD}" fill="url(#areaGrad)"/>
+    <path d="${pathD}" fill="none" stroke="url(#lineGrad)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+  `;
+
+  // Static dots
+  const dotEls = [];
+  points.forEach((p) => {
+    const color = p.party === 'rep' ? 'var(--red)' : 'var(--blue)';
+    const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    c.setAttribute('cx', p.px);
+    c.setAttribute('cy', p.py);
+    c.setAttribute('r', p.type === 'depart' ? '5' : '5');
+    c.setAttribute('fill', p.type === 'depart' ? 'var(--bg-card)' : color);
+    c.setAttribute('stroke', p.type === 'depart' ? color : 'var(--bg-card)');
+    c.setAttribute('stroke-width', '2.5');
+    if (p.type === 'depart') c.setAttribute('stroke-dasharray', '2,2');
+    svg.appendChild(c);
+    dotEls.push(c);
+  });
+
+  // "32 members" end label
+  const lastP = points[points.length - 1];
+  const el = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  el.setAttribute('x', W - padR);
+  el.setAttribute('y', lastP.py - 14);
+  el.setAttribute('text-anchor', 'end');
+  el.setAttribute('font-family', "'Playfair Display', serif");
+  el.setAttribute('font-size', '20');
+  el.setAttribute('font-weight', '700');
+  el.setAttribute('fill', 'var(--text)');
+  el.textContent = lastP.count + ' members';
+  svg.appendChild(el);
+
+  // Hover elements — all in SVG, no coordinate mismatch
+  const NS = 'http://www.w3.org/2000/svg';
+  const hoverG = document.createElementNS(NS, 'g');
+  hoverG.setAttribute('opacity', '0');
+  hoverG.style.transition = 'opacity 0.12s ease';
+
+  const crosshair = document.createElementNS(NS, 'line');
+  crosshair.setAttribute('y1', padT);
+  crosshair.setAttribute('y2', H - padB);
+  crosshair.setAttribute('stroke', 'var(--text)');
+  crosshair.setAttribute('stroke-width', '1');
+  crosshair.setAttribute('stroke-opacity', '0.15');
+  crosshair.setAttribute('stroke-dasharray', '4,3');
+  hoverG.appendChild(crosshair);
+
+  const hoverRing = document.createElementNS(NS, 'circle');
+  hoverRing.setAttribute('r', '10');
+  hoverRing.setAttribute('fill', 'none');
+  hoverRing.setAttribute('stroke-width', '2.5');
+  hoverRing.setAttribute('stroke-opacity', '0.5');
+  hoverG.appendChild(hoverRing);
+
+  const hoverDot = document.createElementNS(NS, 'circle');
+  hoverDot.setAttribute('r', '5');
+  hoverDot.setAttribute('stroke', 'var(--bg-card)');
+  hoverDot.setAttribute('stroke-width', '2.5');
+  hoverG.appendChild(hoverDot);
+
+  // Tooltip background + text in SVG
+  const tipG = document.createElementNS(NS, 'g');
+  const tipRect = document.createElementNS(NS, 'rect');
+  tipRect.setAttribute('rx', '6');
+  tipRect.setAttribute('ry', '6');
+  tipRect.setAttribute('fill', 'var(--text)');
+  tipG.appendChild(tipRect);
+
+  const tipArrow = document.createElementNS(NS, 'polygon');
+  tipArrow.setAttribute('fill', 'var(--text)');
+  tipG.appendChild(tipArrow);
+
+  const tipLine1 = document.createElementNS(NS, 'text');
+  tipLine1.setAttribute('fill', 'var(--bg)');
+  tipLine1.setAttribute('font-family', "'Source Sans 3', sans-serif");
+  tipLine1.setAttribute('font-size', '14');
+  tipLine1.setAttribute('font-weight', '600');
+  tipLine1.setAttribute('text-anchor', 'middle');
+  tipG.appendChild(tipLine1);
+
+  const tipLine2 = document.createElementNS(NS, 'text');
+  tipLine2.setAttribute('fill', 'var(--bg)');
+  tipLine2.setAttribute('font-family', "'JetBrains Mono', monospace");
+  tipLine2.setAttribute('font-size', '11');
+  tipLine2.setAttribute('text-anchor', 'middle');
+  tipLine2.setAttribute('opacity', '0.7');
+  tipG.appendChild(tipLine2);
+
+  hoverG.appendChild(tipG);
+  svg.appendChild(hoverG);
+
+  // Invisible hit area rects for each point — snapping, no jitter
+  let activeIdx = -1;
+  const hitW = (W - padL - padR) / points.length;
+  points.forEach((p, i) => {
+    const hitRect = document.createElementNS(NS, 'rect');
+    const hx = i === 0 ? padL : (p.px + (points[Math.max(0, i - 1)].px)) / 2;
+    const hw = i === points.length - 1 ? W - padR - hx : ((points[Math.min(points.length - 1, i + 1)].px + p.px) / 2) - hx;
+    hitRect.setAttribute('x', hx);
+    hitRect.setAttribute('y', padT);
+    hitRect.setAttribute('width', Math.max(hw, 1));
+    hitRect.setAttribute('height', H - padT - padB);
+    hitRect.setAttribute('fill', 'transparent');
+    hitRect.style.cursor = 'pointer';
+
+    hitRect.addEventListener('click', () => {
+      const target = document.getElementById(nameSlug(p.name));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        target.style.transition = 'box-shadow 0.3s ease';
+        target.querySelector('.card-inner').style.boxShadow = '0 0 0 3px ' + (p.party === 'rep' ? 'var(--red)' : 'var(--blue)');
+        setTimeout(() => { target.querySelector('.card-inner').style.boxShadow = ''; }, 1500);
+      }
+    });
+
+    hitRect.addEventListener('mouseenter', () => {
+      if (activeIdx === i) return;
+      activeIdx = i;
+      const color = p.party === 'rep' ? 'var(--red)' : 'var(--blue)';
+
+      // Crosshair
+      crosshair.setAttribute('x1', p.px);
+      crosshair.setAttribute('x2', p.px);
+
+      // Dots
+      hoverRing.setAttribute('cx', p.px);
+      hoverRing.setAttribute('cy', p.py);
+      hoverRing.setAttribute('stroke', color);
+      hoverDot.setAttribute('cx', p.px);
+      hoverDot.setAttribute('cy', p.py);
+      hoverDot.setAttribute('fill', color);
+
+      // Enlarge the static dot
+      dotEls.forEach((d, di) => d.setAttribute('r', di === i ? '7' : '5'));
+
+      // Tooltip text
+      const d = new Date(p.date + 'T12:00:00');
+      const ds = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      if (p.type === 'depart') {
+        tipLine1.textContent = `${p.name} left Congress`;
+        tipLine2.textContent = `${ds} \u2022 ${p.count} remaining`;
+      } else {
+        tipLine1.textContent = `#${p.count}  ${p.name}`;
+        tipLine2.textContent = ds;
+      }
+
+      // Measure and position tooltip
+      const tw = Math.max(tipLine1.getComputedTextLength(), tipLine2.getComputedTextLength()) + 24;
+      const th = 46;
+      let tx = p.px;
+      let ty = p.py - 22;
+
+      // Clamp to chart bounds
+      const halfW = tw / 2;
+      if (tx - halfW < padL) tx = padL + halfW;
+      if (tx + halfW > W - padR) tx = W - padR - halfW;
+
+      tipRect.setAttribute('x', tx - tw / 2);
+      tipRect.setAttribute('y', ty - th);
+      tipRect.setAttribute('width', tw);
+      tipRect.setAttribute('height', th);
+      tipLine1.setAttribute('x', tx);
+      tipLine1.setAttribute('y', ty - 22);
+      tipLine2.setAttribute('x', tx);
+      tipLine2.setAttribute('y', ty - 7);
+      tipArrow.setAttribute('points', `${p.px - 5},${ty} ${p.px + 5},${ty} ${p.px},${ty + 6}`);
+
+      hoverG.setAttribute('opacity', '1');
+    });
+
+    svg.appendChild(hitRect);
+  });
+
+  svg.addEventListener('mouseleave', () => {
+    hoverG.setAttribute('opacity', '0');
+    dotEls.forEach(d => d.setAttribute('r', '5'));
+    activeIdx = -1;
+  });
+})();
+
+// Render
+const timeline = document.getElementById('timeline');
+let currentYear = '';
+let delay = 0;
+
+sorted.forEach((row, idx) => {
+  const [rawName, quote, source, context, date] = row;
+  const party = getParty(rawName);
+  const name = cleanName(rawName);
+  const year = date.slice(0, 4);
+
+  if (year !== currentYear) {
+    currentYear = year;
+    const marker = document.createElement('div');
+    marker.className = 'year-marker';
+    marker.innerHTML = `<span class="year-marker-text">${year}</span>`;
+    timeline.appendChild(marker);
+  }
+
+  const card = document.createElement('div');
+  card.className = `quote-card ${party}`;
+  const slug = nameSlug(name);
+  if (!document.getElementById(slug)) card.id = slug;
+  card.style.animationDelay = `${delay}ms`;
+  delay += 60;
+
+  const partyLabel = getPartyLabel(party);
+  const sourceLabel = getSourceLabel(source);
+
+  card.innerHTML = `
+    <span class="dot"></span>
+    <div class="card-date">${shortDate(date)}</div>
+    <div class="card-inner">
+      <div class="card-header">
+        <span class="card-name">${name}</span>
+        ${partyLabel ? `<span class="card-party">${partyLabel}</span>` : ''}
+      </div>
+      <div class="card-quote">${quote}</div>
+      <div class="card-footer">
+        ${source ? `<a class="card-source" href="${source}" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3H3v10h10v-3M9 2h5v5M14 2L7 9"/></svg>
+          ${sourceLabel}
+        </a>` : ''}
+      </div>
+      ${context ? `<div class="card-context">${context}</div>` : ''}
+    </div>
+  `;
+
+  timeline.appendChild(card);
+});
+
+</script>
+</body>
+</html>
