@@ -12,14 +12,14 @@
       --bg: #08080f;
       --accent: #d4a853;
       --accent-light: #f0cc7a;
-      --accent-dim: #8a6d2b;
-      --accent-glow: rgba(212, 168, 83, 0.35);
+      --accent-dim: #b8923e;
+      --accent-glow: rgba(212, 168, 83, 0.45);
       --urgent: #e06c4a;
-      --urgent-glow: rgba(224, 108, 74, 0.35);
-      --text: #eae6de;
-      --text-muted: #5a564f;
-      --surface: rgba(255, 255, 255, 0.03);
-      --border: rgba(255, 255, 255, 0.06);
+      --urgent-glow: rgba(224, 108, 74, 0.45);
+      --text: #f2efe8;
+      --text-muted: #8a857c;
+      --surface: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.12);
     }
 
     body {
@@ -175,13 +175,45 @@
       color: var(--accent-light);
     }
 
+    .clock-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .clock-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+
+    .clock-label {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-dim);
+    }
+
     .current-time {
       font-family: 'Outfit', sans-serif;
       font-weight: 300;
       font-size: 2.1rem;
-      color: var(--text-muted);
+      color: var(--text);
       letter-spacing: 0.05em;
-      margin-bottom: 1.2rem;
+      text-shadow: 0 0 16px rgba(234, 230, 222, 0.2);
+    }
+
+    .target-row {
+      margin-top: 0.15rem;
+    }
+
+    .target-time {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      font-size: 1.1rem;
+      color: var(--accent-dim);
+      letter-spacing: 0.05em;
     }
 
     /* ── Timer View ── */
@@ -393,7 +425,16 @@
 
     <!-- Timer -->
     <div class="view timer-view" id="timerView">
-      <div class="current-time" id="currentTime"></div>
+      <div class="clock-group">
+        <div class="clock-row">
+          <span class="clock-label">Now</span>
+          <span class="current-time" id="currentTime"></span>
+        </div>
+        <div class="clock-row target-row">
+          <span class="clock-label">Target</span>
+          <span class="target-time" id="targetTime"></span>
+        </div>
+      </div>
       <div class="ring-area" id="ringArea">
         <svg class="ring-svg" viewBox="0 0 200 200">
           <circle class="ring-track" cx="100" cy="100" r="88" />
@@ -590,13 +631,26 @@
       rafId = requestAnimationFrame(tick);
     }
 
-    function updateClock() {
-      const now = new Date();
-      let h = now.getHours();
-      const m = String(now.getMinutes()).padStart(2, '0');
+    function formatTime(date) {
+      let h = date.getHours();
+      const m = String(date.getMinutes()).padStart(2, '0');
       const suffix = h >= 12 ? 'p' : 'a';
       h = h % 12 || 12;
-      document.getElementById('currentTime').textContent = `${h}:${m}${suffix}`;
+      return `${h}:${m}${suffix}`;
+    }
+
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('currentTime').textContent = formatTime(now);
+
+      // Update target time
+      const targetEl = document.getElementById('targetTime');
+      if (state === 'running' || state === 'paused') {
+        const target = new Date(now.getTime() + remainingMs);
+        targetEl.textContent = formatTime(target);
+      } else {
+        targetEl.textContent = '';
+      }
     }
 
     setInterval(updateClock, 1000);
