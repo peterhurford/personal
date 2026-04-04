@@ -16,6 +16,8 @@
       --accent-glow: rgba(212, 168, 83, 0.45);
       --urgent: #e06c4a;
       --urgent-glow: rgba(224, 108, 74, 0.45);
+      --overtime: #e04a4a;
+      --overtime-glow: rgba(224, 74, 74, 0.5);
       --text: #f2efe8;
       --text-muted: #8a857c;
       --surface: rgba(255, 255, 255, 0.06);
@@ -261,6 +263,18 @@
       filter: drop-shadow(0 0 5px var(--urgent-glow));
     }
 
+    .ring-progress.overtime {
+      stroke: var(--overtime);
+      filter: drop-shadow(0 0 14px var(--overtime-glow));
+      animation: overtimePulse 1s ease-in-out infinite;
+    }
+
+    .ring-dot.overtime {
+      fill: var(--overtime);
+      filter: drop-shadow(0 0 5px var(--overtime-glow));
+      animation: overtimePulse 1s ease-in-out infinite;
+    }
+
     .time-display {
       position: absolute;
       inset: 0;
@@ -284,6 +298,22 @@
     .time-text.urgent {
       color: var(--urgent);
       text-shadow: 0 0 24px var(--urgent-glow);
+    }
+
+    .time-text.overtime {
+      color: var(--overtime);
+      text-shadow: 0 0 24px var(--overtime-glow);
+      animation: overtimeTextPulse 1s ease-in-out infinite;
+    }
+
+    @keyframes overtimePulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes overtimeTextPulse {
+      0%, 100% { opacity: 0.7; text-shadow: 0 0 16px var(--overtime-glow); }
+      50% { opacity: 1; text-shadow: 0 0 30px var(--overtime-glow); }
     }
 
     .time-fraction {
@@ -417,7 +447,7 @@
       <div class="heading">Set Timer</div>
       <div class="presets" id="presets"></div>
       <div class="custom-row">
-        <input type="number" class="custom-input" id="customInput" placeholder="Custom minutes" min="1" max="600" />
+        <input type="number" class="custom-input" id="customInput" placeholder="Custom minutes" max="600" />
         <button class="custom-go" id="customGo">Go</button>
       </div>
       <div class="hint"><kbd>Enter</kbd> to start custom</div>
@@ -498,6 +528,7 @@
     let state = 'select'; // select | running | paused | done
     let lastTick = 0;
     let rafId = null;
+    let overtimeStarted = false;
 
     // Build presets
     PRESETS.forEach(m => {
@@ -526,7 +557,7 @@
 
     function startCustom() {
       const v = parseInt(customInput.value);
-      if (v > 0) startTimer(v);
+      if (v) startTimer(v);
     }
 
     function startTimer(minutes) {
@@ -541,10 +572,19 @@
       controls.style.display = '';
       btnAction.textContent = 'Pause';
 
-      // Reset urgency classes
-      ringProgress.classList.remove('urgent');
-      ringDot.classList.remove('urgent');
-      timeText.classList.remove('urgent');
+      // Reset urgency/overtime classes
+      overtimeStarted = false;
+      ringProgress.classList.remove('urgent', 'overtime');
+      ringDot.classList.remove('urgent', 'overtime');
+      timeText.classList.remove('urgent', 'overtime');
+
+      // If starting negative, enter overtime visuals immediately (no sound)
+      if (minutes < 0) {
+        overtimeStarted = true;
+        ringProgress.classList.add('overtime');
+        ringDot.classList.add('overtime');
+        timeText.classList.add('overtime');
+      }
 
       // Set ring full
       ringProgress.setAttribute('stroke-dasharray', C);
@@ -570,7 +610,11 @@
 
     function resetTimer() {
       state = 'select';
+      overtimeStarted = false;
       cancelAnimationFrame(rafId);
+      ringProgress.classList.remove('urgent', 'overtime');
+      ringDot.classList.remove('urgent', 'overtime');
+      timeText.classList.remove('urgent', 'overtime');
       showView('selector');
       customInput.value = '';
     }
@@ -589,46 +633,91 @@
     function tick(now) {
       const dt = now - lastTick;
       lastTick = now;
-      remainingMs = Math.max(0, remainingMs - dt);
+      remainingMs = remainingMs - dt;
 
-      const progress = remainingMs / totalMs;
-      const offset = C * (1 - progress);
-      ringProgress.setAttribute('stroke-dashoffset', offset);
+      if (remainingMs > 0) {
+        const progress = remainingMs / totalMs;
+        const offset = C * (1 - progress);
+        ringProgress.setAttribute('stroke-dashoffset', offset);
 
-      // Position the leading dot
-      const angle = -Math.PI / 2 + (2 * Math.PI * (1 - progress));
-      const dotX = 100 + R * Math.cos(angle);
-      const dotY = 100 + R * Math.sin(angle);
-      ringDot.setAttribute('cx', dotX);
-      ringDot.setAttribute('cy', dotY);
+        // Position the leading dot
+        const angle = -Math.PI / 2 + (2 * Math.PI * (1 - progress));
+        const dotX = 100 + R * Math.cos(angle);
+        const dotY = 100 + R * Math.sin(angle);
+        ringDot.setAttribute('cx', dotX);
+        ringDot.setAttribute('cy', dotY);
 
-      // Urgency
-      const isUrgent = remainingMs > 0 && remainingMs <= URGENT_THRESHOLD * 1000;
-      ringProgress.classList.toggle('urgent', isUrgent);
-      ringDot.classList.toggle('urgent', isUrgent);
-      timeText.classList.toggle('urgent', isUrgent);
+        // Urgency
+        const isUrgent = remainingMs <= URGENT_THRESHOLD * 1000;
+        ringProgress.classList.toggle('urgent', isUrgent);
+        ringDot.classList.toggle('urgent', isUrgent);
+        timeText.classList.toggle('urgent', isUrgent);
 
-      // Format time
-      const totalSec = Math.ceil(remainingMs / 1000);
-      const m = Math.floor(totalSec / 60);
-      const s = totalSec % 60;
-      timeText.textContent = `${String(m).padStart(2, '0')}m${String(s).padStart(2, '0')}`;
+        // Format time
+        const totalSec = Math.ceil(remainingMs / 1000);
+        const m = Math.floor(totalSec / 60);
+        const s = totalSec % 60;
+        timeText.textContent = `${String(m).padStart(2, '0')}m${String(s).padStart(2, '0')}`;
 
-      // Show fraction in last 10 seconds
-      if (remainingMs <= URGENT_THRESHOLD * 1000 && remainingMs > 0) {
-        const frac = Math.floor((remainingMs % 1000) / 10);
-        timeFraction.textContent = `.${String(frac).padStart(2, '0')}`;
-        timeFraction.classList.add('visible');
+        // Show fraction in last 10 seconds
+        if (remainingMs <= URGENT_THRESHOLD * 1000) {
+          const frac = Math.floor((remainingMs % 1000) / 10);
+          timeFraction.textContent = `.${String(frac).padStart(2, '0')}`;
+          timeFraction.classList.add('visible');
+        } else {
+          timeFraction.classList.remove('visible');
+        }
       } else {
-        timeFraction.classList.remove('visible');
-      }
+        // Overtime
+        if (!overtimeStarted) {
+          overtimeStarted = true;
+          ringProgress.classList.remove('urgent');
+          ringDot.classList.remove('urgent');
+          timeText.classList.remove('urgent');
+          ringProgress.classList.add('overtime');
+          ringDot.classList.add('overtime');
+          timeText.classList.add('overtime');
+          playAlertSound();
+          if (navigator.vibrate) navigator.vibrate([200, 100, 200, 100, 200]);
+        }
 
-      if (remainingMs <= 0) {
-        finish();
-        return;
+        // Full ring pulsing red
+        ringProgress.setAttribute('stroke-dashoffset', '0');
+        ringDot.setAttribute('cx', 100);
+        ringDot.setAttribute('cy', 12);
+        timeFraction.classList.remove('visible');
+
+        // Format negative time
+        const overMs = Math.abs(remainingMs);
+        const totalSec = Math.floor(overMs / 1000);
+        const m = Math.floor(totalSec / 60);
+        const s = totalSec % 60;
+        timeText.textContent = `-${String(m).padStart(2, '0')}m${String(s).padStart(2, '0')}`;
       }
 
       rafId = requestAnimationFrame(tick);
+    }
+
+    function playAlertSound() {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const pattern = [
+        { time: 0, freq: 880 },
+        { time: 0.2, freq: 1047 },
+        { time: 0.4, freq: 880 },
+        { time: 0.6, freq: 1047 },
+      ];
+      pattern.forEach(({ time, freq }) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.frequency.value = freq;
+        osc.type = 'sine';
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + time);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + time + 0.12);
+        osc.start(ctx.currentTime + time);
+        osc.stop(ctx.currentTime + time + 0.12);
+      });
     }
 
     function formatTime(date) {
@@ -656,16 +745,6 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    function finish() {
-      state = 'done';
-      timeText.textContent = '00:00';
-      timeFraction.classList.remove('visible');
-
-      // Show done overlay
-      ringArea.style.display = 'none';
-      controls.style.display = 'none';
-      doneOverlay.classList.add('active');
-    }
   </script>
 </body>
 </html>
