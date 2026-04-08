@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
@@ -436,12 +437,84 @@
   font-size: 0.75em;
 }
 
-/* MOBILE — static chart, correct proportions */
+/* MOBILE */
 @media (max-width: 639px) {
+  .tracker-root {
+    font-size: 16px;
+  }
+
+  .tracker-root .hero {
+    padding: 1.5em 1.2em 1em;
+  }
+
+  .tracker-root .hero-intro {
+    font-size: 1.1em;
+  }
+
+  .tracker-root .cumulative-chart {
+    padding: 0 0.5em;
+    margin-bottom: 1.5em;
+  }
+
   .tracker-root #chart-svg {
     height: auto;
     cursor: default;
     pointer-events: none;
+  }
+
+  .tracker-root .toolbar {
+    padding: 0 1.2em;
+    gap: 0.5em;
+    justify-content: center;
+    margin-bottom: 1.5em;
+  }
+
+  .tracker-root .toolbar-search {
+    width: 100%;
+    font-size: 0.85em;
+    padding: 0.5em 1em;
+  }
+
+  .tracker-root .toolbar-sep {
+    display: none;
+  }
+
+  .tracker-root .toolbar .filter-btn {
+    font-size: 0.72em;
+    padding: 0.35em 0.75em;
+  }
+
+  .tracker-root .timeline {
+    padding: 0 1.2em 4em;
+  }
+
+  .tracker-root .timeline::before {
+    left: calc(1.2em + 5px);
+  }
+
+  .tracker-root .quote-card {
+    padding-left: 1.5em;
+  }
+
+  .tracker-root .quote-card .dot {
+    left: 1px;
+  }
+
+  .tracker-root .card-inner {
+    padding: 1em 1.1em;
+  }
+
+  .tracker-root .card-quote {
+    font-size: 0.88em;
+    line-height: 1.65;
+  }
+
+  .tracker-root .year-marker {
+    padding-left: 1.5em;
+  }
+
+  .tracker-root .page-footer {
+    padding: 1.5em 1.2em;
   }
 }
 
@@ -529,7 +602,7 @@
 </div>
 
 <div class="toolbar" id="toolbar">
-  <input type="text" class="toolbar-search" id="toolbar-search" placeholder="Search members…">
+  <input type="text" class="toolbar-search" id="toolbar-search" placeholder="Search members...">
   <span class="toolbar-sep"></span>
   <button class="filter-btn active" data-party="all">All</button>
   <button class="filter-btn" data-party="dem">D</button>
