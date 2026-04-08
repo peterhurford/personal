@@ -602,7 +602,7 @@
 
 <header class="hero">
   <p class="hero-intro">
-    <strong>33</strong> current members of Congress have publicly discussed AGI, AI superintelligence, AI existential risk, AI loss of control, recursive self-improvement, or the Singularity. And it's bipartisan&mdash;<strong>16 Republicans</strong> and <strong>17 Democrats!</strong>
+    <strong>34</strong> current members of Congress have publicly discussed AGI, AI superintelligence, AI existential risk, AI loss of control, recursive self-improvement, or the Singularity. And it's bipartisan&mdash;<strong>17 Republicans</strong> and <strong>17 Democrats!</strong>
   </p>
 </header>
 
@@ -624,7 +624,8 @@
   <button class="filter-btn" data-chamber="senate">Senate</button>
   <button class="filter-btn" data-chamber="house">House</button>
   <span class="toolbar-sep"></span>
-  <button class="filter-btn" id="sort-btn" data-sort="desc">Newest first</button>
+  <button class="filter-btn active" data-sort="desc">Newest</button>
+  <button class="filter-btn" data-sort="asc">Oldest</button>
 </div>
 
 <main class="timeline" id="timeline"></main>
@@ -1137,13 +1138,14 @@ document.getElementById('toolbar-search').addEventListener('input', e => {
   renderTimeline();
 });
 
-// Toolbar: sort toggle
-const sortBtn = document.getElementById('sort-btn');
-sortBtn.addEventListener('click', () => {
-  sortOrder = sortOrder === 'desc' ? 'asc' : 'desc';
-  sortBtn.textContent = sortOrder === 'desc' ? 'Newest first' : 'Oldest first';
-  sortBtn.classList.add('active');
-  renderTimeline();
+// Toolbar: sort buttons
+document.querySelectorAll('.filter-btn[data-sort]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn[data-sort]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    sortOrder = btn.dataset.sort;
+    renderTimeline();
+  });
 });
 
 renderTimeline();
