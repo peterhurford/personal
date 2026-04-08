@@ -1,81 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>What Congress is Saying About AI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root {
-  --bg: #faf9f7;
-  --bg-card: #ffffff;
-  --text: #1a1a1a;
-  --text-secondary: #5a5a5a;
-  --text-muted: #8a8a8a;
-  --border: #e4e0db;
-  --border-light: #f0ece7;
-  --red: #c0392b;
-  --red-bg: #fdf2f0;
-  --red-border: #f0c8c2;
-  --red-muted: #e8a89e;
-  --blue: #2c5f8a;
-  --blue-bg: #eef4fa;
-  --blue-border: #b8d4ea;
-  --blue-muted: #8fb8d8;
-  --neutral: #6b6b6b;
-  --neutral-bg: #f5f4f2;
-  --neutral-border: #d5d0ca;
-  --timeline: #d5d0ca;
-  --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
-  --shadow-hover: 0 2px 8px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.06);
-  --grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+/* All styles scoped to .tracker-root to avoid conflicts with the host site */
+
+.tracker-root *,
+.tracker-root *::before,
+.tracker-root *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.tracker-root {
+  /* CSS variables scoped here instead of :root */
+  --tr-bg: #faf9f7;
+  --tr-bg-card: #ffffff;
+  --tr-text: #1a1a1a;
+  --tr-text-secondary: #5a5a5a;
+  --tr-text-muted: #8a8a8a;
+  --tr-border: #e4e0db;
+  --tr-border-light: #f0ece7;
+  --tr-red: #c0392b;
+  --tr-red-bg: #fdf2f0;
+  --tr-red-border: #f0c8c2;
+  --tr-red-muted: #e8a89e;
+  --tr-blue: #2c5f8a;
+  --tr-blue-bg: #eef4fa;
+  --tr-blue-border: #b8d4ea;
+  --tr-blue-muted: #8fb8d8;
+  --tr-neutral: #6b6b6b;
+  --tr-neutral-bg: #f5f4f2;
+  --tr-neutral-border: #d5d0ca;
+  --tr-timeline: #d5d0ca;
+  --tr-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+  --tr-shadow-hover: 0 2px 8px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.06);
+  --tr-grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+
+  /* Body-level styles moved to the wrapper */
+  font-family: 'Source Sans 3', -apple-system, sans-serif;
+  font-size: 18px; /* base for em units below */
+  background: var(--tr-bg);
+  color: var(--tr-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+
+  /* Contain the grain overlay's stacking context */
+  position: relative;
+  isolation: isolate;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #141210;
-    --bg-card: #1e1c19;
-    --text: #e8e4de;
-    --text-secondary: #a8a29e;
-    --text-muted: #6b6560;
-    --border: #2e2a25;
-    --border-light: #252220;
-    --red: #e8655a;
-    --red-bg: #2a1a17;
-    --red-border: #4a2520;
-    --red-muted: #8a4a42;
-    --blue: #6aabe0;
-    --blue-bg: #162030;
-    --blue-border: #1e3550;
-    --blue-muted: #3a6590;
-    --neutral: #9a9590;
-    --neutral-bg: #1e1c19;
-    --neutral-border: #3a3530;
-    --timeline: #2e2a25;
-    --shadow: 0 1px 3px rgba(0,0,0,0.2), 0 4px 12px rgba(0,0,0,0.15);
-    --shadow-hover: 0 2px 8px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.25);
+  .tracker-root {
+    --tr-bg: #141210;
+    --tr-bg-card: #1e1c19;
+    --tr-text: #e8e4de;
+    --tr-text-secondary: #a8a29e;
+    --tr-text-muted: #6b6560;
+    --tr-border: #2e2a25;
+    --tr-border-light: #252220;
+    --tr-red: #e8655a;
+    --tr-red-bg: #2a1a17;
+    --tr-red-border: #4a2520;
+    --tr-red-muted: #8a4a42;
+    --tr-blue: #6aabe0;
+    --tr-blue-bg: #162030;
+    --tr-blue-border: #1e3550;
+    --tr-blue-muted: #3a6590;
+    --tr-neutral: #9a9590;
+    --tr-neutral-bg: #1e1c19;
+    --tr-neutral-border: #3a3530;
+    --tr-timeline: #2e2a25;
+    --tr-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 4px 12px rgba(0,0,0,0.15);
+    --tr-shadow-hover: 0 2px 8px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.25);
   }
 }
 
-html { font-size: 18px; scroll-behavior: smooth; }
-
-body {
-  font-family: 'Source Sans 3', -apple-system, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
-}
-
-body::before {
+/* Grain texture — absolute (not fixed) so it doesn't cover the host site */
+.tracker-root::before {
   content: '';
-  position: fixed;
+  position: absolute;
   inset: 0;
-  background-image: var(--grain);
+  background-image: var(--tr-grain);
   background-repeat: repeat;
   pointer-events: none;
   z-index: 9999;
@@ -83,117 +90,117 @@ body::before {
 }
 
 /* HEADER */
-.hero {
+.tracker-root .hero {
   max-width: 780px;
   margin: 0 auto;
-  padding: 2rem 2rem 1.5rem;
+  padding: 2em 2em 1.5em;
   text-align: center;
 }
 
-.hero h1 {
+.tracker-root .hero h1 {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-size: clamp(2.2em, 5vw, 3.4em);
   font-weight: 700;
   line-height: 1.15;
-  color: var(--text);
-  margin-bottom: 1.5rem;
+  color: var(--tr-text);
+  margin-bottom: 1.5em;
   letter-spacing: -0.02em;
 }
 
-.hero-intro {
-  font-size: 1.3rem;
+.tracker-root .hero-intro {
+  font-size: 1.3em;
   line-height: 1.6;
-  color: var(--text);
+  color: var(--tr-text);
   font-weight: 400;
   max-width: 700px;
-  margin: 0 auto 1.5rem;
+  margin: 0 auto 1.5em;
 }
 
-.hero-intro strong {
+.tracker-root .hero-intro strong {
   font-weight: 700;
 }
 
 /* LEGEND */
-.legend {
+.tracker-root .legend {
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  margin: 0 auto 3rem;
+  gap: 2em;
+  margin: 0 auto 3em;
   max-width: 780px;
-  padding: 0 2rem;
+  padding: 0 2em;
 }
 
-.legend-item {
+.tracker-root .legend-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.8rem;
-  color: var(--text-secondary);
+  gap: 0.5em;
+  font-size: 0.8em;
+  color: var(--tr-text-secondary);
 }
 
-.legend-dot {
+.tracker-root .legend-dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
 }
 
-.legend-dot.rep { background: var(--red); }
-.legend-dot.dem { background: var(--blue); }
-.legend-dot.other { background: var(--neutral); }
+.tracker-root .legend-dot.rep { background: var(--tr-red); }
+.tracker-root .legend-dot.dem { background: var(--tr-blue); }
+.tracker-root .legend-dot.other { background: var(--tr-neutral); }
 
 /* FILTER */
-.filters {
+.tracker-root .filters {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
-  margin: 0 auto 3rem;
+  gap: 0.5em;
+  margin: 0 auto 3em;
   max-width: 780px;
-  padding: 0 2rem;
+  padding: 0 2em;
   flex-wrap: wrap;
 }
 
-.filter-btn {
+.tracker-root .filter-btn {
   font-family: 'Source Sans 3', sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.8em;
   font-weight: 500;
-  padding: 0.4rem 1rem;
-  border: 1px solid var(--border);
+  padding: 0.4em 1em;
+  border: 1px solid var(--tr-border);
   border-radius: 100px;
   background: transparent;
-  color: var(--text-secondary);
+  color: var(--tr-text-secondary);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.filter-btn:hover {
-  border-color: var(--text-muted);
-  color: var(--text);
+.tracker-root .filter-btn:hover {
+  border-color: var(--tr-text-muted);
+  color: var(--tr-text);
 }
 
-.filter-btn.active {
-  background: var(--text);
-  color: var(--bg);
-  border-color: var(--text);
+.tracker-root .filter-btn.active {
+  background: var(--tr-text);
+  color: var(--tr-bg);
+  border-color: var(--tr-text);
 }
 
 /* CUMULATIVE CHART */
-.cumulative-chart {
+.tracker-root .cumulative-chart {
   max-width: 1100px;
-  margin: 0 auto 2.5rem;
-  padding: 0 1rem;
+  margin: 0 auto 2.5em;
+  padding: 0 1em;
 }
 
-.chart-container {
+.tracker-root .chart-container {
   position: relative;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  background: var(--tr-bg-card);
+  border: 1px solid var(--tr-border);
   border-radius: 10px;
-  padding: 0.75rem 0.75rem 0.5rem;
-  box-shadow: var(--shadow);
+  padding: 0.75em 0.75em 0.5em;
+  box-shadow: var(--tr-shadow);
   overflow: hidden;
 }
 
-#chart-svg {
+.tracker-root #chart-svg {
   width: 100%;
   height: 420px;
   display: block;
@@ -202,199 +209,199 @@ body::before {
 }
 
 /* TIMELINE */
-.timeline {
+.tracker-root .timeline {
   max-width: 780px;
   margin: 0 auto;
-  padding: 0 2rem 6rem;
+  padding: 0 2em 6em;
   position: relative;
 }
 
-.timeline::before {
+.tracker-root .timeline::before {
   content: '';
   position: absolute;
-  left: calc(2rem + 5px);
+  left: calc(2em + 5px);
   top: 0;
-  bottom: 6rem;
+  bottom: 6em;
   width: 1px;
-  background: var(--timeline);
+  background: var(--tr-timeline);
 }
 
 @media (min-width: 640px) {
-  .timeline::before {
-    left: calc(2rem + 85px);
+  .tracker-root .timeline::before {
+    left: calc(2em + 85px);
   }
 }
 
 /* YEAR MARKER */
-.year-marker {
+.tracker-root .year-marker {
   position: relative;
-  padding: 2rem 0 1.5rem;
-  padding-left: 2rem;
+  padding: 2em 0 1.5em;
+  padding-left: 2em;
 }
 
 @media (min-width: 640px) {
-  .year-marker { padding-left: 0; }
+  .tracker-root .year-marker { padding-left: 0; }
 }
 
-.year-marker-text {
+.tracker-root .year-marker-text {
   font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
+  font-size: 1.4em;
   font-weight: 700;
-  color: var(--text-muted);
+  color: var(--tr-text-muted);
   position: relative;
   display: inline-block;
 }
 
 @media (min-width: 640px) {
-  .year-marker-text {
+  .tracker-root .year-marker-text {
     position: absolute;
     left: 0;
   }
 }
 
-.year-marker::after {
+.tracker-root .year-marker::after {
   content: '';
   position: absolute;
   left: 1px;
-  top: calc(2rem + 8px);
+  top: calc(2em + 8px);
   width: 11px;
   height: 11px;
   border-radius: 50%;
-  background: var(--timeline);
-  border: 2px solid var(--bg);
+  background: var(--tr-timeline);
+  border: 2px solid var(--tr-bg);
 }
 
 @media (min-width: 640px) {
-  .year-marker::after {
+  .tracker-root .year-marker::after {
     left: 80px;
   }
 }
 
 /* QUOTE CARD */
-.quote-card {
+.tracker-root .quote-card {
   position: relative;
-  padding-left: 2rem;
-  margin-bottom: 1.5rem;
+  padding-left: 2em;
+  margin-bottom: 1.5em;
   opacity: 0;
   transform: translateY(16px);
-  animation: fadeUp 0.5s ease forwards;
+  animation: tracker-fadeUp 0.5s ease forwards;
 }
 
 @media (min-width: 640px) {
-  .quote-card { padding-left: 7rem; }
+  .tracker-root .quote-card { padding-left: 7em; }
 }
 
-.quote-card .dot {
+.tracker-root .quote-card .dot {
   position: absolute;
   left: 1px;
-  top: 1.5rem;
+  top: 1.5em;
   width: 11px;
   height: 11px;
   border-radius: 50%;
-  border: 2px solid var(--bg);
+  border: 2px solid var(--tr-bg);
   z-index: 2;
   transition: transform 0.2s ease;
 }
 
 @media (min-width: 640px) {
-  .quote-card .dot {
-    left: calc(5rem);
+  .tracker-root .quote-card .dot {
+    left: calc(5em);
   }
 }
 
-.quote-card.rep .dot { background: var(--red); }
-.quote-card.dem .dot { background: var(--blue); }
-.quote-card.other .dot { background: var(--neutral); }
+.tracker-root .quote-card.rep .dot { background: var(--tr-red); }
+.tracker-root .quote-card.dem .dot { background: var(--tr-blue); }
+.tracker-root .quote-card.other .dot { background: var(--tr-neutral); }
 
-.quote-card:hover .dot {
+.tracker-root .quote-card:hover .dot {
   transform: scale(1.4);
 }
 
-.card-date {
+.tracker-root .card-date {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
-  color: var(--text-muted);
+  font-size: 0.7em;
+  color: var(--tr-text-muted);
   letter-spacing: 0.04em;
   position: relative;
   top: 0;
 }
 
 @media (min-width: 640px) {
-  .card-date {
+  .tracker-root .card-date {
     position: absolute;
     left: 0;
-    top: 1.35rem;
-    width: 4.5rem;
+    top: 1.35em;
+    width: 4.5em;
     text-align: right;
   }
 }
 
-.card-inner {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+.tracker-root .card-inner {
+  background: var(--tr-bg-card);
+  border: 1px solid var(--tr-border);
   border-radius: 8px;
-  padding: 1.25rem 1.5rem;
+  padding: 1.25em 1.5em;
   transition: all 0.25s ease;
-  margin-top: 0.3rem;
-  box-shadow: var(--shadow);
+  margin-top: 0.3em;
+  box-shadow: var(--tr-shadow);
 }
 
 @media (min-width: 640px) {
-  .card-inner { margin-top: 0; }
+  .tracker-root .card-inner { margin-top: 0; }
 }
 
-.quote-card:hover .card-inner {
-  box-shadow: var(--shadow-hover);
-  border-color: var(--border);
+.tracker-root .quote-card:hover .card-inner {
+  box-shadow: var(--tr-shadow-hover);
+  border-color: var(--tr-border);
 }
 
-.quote-card.rep .card-inner { border-left: 3px solid var(--red); }
-.quote-card.dem .card-inner { border-left: 3px solid var(--blue); }
-.quote-card.other .card-inner { border-left: 3px solid var(--neutral); }
+.tracker-root .quote-card.rep .card-inner { border-left: 3px solid var(--tr-red); }
+.tracker-root .quote-card.dem .card-inner { border-left: 3px solid var(--tr-blue); }
+.tracker-root .quote-card.other .card-inner { border-left: 3px solid var(--tr-neutral); }
 
-.card-header {
+.tracker-root .card-header {
   display: flex;
   align-items: baseline;
-  gap: 0.5rem;
-  margin-bottom: 0.75rem;
+  gap: 0.5em;
+  margin-bottom: 0.75em;
   flex-wrap: wrap;
 }
 
-.card-name {
+.tracker-root .card-name {
   font-family: 'Source Sans 3', sans-serif;
   font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--text);
+  font-size: 0.95em;
+  color: var(--tr-text);
 }
 
-.card-party {
-  font-size: 0.65rem;
+.tracker-root .card-party {
+  font-size: 0.65em;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  padding: 0.15rem 0.5rem;
+  padding: 0.15em 0.5em;
   border-radius: 3px;
   flex-shrink: 0;
 }
 
-.quote-card.rep .card-party { color: var(--red); background: var(--red-bg); }
-.quote-card.dem .card-party { color: var(--blue); background: var(--blue-bg); }
-.quote-card.other .card-party { color: var(--neutral); background: var(--neutral-bg); }
+.tracker-root .quote-card.rep .card-party { color: var(--tr-red); background: var(--tr-red-bg); }
+.tracker-root .quote-card.dem .card-party { color: var(--tr-blue); background: var(--tr-blue-bg); }
+.tracker-root .quote-card.other .card-party { color: var(--tr-neutral); background: var(--tr-neutral-bg); }
 
-.card-quote {
+.tracker-root .card-quote {
   font-family: 'Source Sans 3', -apple-system, sans-serif;
-  font-size: 0.95rem;
+  font-size: 0.95em;
   line-height: 1.7;
-  color: var(--text);
+  color: var(--tr-text);
   font-weight: 400;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.75em;
   white-space: pre-line;
 }
 
-.card-quote::before {
+.tracker-root .card-quote::before {
   content: '\201C';
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 2.2rem;
+  font-size: 2.2em;
   font-weight: 700;
   line-height: 0;
   vertical-align: -0.3em;
@@ -402,65 +409,74 @@ body::before {
   opacity: 0.3;
 }
 
-.card-footer {
+.tracker-root .card-footer {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1em;
   flex-wrap: wrap;
 }
 
-.card-source {
-  font-size: 0.75rem;
+.tracker-root .card-source {
+  font-size: 0.75em;
   font-weight: 500;
-  color: var(--text-muted);
+  color: var(--tr-text-muted);
   text-decoration: none;
   transition: color 0.2s;
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.3em;
 }
 
-.card-source:hover { color: var(--text); }
+.tracker-root .card-source:hover { color: var(--tr-text); }
 
-.card-source svg {
+.tracker-root .card-source svg {
   width: 12px;
   height: 12px;
   opacity: 0.5;
 }
 
-.card-context {
-  font-size: 0.72rem;
-  color: var(--text-muted);
+.tracker-root .card-context {
+  font-size: 0.72em;
+  color: var(--tr-text-muted);
   font-style: italic;
   line-height: 1.5;
-  padding-top: 0.6rem;
-  margin-top: 0.6rem;
-  border-top: 1px solid var(--border-light);
+  padding-top: 0.6em;
+  margin-top: 0.6em;
+  border-top: 1px solid var(--tr-border-light);
 }
 
-/* ANIMATIONS */
-@keyframes fadeUp {
+/* ANIMATIONS — prefixed to avoid collisions with host site keyframes */
+@keyframes tracker-fadeUp {
   to { opacity: 1; transform: translateY(0); }
 }
 
 /* FOOTER */
-.page-footer {
+.tracker-root .page-footer {
   max-width: 780px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2em;
   text-align: center;
-  border-top: 1px solid var(--border);
-  color: var(--text-muted);
-  font-size: 0.75rem;
+  border-top: 1px solid var(--tr-border);
+  color: var(--tr-text-muted);
+  font-size: 0.75em;
+}
+
+/* MOBILE — static chart, correct proportions */
+@media (max-width: 639px) {
+  .tracker-root #chart-svg {
+    height: auto;
+    cursor: default;
+    pointer-events: none;
+  }
 }
 
 /* HIDDEN */
-.quote-card.hidden {
+.tracker-root .quote-card.hidden {
   display: none;
 }
 </style>
-</head>
-<body>
+
+<div class="tracker-root">
 
 <header class="hero">
   <p class="hero-intro">
@@ -577,6 +593,8 @@ const uniqueNames = new Set(sorted.map(r => cleanName(r[0])));
 
 // Build cumulative chart — all hover done in SVG coordinates (no jank)
 (function buildChart() {
+  const isMobile = window.innerWidth < 640;
+
   // Members who left Congress (date they departed)
   const departures = [
     { name: 'Rep. Marjorie Taylor Greene (R-GA)', date: '2026-01-05' }
@@ -640,25 +658,29 @@ const uniqueNames = new Set(sorted.map(r => cleanName(r[0])));
   // Precompute pixel positions
   points.forEach(p => { p.px = xPos(p.date); p.py = yPos(p.count); });
 
+  // Scale axis font sizes up on mobile to stay readable after viewBox shrink
+  const axisFontY = isMobile ? 32 : 11;
+  const axisFontX = isMobile ? 34 : 12;
+
   // Grid
   let gridHTML = '';
   for (let i = 0; i <= maxCount + 2; i += 5) {
     if (i === 0) continue;
     const gy = yPos(i);
-    gridHTML += `<line x1="${padL}" y1="${gy}" x2="${W - padR}" y2="${gy}" stroke="var(--border)" stroke-width="0.5"/>`;
-    gridHTML += `<text x="${padL - 10}" y="${gy + 4}" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="11" fill="var(--text-muted)">${i}</text>`;
+    gridHTML += `<line x1="${padL}" y1="${gy}" x2="${W - padR}" y2="${gy}" stroke="var(--tr-border)" stroke-width="0.5"/>`;
+    gridHTML += `<text x="${padL - 10}" y="${gy + 4}" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="${axisFontY}" fill="var(--tr-text-muted)">${i}</text>`;
   }
   // Baseline
-  gridHTML += `<line x1="${padL}" y1="${yPos(0)}" x2="${W - padR}" y2="${yPos(0)}" stroke="var(--border)" stroke-width="0.5"/>`;
+  gridHTML += `<line x1="${padL}" y1="${yPos(0)}" x2="${W - padR}" y2="${yPos(0)}" stroke="var(--tr-border)" stroke-width="0.5"/>`;
 
   // Year markers
   ['2023','2024','2025','2026'].forEach(yr => {
     const xv = xPos(yr + '-01-01');
     if (xv > padL && xv < W - padR) {
-      gridHTML += `<line x1="${xv}" y1="${padT}" x2="${xv}" y2="${H - padB}" stroke="var(--border)" stroke-width="0.5" stroke-dasharray="3,5"/>`;
+      gridHTML += `<line x1="${xv}" y1="${padT}" x2="${xv}" y2="${H - padB}" stroke="var(--tr-border)" stroke-width="0.5" stroke-dasharray="3,5"/>`;
     }
     const labelX = xPos(yr + '-07-01');
-    gridHTML += `<text x="${Math.min(Math.max(labelX, padL + 20), W - padR - 20)}" y="${H - 12}" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="500" fill="var(--text-muted)">${yr}</text>`;
+    gridHTML += `<text x="${Math.min(Math.max(labelX, padL + 20), W - padR - 20)}" y="${H - 12}" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="${axisFontX}" font-weight="500" fill="var(--tr-text-muted)">${yr}</text>`;
   });
 
   // Step path
@@ -673,13 +695,13 @@ const uniqueNames = new Set(sorted.map(r => cleanName(r[0])));
     ${gridHTML}
     <defs>
       <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="var(--blue)" stop-opacity="0.18"/>
-        <stop offset="40%" stop-color="var(--red)" stop-opacity="0.10"/>
-        <stop offset="100%" stop-color="var(--red)" stop-opacity="0.01"/>
+        <stop offset="0%" stop-color="var(--tr-blue)" stop-opacity="0.18"/>
+        <stop offset="40%" stop-color="var(--tr-red)" stop-opacity="0.10"/>
+        <stop offset="100%" stop-color="var(--tr-red)" stop-opacity="0.01"/>
       </linearGradient>
       <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="var(--blue)"/>
-        <stop offset="100%" stop-color="var(--red)"/>
+        <stop offset="0%" stop-color="var(--tr-blue)"/>
+        <stop offset="100%" stop-color="var(--tr-red)"/>
       </linearGradient>
       <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
     </defs>
@@ -690,13 +712,13 @@ const uniqueNames = new Set(sorted.map(r => cleanName(r[0])));
   // Static dots
   const dotEls = [];
   points.forEach((p) => {
-    const color = p.party === 'rep' ? 'var(--red)' : 'var(--blue)';
+    const color = p.party === 'rep' ? 'var(--tr-red)' : 'var(--tr-blue)';
     const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     c.setAttribute('cx', p.px);
     c.setAttribute('cy', p.py);
     c.setAttribute('r', p.type === 'depart' ? '5' : '5');
-    c.setAttribute('fill', p.type === 'depart' ? 'var(--bg-card)' : color);
-    c.setAttribute('stroke', p.type === 'depart' ? color : 'var(--bg-card)');
+    c.setAttribute('fill', p.type === 'depart' ? 'var(--tr-bg-card)' : color);
+    c.setAttribute('stroke', p.type === 'depart' ? color : 'var(--tr-bg-card)');
     c.setAttribute('stroke-width', '2.5');
     if (p.type === 'depart') c.setAttribute('stroke-dasharray', '2,2');
     svg.appendChild(c);
@@ -710,11 +732,13 @@ const uniqueNames = new Set(sorted.map(r => cleanName(r[0])));
   el.setAttribute('y', lastP.py - 14);
   el.setAttribute('text-anchor', 'end');
   el.setAttribute('font-family', "'Playfair Display', serif");
-  el.setAttribute('font-size', '20');
+  el.setAttribute('font-size', isMobile ? '44' : '20');
   el.setAttribute('font-weight', '700');
-  el.setAttribute('fill', 'var(--text)');
+  el.setAttribute('fill', 'var(--tr-text)');
   el.textContent = lastP.count + ' members';
   svg.appendChild(el);
+
+  if (isMobile) return;
 
   // Hover elements — all in SVG, no coordinate mismatch
   const NS = 'http://www.w3.org/2000/svg';
@@ -725,7 +749,7 @@ const uniqueNames = new Set(sorted.map(r => cleanName(r[0])));
   const crosshair = document.createElementNS(NS, 'line');
   crosshair.setAttribute('y1', padT);
   crosshair.setAttribute('y2', H - padB);
-  crosshair.setAttribute('stroke', 'var(--text)');
+  crosshair.setAttribute('stroke', 'var(--tr-text)');
   crosshair.setAttribute('stroke-width', '1');
   crosshair.setAttribute('stroke-opacity', '0.15');
   crosshair.setAttribute('stroke-dasharray', '4,3');
@@ -740,7 +764,7 @@ const uniqueNames = new Set(sorted.map(r => cleanName(r[0])));
 
   const hoverDot = document.createElementNS(NS, 'circle');
   hoverDot.setAttribute('r', '5');
-  hoverDot.setAttribute('stroke', 'var(--bg-card)');
+  hoverDot.setAttribute('stroke', 'var(--tr-bg-card)');
   hoverDot.setAttribute('stroke-width', '2.5');
   hoverG.appendChild(hoverDot);
 
@@ -749,15 +773,15 @@ const uniqueNames = new Set(sorted.map(r => cleanName(r[0])));
   const tipRect = document.createElementNS(NS, 'rect');
   tipRect.setAttribute('rx', '6');
   tipRect.setAttribute('ry', '6');
-  tipRect.setAttribute('fill', 'var(--text)');
+  tipRect.setAttribute('fill', 'var(--tr-text)');
   tipG.appendChild(tipRect);
 
   const tipArrow = document.createElementNS(NS, 'polygon');
-  tipArrow.setAttribute('fill', 'var(--text)');
+  tipArrow.setAttribute('fill', 'var(--tr-text)');
   tipG.appendChild(tipArrow);
 
   const tipLine1 = document.createElementNS(NS, 'text');
-  tipLine1.setAttribute('fill', 'var(--bg)');
+  tipLine1.setAttribute('fill', 'var(--tr-bg)');
   tipLine1.setAttribute('font-family', "'Source Sans 3', sans-serif");
   tipLine1.setAttribute('font-size', '14');
   tipLine1.setAttribute('font-weight', '600');
@@ -765,7 +789,7 @@ const uniqueNames = new Set(sorted.map(r => cleanName(r[0])));
   tipG.appendChild(tipLine1);
 
   const tipLine2 = document.createElementNS(NS, 'text');
-  tipLine2.setAttribute('fill', 'var(--bg)');
+  tipLine2.setAttribute('fill', 'var(--tr-bg)');
   tipLine2.setAttribute('font-family', "'JetBrains Mono', monospace");
   tipLine2.setAttribute('font-size', '11');
   tipLine2.setAttribute('text-anchor', 'middle');
@@ -777,7 +801,6 @@ const uniqueNames = new Set(sorted.map(r => cleanName(r[0])));
 
   // Invisible hit area rects for each point — snapping, no jitter
   let activeIdx = -1;
-  const hitW = (W - padL - padR) / points.length;
   points.forEach((p, i) => {
     const hitRect = document.createElementNS(NS, 'rect');
     const hx = i === 0 ? padL : (p.px + (points[Math.max(0, i - 1)].px)) / 2;
@@ -794,7 +817,7 @@ const uniqueNames = new Set(sorted.map(r => cleanName(r[0])));
       if (target) {
         target.scrollIntoView({ behavior: 'smooth', block: 'center' });
         target.style.transition = 'box-shadow 0.3s ease';
-        target.querySelector('.card-inner').style.boxShadow = '0 0 0 3px ' + (p.party === 'rep' ? 'var(--red)' : 'var(--blue)');
+        target.querySelector('.card-inner').style.boxShadow = '0 0 0 3px ' + (p.party === 'rep' ? 'var(--tr-red)' : 'var(--tr-blue)');
         setTimeout(() => { target.querySelector('.card-inner').style.boxShadow = ''; }, 1500);
       }
     });
@@ -802,7 +825,7 @@ const uniqueNames = new Set(sorted.map(r => cleanName(r[0])));
     hitRect.addEventListener('mouseenter', () => {
       if (activeIdx === i) return;
       activeIdx = i;
-      const color = p.party === 'rep' ? 'var(--red)' : 'var(--blue)';
+      const color = p.party === 'rep' ? 'var(--tr-red)' : 'var(--tr-blue)';
 
       // Crosshair
       crosshair.setAttribute('x1', p.px);
@@ -914,7 +937,6 @@ sorted.forEach((row, idx) => {
 
   timeline.appendChild(card);
 });
-
 </script>
-</body>
-</html>
+
+</div>
