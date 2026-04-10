@@ -941,92 +941,120 @@ const uniqueNames = new Set(sorted.map(r => cleanName(r[0])));
   hoverG.appendChild(tipG);
   svg.appendChild(hoverG);
 
-  // Invisible hit area rects for each point — snapping, no jitter
+  // Single overlay rect with 2D nearest-neighbor hit-testing.
+  // This lets users hover points that share the same date — vertically stacked
+  // points on the same day are picked by Y proximity instead of collapsing into
+  // a zero-width horizontal slice.
   let activeIdx = -1;
-  points.forEach((p, i) => {
-    const hitRect = document.createElementNS(NS, 'rect');
-    const hx = i === 0 ? padL : (p.px + (points[Math.max(0, i - 1)].px)) / 2;
-    const hw = i === points.length - 1 ? W - padR - hx : ((points[Math.min(points.length - 1, i + 1)].px + p.px) / 2) - hx;
-    hitRect.setAttribute('x', hx);
-    hitRect.setAttribute('y', padT);
-    hitRect.setAttribute('width', Math.max(hw, 1));
-    hitRect.setAttribute('height', H - padT - padB);
-    hitRect.setAttribute('fill', 'transparent');
-    hitRect.style.cursor = 'pointer';
 
-    hitRect.addEventListener('click', () => {
-      const target = document.getElementById(nameSlug(p.name));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        target.style.transition = 'box-shadow 0.3s ease';
-        target.querySelector('.card-inner').style.boxShadow = '0 0 0 3px ' + (p.party === 'rep' ? 'var(--tr-red)' : 'var(--tr-blue)');
-        setTimeout(() => { target.querySelector('.card-inner').style.boxShadow = ''; }, 1500);
-      }
-    });
+  function activatePoint(i) {
+    if (activeIdx === i) return;
+    activeIdx = i;
+    const p = points[i];
+    const color = p.party === 'rep' ? 'var(--tr-red)' : 'var(--tr-blue)';
 
-    hitRect.addEventListener('mouseenter', () => {
-      if (activeIdx === i) return;
-      activeIdx = i;
-      const color = p.party === 'rep' ? 'var(--tr-red)' : 'var(--tr-blue)';
+    // Crosshair
+    crosshair.setAttribute('x1', p.px);
+    crosshair.setAttribute('x2', p.px);
 
-      // Crosshair
-      crosshair.setAttribute('x1', p.px);
-      crosshair.setAttribute('x2', p.px);
+    // Dots
+    hoverRing.setAttribute('cx', p.px);
+    hoverRing.setAttribute('cy', p.py);
+    hoverRing.setAttribute('stroke', color);
+    hoverDot.setAttribute('cx', p.px);
+    hoverDot.setAttribute('cy', p.py);
+    hoverDot.setAttribute('fill', color);
 
-      // Dots
-      hoverRing.setAttribute('cx', p.px);
-      hoverRing.setAttribute('cy', p.py);
-      hoverRing.setAttribute('stroke', color);
-      hoverDot.setAttribute('cx', p.px);
-      hoverDot.setAttribute('cy', p.py);
-      hoverDot.setAttribute('fill', color);
+    // Enlarge the static dot
+    dotEls.forEach((d, di) => d.setAttribute('r', di === i ? '7' : '5'));
 
-      // Enlarge the static dot
-      dotEls.forEach((d, di) => d.setAttribute('r', di === i ? '7' : '5'));
+    // Tooltip text
+    const d = new Date(p.date + 'T12:00:00');
+    const ds = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    if (p.type === 'depart') {
+      tipLine1.textContent = `${p.name} left Congress`;
+      tipLine2.textContent = `${ds} \u2022 ${p.count} remaining`;
+    } else {
+      tipLine1.textContent = `#${p.count}  ${p.name}`;
+      tipLine2.textContent = ds;
+    }
 
-      // Tooltip text
-      const d = new Date(p.date + 'T12:00:00');
-      const ds = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-      if (p.type === 'depart') {
-        tipLine1.textContent = `${p.name} left Congress`;
-        tipLine2.textContent = `${ds} \u2022 ${p.count} remaining`;
-      } else {
-        tipLine1.textContent = `#${p.count}  ${p.name}`;
-        tipLine2.textContent = ds;
-      }
+    // Measure and position tooltip
+    const tw = Math.max(tipLine1.getComputedTextLength(), tipLine2.getComputedTextLength()) + 24;
+    const th = 46;
+    let tx = p.px;
+    let ty = p.py - 22;
 
-      // Measure and position tooltip
-      const tw = Math.max(tipLine1.getComputedTextLength(), tipLine2.getComputedTextLength()) + 24;
-      const th = 46;
-      let tx = p.px;
-      let ty = p.py - 22;
+    // Clamp to chart bounds
+    const halfW = tw / 2;
+    if (tx - halfW < padL) tx = padL + halfW;
+    if (tx + halfW > W - padR) tx = W - padR - halfW;
 
-      // Clamp to chart bounds
-      const halfW = tw / 2;
-      if (tx - halfW < padL) tx = padL + halfW;
-      if (tx + halfW > W - padR) tx = W - padR - halfW;
+    tipRect.setAttribute('x', tx - tw / 2);
+    tipRect.setAttribute('y', ty - th);
+    tipRect.setAttribute('width', tw);
+    tipRect.setAttribute('height', th);
+    tipLine1.setAttribute('x', tx);
+    tipLine1.setAttribute('y', ty - 22);
+    tipLine2.setAttribute('x', tx);
+    tipLine2.setAttribute('y', ty - 7);
+    tipArrow.setAttribute('points', `${p.px - 5},${ty} ${p.px + 5},${ty} ${p.px},${ty + 6}`);
 
-      tipRect.setAttribute('x', tx - tw / 2);
-      tipRect.setAttribute('y', ty - th);
-      tipRect.setAttribute('width', tw);
-      tipRect.setAttribute('height', th);
-      tipLine1.setAttribute('x', tx);
-      tipLine1.setAttribute('y', ty - 22);
-      tipLine2.setAttribute('x', tx);
-      tipLine2.setAttribute('y', ty - 7);
-      tipArrow.setAttribute('points', `${p.px - 5},${ty} ${p.px + 5},${ty} ${p.px},${ty + 6}`);
+    hoverG.setAttribute('opacity', '1');
+  }
 
-      hoverG.setAttribute('opacity', '1');
-    });
+  function pickNearest(e) {
+    const pt = svg.createSVGPoint();
+    pt.x = e.clientX;
+    pt.y = e.clientY;
+    const ctm = svg.getScreenCTM();
+    if (!ctm) return -1;
+    const svgP = pt.matrixTransform(ctm.inverse());
 
-    svg.appendChild(hitRect);
+    let nearest = -1;
+    let minDist = Infinity;
+    for (let i = 0; i < points.length; i++) {
+      const dx = points[i].px - svgP.x;
+      const dy = points[i].py - svgP.y;
+      const d = dx * dx + dy * dy;
+      if (d < minDist) { minDist = d; nearest = i; }
+    }
+    return nearest;
+  }
+
+  const overlay = document.createElementNS(NS, 'rect');
+  overlay.setAttribute('x', padL);
+  overlay.setAttribute('y', padT);
+  overlay.setAttribute('width', W - padL - padR);
+  overlay.setAttribute('height', H - padT - padB);
+  overlay.setAttribute('fill', 'transparent');
+  overlay.style.cursor = 'pointer';
+
+  overlay.addEventListener('mousemove', (e) => {
+    const i = pickNearest(e);
+    if (i >= 0) activatePoint(i);
   });
 
-  svg.addEventListener('mouseleave', () => {
+  overlay.addEventListener('click', (e) => {
+    const i = pickNearest(e);
+    if (i < 0) return;
+    const p = points[i];
+    const target = document.getElementById(nameSlug(p.name));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      target.style.transition = 'box-shadow 0.3s ease';
+      target.querySelector('.card-inner').style.boxShadow = '0 0 0 3px ' + (p.party === 'rep' ? 'var(--tr-red)' : 'var(--tr-blue)');
+      setTimeout(() => { target.querySelector('.card-inner').style.boxShadow = ''; }, 1500);
+    }
+  });
+
+  overlay.addEventListener('mouseleave', () => {
     hoverG.setAttribute('opacity', '0');
     dotEls.forEach(d => d.setAttribute('r', '5'));
     activeIdx = -1;
   });
+
+  svg.appendChild(overlay);
 })();
 
 // Render with filters
