@@ -645,10 +645,10 @@ const RAW_DATA = [
 ["🔴 Rep. Andy Biggs (R-AZ)","At what point do we no longer see computational decision-making with a human first mover, and you have an algorithmically iterated process...at some point, it won't be a human that's the first mover anymore, it'll be the algorithm itself. And how long before we get there? How do we prevent the crime and provide the deterrence that is necessary?\n\nSo with that bizarre question, but acknowledging that we're actually moving so rapidly that we probably thought by 2050 you'd be getting to <b>artificial superintelligence</b>, but it looks like maybe before 2030 you're going to be in artificial superintelligence.","https://www.youtube.com/watch?v=AU-4QHtCkxU","House Judiciary Committee hearing; preventing criminal exploitation of AI.","2025-07-16"],
 ["🔴 Rep. Dusty Johnson (R-SD)","Mr. Beall, you noted at the top that maybe we've become numbed by the headlines about all of the dangers of AI. I think that might be true. And yet, honestly, what we've heard today, I suspect, has scared the hell out of many of these committee members. Anybody who doesn't feel urgency around this issue is not paying attention.\nYou noted that this is the most important national security challenge of our time. You noted that <b>if we lose this race, it could trigger a global crisis</b>.","https://www.youtube.com/live/GDNrUZBZDA4?si=J5X6EcYy1t_qcNam&t=3587","Committee on the CCP hearing, Authoritarians and Algorithms: Why U.S. AI Must Lead.","2025-06-25"],
 ["🔴 Rep. Eli Crane (R-AZ)","Can you clarify to us what <b>singularity</b> means in the past? [...] It's <b>Skynet</b>. Skynet? Is that what we're thinking?","https://www.youtube.com/live/q4iMl7iUD6E?si=VFCKaCLPQWGJH4Mq&t=1632","From a bipartisan roundtable on AI.","2025-07-22"],
-["🔴 Rep. Eli Crane (R-AZ)","Does anyone on this panel feel or believe in any way as we are going down the road in this AI race <b>we might be simultaneously engineering our own destruction</b>? [...] We're seeing reports that Anthropic's Claude [Mythos] has been deemed too powerful and dangerous for public release and how it could be weaponized against banks, hospitals, energy grids, etc. [...] In the event that this some of this technology was to fall into the wrong hands, what keeps you guys up at night in relation to these powerful AI systems?","https://oversight.house.gov/roundtable/artificial-intelligence-and-american-power-leadership-security-and-prosperity/","","2026-04-17"],
+["🔴 Rep. Eli Crane (R-AZ)","Does anyone on this panel feel or believe in any way as we are going down the road in this AI race <b>we might be simultaneously engineering our own destruction</b>? [...] We're seeing reports that Anthropic's Claude [Mythos] has been deemed too powerful and dangerous for public release and how it could be weaponized against banks, hospitals, energy grids, etc. [...] In the event that this some of this technology was to fall into the wrong hands, what keeps you guys up at night in relation to these powerful AI systems?","https://oversight.house.gov/roundtable/artificial-intelligence-and-american-power-leadership-security-and-prosperity/","AI and American Power roundtable","2026-04-17"],
 ["🔴 Rep. Eric Burlison (R-MO)","I'm going to begin by quoting Irving John Good, who was a British mathematician. He is quoted as saying, 'Let an ultra-intelligent machine be defined as a machine that can far surpass all the intellectual activities of any man, however clever. Thus, <b>the first ultra intelligent machine is the last invention that man may ever need to make</b>.'","https://www.youtube.com/live/0ytOZF3cdXw?si=L4NvItJWZAaY9HOU&t=3552","","2025-09-17"],
 ["🔴 Rep. Kevin Kiley (R-CA)","This is something that we have to get right, and we only get one shot at. There's a widely shared view that once AI capability crosses a certain threshold, whether that be <b>recursive self-improvement</b> or some other threshold, there's going to be an <b>escape velocity</b>. That has implications for the narrower geopolitical context of which country leads in the technology, but also for the broader idea of, <b>'Is this technology going to be aligned with and beneficial to humanity?'</b>","https://youtu.be/Dny8dVjWS_k?si=Qaf8-Z0nmOD0b8o9&t=249","","2025-09-18"],
-["🔴 Rep. John McGuire (R-VA)","How do we ensure AI does not creep into the kill chain? Because if AI thinks that oh this is a bad idea, it's not moral, they may not know what the commander knows, and <b>we can't have it stop it</b>.","https://oversight.house.gov/roundtable/artificial-intelligence-and-american-power-leadership-security-and-prosperity","","2026-04-17"],
+["🔴 Rep. John McGuire (R-VA)","How do we ensure AI does not creep into the kill chain? Because if AI thinks that oh this is a bad idea, it's not moral, they may not know what the commander knows, and <b>we can't have it stop it</b>.","https://oversight.house.gov/roundtable/artificial-intelligence-and-american-power-leadership-security-and-prosperity","AI and American Power roundtable","2026-04-17"],
 ["🔴 Rep. Marjorie Taylor Greene (R-GA)","I'm not voting for the development of <b>skynet and the rise of the machines</b> by destroying federalism for 10 years by taking away state rights to regulate and make laws on all AI.","https://x.com/RepMTG/status/1930650431253827806","","2025-06-05"],
 ["🔴 Rep. Nancy Mace (R-SC)","Some experts warn we are just a few years away from the emergence of <b>artificial general intelligence\u2014or the singularity</b>.\nOthers argue the technology has inherent limitations and we are decades away from the singularity, if it is even possible.\nWe don't know for certain what the future of AI will look like.\nBut what I do know is the future is too important to be left up to chance.\nWe need to do our best to understand what kinds of impact AI can have on our economy and society and develop potential solutions now, before it's too late.","https://oversight.house.gov/release/mace-opens-hearing-on-the-future-of-artificial-intelligence/","Hearing on the future of AI.","2025-09-17"],
 ["🔴 Rep. Nancy Mace (R-SC)","Well, some estimates say the <b>singularity is a thousand days away</b>, some say two thousand days away, but it is rapidly approaching either way.","https://www.youtube.com/live/q4iMl7iUD6E?si=iCRMN_HzV4akjD_v&t=1520","","2025-07-22"],
@@ -716,7 +716,7 @@ function nameSlug(name) {
   return 'q-' + name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '');
 }
 
-function getSourceLabel(url) {
+function getSourceLabel(url, context) {
   if (!url) return '';
   try {
     const host = new URL(url).hostname.replace('www.','');
@@ -724,7 +724,7 @@ function getSourceLabel(url) {
     if (host.includes('x.com') || host.includes('twitter.com')) return 'View post';
     if (host.includes('congress.gov')) return 'Congress.gov';
     if (host.includes('senate.gov')) return 'Senate.gov';
-    if (host.includes('house.gov')) return 'House.gov';
+    if (host.includes('house.gov')) return context || 'House.gov';
     return host;
   } catch { return 'Source'; }
 }
@@ -1122,7 +1122,7 @@ function renderTimeline() {
     delay += 60;
 
     const partyLabel = getPartyLabel(party);
-    const sourceLabel = getSourceLabel(source);
+    const sourceLabel = getSourceLabel(source, context);
 
     card.innerHTML = `
       <span class="dot"></span>
@@ -1139,7 +1139,7 @@ function renderTimeline() {
             ${sourceLabel}
           </a>` : ''}
         </div>
-        ${context ? `<div class="card-context">${context}</div>` : ''}
+        ${context && context !== sourceLabel ? `<div class="card-context">${context}</div>` : ''}
       </div>
     `;
 
