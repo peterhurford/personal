@@ -526,8 +526,9 @@
     let totalMs = 0;
     let remainingMs = 0;
     let state = 'select'; // select | running | paused | done
-    let lastTick = 0;
+    let endTime = 0;
     let rafId = null;
+    let backupInterval = null;
     let overtimeStarted = false;
 
     // Build presets
@@ -564,7 +565,7 @@
       totalMs = minutes * 60 * 1000;
       remainingMs = totalMs;
       state = 'running';
-      lastTick = performance.now();
+      endTime = Date.now() + totalMs;
 
       showView('timer');
       doneOverlay.classList.remove('active');
@@ -591,7 +592,9 @@
       ringProgress.setAttribute('stroke-dashoffset', '0');
 
       cancelAnimationFrame(rafId);
+      clearInterval(backupInterval);
       rafId = requestAnimationFrame(tick);
+      backupInterval = setInterval(backgroundTick, 1000);
     }
 
     function togglePause() {
@@ -600,11 +603,13 @@
         state = 'paused';
         btnAction.textContent = 'Resume';
         cancelAnimationFrame(rafId);
+        clearInterval(backupInterval);
       } else if (state === 'paused') {
         state = 'running';
         btnAction.textContent = 'Pause';
-        lastTick = performance.now();
+        endTime = Date.now() + remainingMs;
         rafId = requestAnimationFrame(tick);
+        backupInterval = setInterval(backgroundTick, 1000);
       }
     }
 
@@ -612,6 +617,7 @@
       state = 'select';
       overtimeStarted = false;
       cancelAnimationFrame(rafId);
+      clearInterval(backupInterval);
       ringProgress.classList.remove('urgent', 'overtime');
       ringDot.classList.remove('urgent', 'overtime');
       timeText.classList.remove('urgent', 'overtime');
@@ -630,11 +636,19 @@
       view.style.animation = '';
     }
 
-    function tick(now) {
-      const dt = now - lastTick;
-      lastTick = now;
-      remainingMs = remainingMs - dt;
+    function tick() {
+      remainingMs = endTime - Date.now();
+      render();
+      rafId = requestAnimationFrame(tick);
+    }
 
+    function backgroundTick() {
+      if (state !== 'running') return;
+      remainingMs = endTime - Date.now();
+      render();
+    }
+
+    function render() {
       if (remainingMs > 0) {
         const progress = remainingMs / totalMs;
         const offset = C * (1 - progress);
@@ -694,9 +708,16 @@
         const s = totalSec % 60;
         timeText.textContent = `-${String(m).padStart(2, '0')}m${String(s).padStart(2, '0')}`;
       }
-
-      rafId = requestAnimationFrame(tick);
     }
+
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden && state === 'running') {
+        remainingMs = endTime - Date.now();
+        render();
+        cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(tick);
+      }
+    });
 
     function playAlertSound() {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
