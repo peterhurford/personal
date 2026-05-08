@@ -602,7 +602,7 @@
 
 <header class="hero">
   <p class="hero-intro">
-    <strong>38</strong> current members of Congress have publicly discussed AGI, AI superintelligence, AI existential risk, AI loss of control, recursive self-improvement, or the Singularity. And it's bipartisan&mdash;<strong>18 Republicans</strong> and <strong>20 Democrats!</strong>
+    <strong>39</strong> current members of Congress have publicly discussed AGI, AI superintelligence, AI existential risk, AI loss of control, recursive self-improvement, or the Singularity. And it's bipartisan&mdash;<strong>18 Republicans</strong> and <strong>21 Democrats!</strong>
   </p>
 </header>
 
@@ -662,6 +662,7 @@ const RAW_DATA = [
 ["🔴 Sen. Cynthia Lummis (R-WY)","Industry leaders have publicly acknowledged the development of increasingly powerful artificial intelligence systems, with some discussing the potential for <b>artificial general intelligence and superintelligence</b> that could fundamentally reshape the society of the United States.","https://www.congress.gov/119/bills/s2081/BILLS-119s2081is.htm","RISE Act of 2025; protecting AI developers from civil liability if they comply with certain transparency requirements.","2025-06-12"],
 ["🔴 Sen. Mike Rounds (R-SD)","The U.S. will set the stage for responsible development and use of <b>artificial general intelligence</b> capabilities that will eventually unlock unparalleled opportunities for the American people.","https://www.rounds.senate.gov/ASAP","American Science Acceleration Project; also authored S.2604 establishing a DoD \"Artificial General Intelligence Steering Committee\" (NDAA Sec. 1535).","2025-07-31"],
 ["🔵 Rep. Ro Khanna (D-CA)","When Chairman Gallagher and I had that conversation with Elon Musk, he said that <b>AGI</b> [artificial general intelligence] was <b>5 to 6 years away</b>. I was surprised by that timeline. What is your sense of how long we are from AGI?","https://www.govinfo.gov/app/details/CHRG-118hhrg53627","House Select Committee on the CCP hearing.","2023-07-18"],
+["🔵 Rep. Greg Casar (D-TX)","[Quote-tweeting Sen. Bernie Sanders: \"If the world's leading scientists say there's even a <b>10% chance humanity could be destroyed because of uncontrolled AI</b>, shouldn't we do everything possible to prevent it?\"] <b>I'm 100% with Bernie here.</b>","https://x.com/repcasar/status/2052091765604143122","","2026-05-06"],
 ["🔵 Rep. Sean Casten (D-IL)","Isaac Asimov probably thought more about robots and how to fit robots into an ethical framework than darn near anybody. [...] The whole idea is that if you don't have those protections then <b>we lose control</b>. And we are now sitting here with a Department of Defense led by Major Hegseth who would like to use robots to kill human beings. [...] The fact that we have one AI company who is trying to be somewhat more ethical than the others and the Department of Defense is stepping all over them is both immoral and ignorant of the finer works of Isaac Asimov and Will Smith.","https://financialservices.house.gov/calendar/eventsingle.aspx?EventID=411031","House Financial Services Markup","2026-03-04"],
 ["🔵 Rep. Sam Liccardo (D-CA)","AI safety should not be a partisan issue. According to a recent Gallup survey, by a ratio of 8 to 1, US adults believe the government should maintain rules for AI safety even if it means developing AI capabilities more slowly. [...] <b>Agentic misalignment</b> is not yet a household term but it soon will be. In Silicon Valley where I live it's on the mind of every AI researcher and engineer with whom I talk.","https://financialservices.house.gov/calendar/eventsingle.aspx?EventID=411031","House Financial Services Markup","2026-03-04"],
 ["🔵 Rep. Bill Foster (D-IL)","If everyone had <b>AGI</b> software today, then the question is how many copies of that can you deploy? And that's limited by compute. When <b>the singularity</b> hits, that's what's really going to matter.\n[...]\nThat is why I've been so involved in trying to move the needle on hardware-enforced mechanisms.","https://youtu.be/C3R1AFddnxo?si=sFyCGs7m_PpD50sb&t=89","","2025-12-06"],
@@ -808,7 +809,9 @@ const uniqueNames = new Set(sorted.map(r => cleanName(r[0])));
   // Filter out points before 2023 from the chart (they still appear in the timeline)
   const chartPoints = points.filter(p => p.date >= '2023-01-01');
   const startDate = new Date('2023-01-01T00:00:00');
-  const endDate = new Date('2026-04-15T00:00:00');
+  const lastPointDate = new Date(chartPoints[chartPoints.length - 1].date + 'T00:00:00');
+  const minEnd = new Date('2026-04-15T00:00:00');
+  const endDate = lastPointDate > minEnd ? lastPointDate : minEnd;
   const totalMs = endDate - startDate;
 
   function xPos(dateStr) {
