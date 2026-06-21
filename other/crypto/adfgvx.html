@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADFGVX Cipher Simulator</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --panel: #1a1d27;
+    --panel2: #222634;
+    --accent: #6ee7b7;
+    --accent2: #60a5fa;
+    --text: #e6e8ee;
+    --muted: #8b90a0;
+    --border: #2e3340;
+    --error: #f87171;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 32px 20px 64px; }
+  h1 { font-size: 1.6rem; margin: 0 0 4px; letter-spacing: .04em; }
+  h1 .letters { color: var(--accent); }
+  .sub { color: var(--muted); margin: 0 0 28px; font-size: .92rem; }
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  label { display: block; font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 6px; }
+  input[type=text], textarea {
+    width: 100%;
+    background: var(--panel2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    padding: 10px 12px;
+    font-size: .95rem;
+    font-family: inherit;
+  }
+  textarea { resize: vertical; min-height: 90px; font-family: "SF Mono", Menlo, Consolas, monospace; }
+  input:focus, textarea:focus { outline: none; border-color: var(--accent2); }
+  .row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .row > div { flex: 1; min-width: 200px; }
+  .field { margin-bottom: 16px; }
+  .btns { display: flex; gap: 12px; margin-top: 4px; flex-wrap: wrap; }
+  button {
+    border: none;
+    border-radius: 8px;
+    padding: 11px 20px;
+    font-size: .95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform .05s ease, filter .15s ease;
+  }
+  button:active { transform: translateY(1px); }
+  .btn-enc { background: var(--accent); color: #06281d; }
+  .btn-dec { background: var(--accent2); color: #08203f; }
+  .btn-ghost { background: var(--panel2); color: var(--text); border: 1px solid var(--border); }
+  button:hover { filter: brightness(1.08); }
+  .out {
+    margin-top: 16px;
+    background: var(--panel2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: .95rem;
+    min-height: 24px;
+    word-break: break-all;
+    white-space: pre-wrap;
+  }
+  .out.error { color: var(--error); }
+  .square { border-collapse: collapse; margin-top: 8px; font-family: "SF Mono", Menlo, Consolas, monospace; }
+  .square td, .square th {
+    border: 1px solid var(--border);
+    width: 32px; height: 32px;
+    text-align: center;
+    font-size: .9rem;
+  }
+  .square th { color: var(--accent); background: var(--panel2); }
+  .square td { text-transform: uppercase; }
+  details { margin-top: 8px; }
+  summary { cursor: pointer; color: var(--accent2); font-size: .85rem; }
+  .hint { color: var(--muted); font-size: .78rem; margin-top: 6px; }
+  .copy { font-size: .75rem; padding: 5px 12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1><span class="letters">ADFGVX</span> Cipher Simulator</h1>
+  <p class="sub">A WWI German field cipher: Polybius fractionation over a 6×6 square, then keyed columnar transposition.</p>
+
+  <div class="panel">
+    <div class="row">
+      <div class="field">
+        <label for="square-key">Square keyword <span style="text-transform:none;color:var(--muted)">(seeds the 6×6 grid)</span></label>
+        <input type="text" id="square-key" value="PRIVACY" placeholder="e.g. PRIVACY" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="trans-key">Transposition keyword</label>
+        <input type="text" id="trans-key" value="GERMAN" placeholder="e.g. GERMAN" autocomplete="off">
+      </div>
+    </div>
+    <details>
+      <summary>Show the current Polybius square</summary>
+      <div id="square-view"></div>
+      <p class="hint">Each letter/digit maps to a row label + column label drawn from A D F G V X.</p>
+    </details>
+  </div>
+
+  <div class="panel">
+    <div class="field">
+      <label for="input">Message</label>
+      <textarea id="input" placeholder="Type plaintext to encrypt, or ciphertext to decrypt…">Attack at dawn</textarea>
+      <p class="hint">Letters A–Z and digits 0–9 are kept; everything else is dropped. Decryption expects only the letters A D F G V X.</p>
+    </div>
+    <div class="btns">
+      <button class="btn-enc" onclick="run('encrypt')">Encrypt →</button>
+      <button class="btn-dec" onclick="run('decrypt')">← Decrypt</button>
+      <button class="btn-ghost" onclick="swapOutToIn()">Use output as input</button>
+    </div>
+    <div class="field" style="margin-top:18px;margin-bottom:0">
+      <label>Result
+        <button class="btn-ghost copy" style="float:right" onclick="copyOut()">Copy</button>
+      </label>
+      <div class="out" id="output"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const ADFGVX = "ADFGVX";
+const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; // 36 chars
+
+// Build the 6x6 square content from a keyword: unique keyword chars first, then the rest.
+function buildSquare(keyword) {
+  const seen = new Set();
+  const out = [];
+  const clean = (keyword || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+  for (const ch of clean + ALPHABET) {
+    if (!seen.has(ch)) { seen.add(ch); out.push(ch); }
+  }
+  return out; // length 36
+}
+
+// Map char -> two ADFGVX labels, and reverse.
+function squareMaps(square) {
+  const charToPair = {};
+  const pairToChar = {};
+  for (let i = 0; i < 36; i++) {
+    const row = ADFGVX[Math.floor(i / 6)];
+    const col = ADFGVX[i % 6];
+    charToPair[square[i]] = row + col;
+    pairToChar[row + col] = square[i];
+  }
+  return { charToPair, pairToChar };
+}
+
+// Column read order for a transposition keyword (stable sort by char, then position).
+function keyOrder(keyword) {
+  const clean = (keyword || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+  if (!clean.length) throw new Error("Transposition keyword must contain letters or digits.");
+  return clean
+    .split("")
+    .map((ch, i) => ({ ch, i }))
+    .sort((a, b) => a.ch < b.ch ? -1 : a.ch > b.ch ? 1 : a.i - b.i)
+    .map(o => o.i);
+}
+
+function encrypt(text, squareKey, transKey) {
+  const square = buildSquare(squareKey);
+  const { charToPair } = squareMaps(square);
+  const clean = text.toUpperCase().replace(/[^A-Z0-9]/g, "");
+  if (!clean.length) throw new Error("Nothing to encrypt — message has no letters or digits.");
+
+  // Fractionate
+  let frac = "";
+  for (const ch of clean) frac += charToPair[ch];
+
+  // Columnar transposition
+  const cols = transKey.toUpperCase().replace(/[^A-Z0-9]/g, "").length;
+  const order = keyOrder(transKey);
+  const grid = [];
+  for (let i = 0; i < frac.length; i += cols) grid.push(frac.slice(i, i + cols).split(""));
+
+  let result = "";
+  for (const c of order) {
+    for (const rowArr of grid) {
+      if (rowArr[c] !== undefined) result += rowArr[c];
+    }
+  }
+  return result;
+}
+
+function decrypt(cipher, squareKey, transKey) {
+  const square = buildSquare(squareKey);
+  const { pairToChar } = squareMaps(square);
+  const clean = cipher.toUpperCase().replace(/[^ADFGVX]/g, "");
+  if (!clean.length) throw new Error("Nothing to decrypt — ciphertext has no A/D/F/G/V/X letters.");
+
+  const cols = transKey.toUpperCase().replace(/[^A-Z0-9]/g, "").length;
+  const order = keyOrder(transKey);
+  const rows = Math.ceil(clean.length / cols);
+  const longCols = clean.length % cols; // first `longCols` columns (by original index) have an extra char
+
+  // Length of each column by its original index
+  const colLen = new Array(cols);
+  for (let c = 0; c < cols; c++) colLen[c] = rows - (longCols === 0 ? 0 : (c < longCols ? 0 : 1));
+
+  // Walk the ciphertext, handing out each column's slice in read order, place back by original index.
+  const colData = new Array(cols);
+  let pos = 0;
+  for (const c of order) {
+    colData[c] = clean.slice(pos, pos + colLen[c]).split("");
+    pos += colLen[c];
+  }
+
+  // Reassemble fractionated string row by row.
+  let frac = "";
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      if (colData[c][r] !== undefined) frac += colData[c][r];
+    }
+  }
+
+  // Un-fractionate
+  let result = "";
+  for (let i = 0; i < frac.length; i += 2) {
+    const pair = frac.slice(i, i + 2);
+    if (pair.length === 2 && pairToChar[pair] !== undefined) result += pairToChar[pair];
+    else result += "?";
+  }
+  return result;
+}
+
+// ---- UI glue ----
+function renderSquare() {
+  const square = buildSquare(document.getElementById("square-key").value);
+  let html = '<table class="square"><tr><th></th>';
+  for (const l of ADFGVX) html += `<th>${l}</th>`;
+  html += "</tr>";
+  for (let r = 0; r < 6; r++) {
+    html += `<tr><th>${ADFGVX[r]}</th>`;
+    for (let c = 0; c < 6; c++) html += `<td>${square[r * 6 + c]}</td>`;
+    html += "</tr>";
+  }
+  html += "</table>";
+  document.getElementById("square-view").innerHTML = html;
+}
+
+function group(s) { return s.replace(/(.{5})/g, "$1 ").trim(); }
+
+function run(mode) {
+  const out = document.getElementById("output");
+  const text = document.getElementById("input").value;
+  const sk = document.getElementById("square-key").value;
+  const tk = document.getElementById("trans-key").value;
+  out.classList.remove("error");
+  try {
+    if (mode === "encrypt") out.textContent = group(encrypt(text, sk, tk));
+    else out.textContent = decrypt(text, sk, tk);
+  } catch (e) {
+    out.classList.add("error");
+    out.textContent = "⚠ " + e.message;
+  }
+}
+
+function swapOutToIn() {
+  const out = document.getElementById("output");
+  if (out.classList.contains("error") || !out.textContent.trim()) return;
+  document.getElementById("input").value = out.textContent;
+}
+
+function copyOut() {
+  const t = document.getElementById("output").textContent;
+  if (t) navigator.clipboard && navigator.clipboard.writeText(t);
+}
+
+document.getElementById("square-key").addEventListener("input", renderSquare);
+renderSquare();
+</script>
+</body>
+</html>
